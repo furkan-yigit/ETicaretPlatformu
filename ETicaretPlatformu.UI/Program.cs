@@ -1,3 +1,10 @@
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using ETicaretPlatformu.Application.IoC;
+using ETicaretPlatformu.Domain.Entities;
+using ETicaretPlatformu.InfraStructure.Context;
+using Microsoft.AspNetCore.Identity;
+
 namespace ETicaretPlatformu.UI
 {
     public class Program
@@ -8,6 +15,31 @@ namespace ETicaretPlatformu.UI
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+            builder.Services.AddDbContext<AppDbContext>();
+
+            builder.Services.AddIdentity<User, IdentityRole>(o =>
+            {
+                o.SignIn.RequireConfirmedEmail = false;
+                o.SignIn.RequireConfirmedPhoneNumber = false;
+                o.SignIn.RequireConfirmedAccount = false;
+
+                o.User.RequireUniqueEmail = false;
+
+                o.Password.RequireUppercase = false;
+                o.Password.RequiredLength = 3;
+                o.Password.RequireLowercase = false;
+                o.Password.RequireNonAlphanumeric = false;
+            }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
+
+            builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+
+            builder.Host.ConfigureContainer<ContainerBuilder>(builder =>
+            {
+                builder.RegisterModule(new DependencyResolver());
+            });
 
             var app = builder.Build();
 
@@ -24,6 +56,7 @@ namespace ETicaretPlatformu.UI
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(
