@@ -13,6 +13,7 @@ namespace ETicaretPlatformu.InfraStructure.Repositories
     {
         public CategoryRepo(AppDbContext context) : base(context)
         {
+
         }
     }
 }
