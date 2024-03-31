@@ -14,7 +14,7 @@ namespace ETicaretPlatformu.UI
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddControllersWithViews();
+            builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
             string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
@@ -58,6 +58,10 @@ namespace ETicaretPlatformu.UI
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.MapControllerRoute(
+            name: "areas",
+            pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
             app.MapControllerRoute(
                 name: "default",
