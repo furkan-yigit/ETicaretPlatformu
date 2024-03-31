@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ETicaretPlatformu.Domain.Enums;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ETicaretPlatformu.Domain.Entities
 {
-    public class Product
+    public class Product : IBaseEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -23,5 +24,10 @@ namespace ETicaretPlatformu.Domain.Entities
         public string? ImagePath { get; set; }
         [NotMapped]
         public IFormFile? UploadPath { get; set; }
+
+        public DateTime CreateDate { get; set; }
+        public DateTime? UpdateDate { get; set; }
+        public DateTime? DeleteDate { get; set; }
+        public Status Status { get; set; }
     }
 }
