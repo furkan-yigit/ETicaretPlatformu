@@ -28,7 +28,8 @@ namespace ETicaretPlatformu.InfraStructure.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=DESKTOP-NNPAIJ5;Database=OnionProjectApp;Uid=sa;Pwd=789");
+            //optionsBuilder.UseSqlServer("Server=DESKTOP-NNPAIJ5;Database=OnionProjectApp;Uid=sa;Pwd=789");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-FJ8OJV2;Database=ETicaretApp;Uid=sa;Pwd=789");
         }
     }
 }

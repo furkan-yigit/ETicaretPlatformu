@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ETicaretPlatformu.Application.Models.DTOs.ProductDTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,12 @@ namespace ETicaretPlatformu.Application.Services.ProductService
 {
     public interface IProductService
     {
+        Task AddProduct(AddProductDto model);
+
+        Task UpdateProduct(UpdateProductDto model);
+
+        Task Delete(int id);
+
+
     }
 }
