@@ -1,4 +1,5 @@
 ﻿using ETicaretPlatformu.Application.Models.DTOs.ProductDTOs;
+using ETicaretPlatformu.Application.Models.VMs.ProductVMs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,11 @@ namespace ETicaretPlatformu.Application.Services.ProductService
 
         Task Delete(int id);
 
+        Task<List<ProductVM>> GetProducts();
+
+        Task<UpdateProductDto> GetById(int id);
+
+        Task<ProductDetailsVM> GetProductDetails(int id);
 
     }
 }
