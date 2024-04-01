@@ -9,5 +9,6 @@ namespace ETicaretPlatformu.Domain.Repositories
 {
     public interface IOrderRepo : IBaseRepo<Order>
     {
+         public Task<List<Order>> GetOrderByUserId(string userId);
     }
 }
