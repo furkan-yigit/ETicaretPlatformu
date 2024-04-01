@@ -21,5 +21,6 @@ namespace ETicaretPlatformu.Application.Services.UserService
 
         Task<UpdateProfileDto> GetByUserName(string userName);
         Task<bool> UserInRole(string userName, string role);
+        Task<IEnumerable<UserDto>> GetUsers();
     }
 }

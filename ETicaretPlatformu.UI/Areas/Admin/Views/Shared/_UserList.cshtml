@@ -1,0 +1,12 @@
+﻿@model IEnumerable<UserDto>
+
+@foreach (var user in Model)
+{
+    <tr>
+        <td>@user.FirstName</td>
+        <td>@user.LastName</td>
+        <td>@user.CreateDate</td>
+        <td>@user.Status</td>
+        <td><img src="@user.ImagePath" alt="User Image" width="50" height="50" /></td>
+    </tr>
+}

@@ -131,5 +131,11 @@ namespace ETicaretPlatformu.Application.Services.UserService
 
             return isInRole;
         }
+
+        public async Task<IEnumerable<UserDto>> GetUsers()
+        {
+            var users = await _userRepo.GetDefaults(x => x.Status != Status.Passive);
+            return _mapper.Map<IEnumerable<UserDto>>(users);
+        }
     }
 }
