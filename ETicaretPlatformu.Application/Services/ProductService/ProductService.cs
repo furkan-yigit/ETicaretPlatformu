@@ -78,7 +78,6 @@ namespace ETicaretPlatformu.Application.Services.ProductService
 
         public async Task UpdateProduct(UpdateProductDto model)
         {
-            //var product = _mapper.Map<Product>(model);
 
             var product = await _productRepo.GetDefault(x => x.Id == model.Id);
 
