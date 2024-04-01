@@ -1,4 +1,5 @@
 ﻿using ETicaretPlatformu.Domain.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -28,9 +29,35 @@ namespace ETicaretPlatformu.InfraStructure.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            // optionsBuilder.UseSqlServer("Server=DESKTOP-NNPAIJ5;Database=OnionProjectApp;Uid=sa;Pwd=789");
-            optionsBuilder.UseSqlServer("Server=DESKTOP-JI3UVS4;Database=OnionETicaretProjectApp;Uid=sa;Pwd=123");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-NNPAIJ5;Database=OnionProjectApp;Uid=sa;Pwd=789");
+            //optionsBuilder.UseSqlServer("Server=DESKTOP-JI3UVS4;Database=OnionETicaretProjectApp;Uid=sa;Pwd=123");
             
+        }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<IdentityRole>().HasData(
+            new IdentityRole
+            {
+                Id = "Admin",
+                Name = "Admin",
+                NormalizedName = "ADMIN",
+                ConcurrencyStamp = new Guid().ToString(),
+            },
+            new IdentityRole
+            {
+                Id = "Member",
+                Name = "Member",
+                NormalizedName = "MEMBER",
+                ConcurrencyStamp = new Guid().ToString(),
+            });
+
+
+
+
+
+            // En Altta
+            base.OnModelCreating(builder);
         }
     }
 }

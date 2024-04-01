@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ETicaretPlatformu.Application.Models.DTOs;
 using ETicaretPlatformu.Application.Models.DTOs.CatagoryDto;
 using ETicaretPlatformu.Application.Models.VMs.CatagoryVM;
 using ETicaretPlatformu.Domain.Entities;
@@ -15,7 +16,9 @@ namespace ETicaretPlatformu.Application.AutoMapper
     {
         public Mapping()
         {
-            //CreateMap<User, RegisterDto>().ReverseMap();
+            CreateMap<User, RegisterDto>().ReverseMap();
+            CreateMap<User, LoginDto>().ReverseMap();
+            CreateMap<User, UpdateProfileDto>().ReverseMap();
             CreateMap<Category,CatagoryVM>().ReverseMap();
             CreateMap<Category, CreateCatogoryDto>().ReverseMap();  
 
