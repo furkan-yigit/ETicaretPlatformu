@@ -9,7 +9,9 @@ namespace ETicaretPlatformu.Application.Services.ProductService
 {
     public interface IProductService
     {
-        Task AddProduct(AddProductDto model);
+        Task Add(AddProductDto model);
+
+        Task<AddProductDto> AddProduct();
 
         Task UpdateProduct(UpdateProductDto model);
 

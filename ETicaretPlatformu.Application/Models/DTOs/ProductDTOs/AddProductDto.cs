@@ -1,4 +1,5 @@
-﻿using ETicaretPlatformu.Domain.Entities;
+﻿using ETicaretPlatformu.Application.Models.VMs.ProductVMs;
+using ETicaretPlatformu.Domain.Entities;
 using ETicaretPlatformu.Domain.Enums;
 using Microsoft.AspNetCore.Http;
 using System;
@@ -13,22 +14,21 @@ namespace ETicaretPlatformu.Application.Models.DTOs.ProductDTOs
 {
     public class AddProductDto
     {
-        [Required(ErrorMessage = "Ürün ismi girilmek zorundadır")]
+        [Required(ErrorMessage = "Lütfen ürün ismi giriniz")]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "Ürün açıklaması girilmek zorundadır")]
         public string Description { get; set; }
 
-        [Required(ErrorMessage = "Ürün fiyatı girilmek zorundadır")]
+        [Required(ErrorMessage = "Lütfen ürün fiyatı giriniz")]
         public decimal Price { get; set; }
 
-        [Required(ErrorMessage = "Stok miktarı girilmek zorundadır")]
+        [Required(ErrorMessage = "Lütfen stok miktarı giriniz")]
         public int StockQuantity { get; set; }
 
-        [Required(ErrorMessage = "Kategori seçilmek zorundadır")]
+        [Required(ErrorMessage = "Lütfen kategori seçiniz")]
         public int CategoryId { get; set; }
 
-        public Category Category { get; set; }
+        public List<ProductCategoryVM>? Categories { get; set; }
 
         public string? ImagePath { get; set; }
 

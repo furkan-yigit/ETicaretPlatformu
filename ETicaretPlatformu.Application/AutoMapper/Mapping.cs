@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ETicaretPlatformu.Application.Models.DTOs.ProductDTOs;
 using ETicaretPlatformu.Domain.Entities;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -15,7 +16,8 @@ namespace ETicaretPlatformu.Application.AutoMapper
         {
             //CreateMap<User, RegisterDto>().ReverseMap();
 
-            //CreateMap<Product, CreateAuthorDto>().ReverseMap();
+            CreateMap<Product, AddProductDto>().ReverseMap();
+            CreateMap<Product, UpdateProductDto>().ReverseMap();
 
             //CreateMap<Order, CreateGenreDTO>().ReverseMap();
 
