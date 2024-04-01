@@ -12,10 +12,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Category List</title>
+    <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-       
         body {
             background-color: #f8f9fa;
             padding-top: 20px;
@@ -34,7 +33,8 @@
             background-color: #fff;
         }
 
-        th, td {
+        th,
+        td {
             vertical-align: middle;
         }
 
@@ -45,8 +45,17 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="text-center">Category List</h1>
+        <h1 class="text-center">@ViewData["Title"]</h1>
         <a asp-action="Create" asp-area="Admin" asp-controller="Category" class="btn btn-danger btn-create">Create New</a>
+
+        <form asp-action="Index" method="get">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" name="search" placeholder="Search for category">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit">Search</button>
+                </div>
+            </div>
+        </form>
         <table class="table table-bordered">
             <thead class="thead-dark">
                 <tr>
@@ -64,7 +73,7 @@
                         <td>@Html.DisplayFor(modelItem => item.Name)</td>
                         <td>@Html.DisplayFor(modelItem => item.Description)</td>
                         <td>
-                            <a asp-action="Update"asp-route-id="@item.Id" class="btn btn-primary btn-action">Edit</a>
+                            <a asp-action="Update" asp-route-id="@item.Id" class="btn btn-primary btn-action">Update</a>
                             <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-action">Details</a>
                             <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-action">Delete</a>
                         </td>

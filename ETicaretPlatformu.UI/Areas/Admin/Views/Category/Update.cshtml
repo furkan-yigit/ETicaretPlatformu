@@ -49,26 +49,19 @@
         <hr />
         <form asp-action="Update">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="mb-3">
-                <label for="Id" class="form-label">ID:</label>
-                <input type="text" class="form-control" id="Id" name="Id">
-            </div>
+            
             <div class="mb-3">
                 <label for="Name" class="form-label">Name:</label>
-                <input type="text" class="form-control" id="Name" name="Name">
+                <input type="text" class="form-control" id="Name" name="Name" placeholder="@Model.Name" value="@Model.Name">
+                <span asp-validation-for="Name" class="text-danger"></span>
+
             </div>
             <div class="mb-3">
                 <label for="Description" class="form-label">Description:</label>
-                <input type="text" class="form-control" id="Description" name="Description">
+                <input type="text" class="form-control" id="Description" name="Description" placeholder="@Model.Description" value="@Model.Description">
+                <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-            <div class="mb-3">
-                <label for="UpdateDate" class="form-label">Update Date:</label>
-                <input type="date" class="form-control" id="UpdateDate" name="UpdateDate">
-            </div>
-            <div class="mb-3">
-                <label for="Status" class="form-label">Status:</label>
-                <input type="text" class="form-control" id="Status" name="Status">
-            </div>
+           
             <button type="submit" class="btn btn-primary btn-block">Save</button>
         </form>
         <a asp-action="Index" class="back-link">Back to List</a>
@@ -77,6 +70,3 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
-
-
