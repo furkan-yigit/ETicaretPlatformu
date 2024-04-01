@@ -1,4 +1,4 @@
-﻿using ETicaretPlatformu.Application.Models.DTOs;
+﻿using ETicaretPlatformu.Application.Models.DTOs.UserDtos;
 using ETicaretPlatformu.Application.Services.UserService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

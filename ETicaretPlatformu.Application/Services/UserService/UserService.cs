@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using ETicaretPlatformu.Application.Models.DTOs;
+using ETicaretPlatformu.Application.Models.DTOs.UserDtos;
 using ETicaretPlatformu.Domain.Entities;
 using ETicaretPlatformu.Domain.Enums;
 using ETicaretPlatformu.Domain.Repositories;

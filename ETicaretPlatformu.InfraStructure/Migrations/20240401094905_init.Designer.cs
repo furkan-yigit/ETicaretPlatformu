@@ -12,12 +12,13 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ETicaretPlatformu.InfraStructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-<<<<<<<< HEAD:ETicaretPlatformu.InfraStructure/Migrations/20240401092341_init.Designer.cs
-    [Migration("20240401092341_init")]
+<<<<<<<< HEAD:ETicaretPlatformu.InfraStructure/Migrations/20240401104459_updateCardProp2.Designer.cs
+    [Migration("20240401104459_updateCardProp2")]
+    partial class updateCardProp2
 ========
-    [Migration("20240331204849_init")]
->>>>>>>> origin/omer:ETicaretPlatformu.InfraStructure/Migrations/20240331204849_init.Designer.cs
+    [Migration("20240401094905_init")]
     partial class init
+>>>>>>>> origin/omer:ETicaretPlatformu.InfraStructure/Migrations/20240401094905_init.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -332,22 +333,6 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "Admin",
-                            ConcurrencyStamp = "00000000-0000-0000-0000-000000000000",
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
-                        },
-                        new
-                        {
-                            Id = "Member",
-                            ConcurrencyStamp = "00000000-0000-0000-0000-000000000000",
-                            Name = "Member",
-                            NormalizedName = "MEMBER"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

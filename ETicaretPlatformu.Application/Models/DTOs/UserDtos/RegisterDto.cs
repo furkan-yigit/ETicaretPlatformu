@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ETicaretPlatformu.Application.Models.DTOs
+namespace ETicaretPlatformu.Application.Models.DTOs.UserDtos
 {
     public class RegisterDto
     {

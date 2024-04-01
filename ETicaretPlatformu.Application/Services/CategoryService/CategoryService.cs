@@ -55,6 +55,7 @@ namespace ETicaretPlatformu.Application.Services.CategoryService
         }
 
         public Task<List<CatagoryVM>> GetCatagories()
+        
         {
             var categories = _categoryRepo.GetFilteredList(
                                select: x => new CatagoryVM
@@ -63,7 +64,7 @@ namespace ETicaretPlatformu.Application.Services.CategoryService
                     Name = x.Name,
                     Description = x.Description
                 },
-                                              where: x => x.Status ==Status.Passive,
+                                              where: x => x.Status != Status.Passive,
                                               orderBy: x => x.OrderBy(x => x.Name)
                                                              );
             return categories;

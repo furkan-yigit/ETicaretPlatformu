@@ -12,12 +12,13 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ETicaretPlatformu.InfraStructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-<<<<<<<< HEAD:ETicaretPlatformu.InfraStructure/Migrations/20240401092341_init.Designer.cs
-    [Migration("20240401092341_init")]
+<<<<<<<< HEAD:ETicaretPlatformu.InfraStructure/Migrations/20240401081419_updateCardProp.Designer.cs
+    [Migration("20240401081419_updateCardProp")]
+    partial class updateCardProp
 ========
-    [Migration("20240331204849_init")]
->>>>>>>> origin/omer:ETicaretPlatformu.InfraStructure/Migrations/20240331204849_init.Designer.cs
-    partial class init
+    [Migration("20240401100943_i")]
+    partial class i
+>>>>>>>> origin/omer:ETicaretPlatformu.InfraStructure/Migrations/20240401100943_i.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -54,7 +55,8 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Carts");
                 });
@@ -224,6 +226,10 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<string>("CartId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -332,22 +338,6 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "Admin",
-                            ConcurrencyStamp = "00000000-0000-0000-0000-000000000000",
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
-                        },
-                        new
-                        {
-                            Id = "Member",
-                            ConcurrencyStamp = "00000000-0000-0000-0000-000000000000",
-                            Name = "Member",
-                            NormalizedName = "MEMBER"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -459,8 +449,8 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
             modelBuilder.Entity("ETicaretPlatformu.Domain.Entities.Cart", b =>
                 {
                     b.HasOne("ETicaretPlatformu.Domain.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
+                        .WithOne("Cart")
+                        .HasForeignKey("ETicaretPlatformu.Domain.Entities.Cart", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -580,6 +570,9 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
 
             modelBuilder.Entity("ETicaretPlatformu.Domain.Entities.User", b =>
                 {
+                    b.Navigation("Cart")
+                        .IsRequired();
+
                     b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618

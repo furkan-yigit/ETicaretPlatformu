@@ -1,4 +1,4 @@
-﻿using ETicaretPlatformu.Application.Models.DTOs;
+﻿using ETicaretPlatformu.Application.Models.DTOs.UserDtos;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
