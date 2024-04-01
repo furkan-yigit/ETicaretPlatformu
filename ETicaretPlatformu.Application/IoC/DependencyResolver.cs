@@ -32,7 +32,7 @@ namespace ETicaretPlatformu.Application.IoC
             builder.RegisterType<UserService>().As<IUserService>().InstancePerLifetimeScope();
             //builder.RegisterType<CartService>().As<ICartService>().InstancePerLifetimeScope();
             //builder.RegisterType<ProductService>().As<IProductService>().InstancePerLifetimeScope();
-            //builder.RegisterType<CategoryService>().As<ICategoryService>().InstancePerLifetimeScope();
+            builder.RegisterType<CategoryService>().As<ICategoryService>().InstancePerLifetimeScope();
             //builder.RegisterType<OrderDetailService>().As<IOrderDetailService>().InstancePerLifetimeScope();
             //builder.RegisterType<OrderService>().As<IOrderService>().InstancePerLifetimeScope();
 
