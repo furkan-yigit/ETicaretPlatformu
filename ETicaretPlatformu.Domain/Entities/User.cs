@@ -19,7 +19,6 @@ namespace ETicaretPlatformu.Domain.Entities
         public ICollection<Order> Orders { get; set; }
 
 
-
         public string? ImagePath { get; set; }
 
         [NotMapped]

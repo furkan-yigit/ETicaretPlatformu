@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using ETicaretPlatformu.Application.Models.DTOs.Cart;
 using ETicaretPlatformu.Application.Models.DTOs.CatagoryDto;
+using ETicaretPlatformu.Application.Models.VMs.CartVMs;
 using ETicaretPlatformu.Application.Models.VMs.CatagoryVM;
 using ETicaretPlatformu.Domain.Entities;
 using Microsoft.Extensions.Hosting;
@@ -17,7 +19,7 @@ namespace ETicaretPlatformu.Application.AutoMapper
         {
             //CreateMap<User, RegisterDto>().ReverseMap();
             CreateMap<Category,CatagoryVM>().ReverseMap();
-            CreateMap<Category, CreateCatogoryDto>().ReverseMap();  
+            CreateMap<Category, CreateCatogoryDto>().ReverseMap();
 
             //CreateMap<Product, CreateAuthorDto>().ReverseMap();
 
@@ -25,7 +27,10 @@ namespace ETicaretPlatformu.Application.AutoMapper
 
             //CreateMap<OrderDetail, CreatePostDto>().ReverseMap();
 
-            //CreateMap<Cart, UpdatePostDto>().ReverseMap();
+            CreateMap<Cart, CreateCartDto>().ReverseMap();
+            CreateMap<Cart, UpdateCartDto>().ReverseMap();
+            CreateMap<CartDto, Cart>().ReverseMap();
+            CreateMap<CartVM, Cart>().ReverseMap();
 
             //CreateMap<Category, PostVm>().ReverseMap();
         }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ETicaretPlatformu.Application.Models.DTOs.Cart;
+using ETicaretPlatformu.Application.Models.VMs.CartVMs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +10,11 @@ namespace ETicaretPlatformu.Application.Services.CartService
 {
     public interface ICartService
     {
+        Task Create(CreateCartDto model);
+        Task Update(UpdateCartDto model);
+        Task Delete(int cartId);
+        Task<CartDto> GetCartById(int cartId);
+        Task<List<CartVM>> GetAllCarts();
+
     }
 }

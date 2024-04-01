@@ -9,6 +9,18 @@ namespace ETicaretPlatformu.Domain.Entities
 {
     public class Cart : IBaseEntity
     {
+        private static Dictionary<int, Cart> _carts = new Dictionary<int, Cart>();
+
+        private Cart() { }
+
+        public static Cart Instance(int userId)
+        {
+            if (!_carts.ContainsKey(userId))
+                _carts[userId] = new Cart();
+
+            return _carts[userId];
+        }
+
         public int Id { get; set; }
         public string UserId { get; set; }
         public User User { get; set; }
