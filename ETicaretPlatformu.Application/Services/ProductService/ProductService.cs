@@ -3,6 +3,7 @@ using ETicaretPlatformu.Application.Models.DTOs.ProductDTOs;
 using ETicaretPlatformu.Application.Models.VMs.ProductVMs;
 using ETicaretPlatformu.Domain.Entities;
 using ETicaretPlatformu.Domain.Repositories;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
@@ -58,7 +59,7 @@ namespace ETicaretPlatformu.Application.Services.ProductService
                         Name = x.Name
                     },
                     where: x => x.Status != Domain.Enums.Status.Passive,
-                    orderBy: x => x.OrderBy(x => x.CreateDate)
+                    orderBy: x => x.OrderBy(x => x.Name)
                     )
             };
             return model;
@@ -108,7 +109,74 @@ namespace ETicaretPlatformu.Application.Services.ProductService
             }           
         }
 
-        public async Task<List<ProductVM>>
+        public async Task<List<ProductVM>> GetProducts()
+        {
+            var products = await _productRepo.GetFilteredList(
+                select: x => new ProductVM
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Price = x.Price,
+                    StockQuantity = x.StockQuantity,
+                    CategoryName = x.Category.Name,
+                    ImagePath=x.ImagePath
+                },
+                where: x => x.Status != Domain.Enums.Status.Passive,
+                orderBy: x => x.OrderBy(x => x.Name),
+                include: x => x.Include(x => x.Category
+                ));
+
+            return products;
+        }
+
+        public async Task<UpdateProductDto> GetById(int id)
+        {
+            var product= await _productRepo.GetFilteredFirstOrDefault(                 
+                     select: x => new ProductVM
+                     {
+                         Id = x.Id,
+                         Name = x.Name,
+                         Price = x.Price,
+                         StockQuantity = x.StockQuantity,
+                         CategoryId=x.CategoryId,
+                         ImagePath = x.ImagePath
+                     },
+                where: x => x.Id==id               
+                );
+            var model = _mapper.Map<UpdateProductDto>(product);
+
+            model.Categories = await _categoryRepo.GetFilteredList(
+                select: x => new ProductCategoryVM
+                {
+                    Id=x.Id,
+                    Name=x.Name
+                },
+                where: x => x.Status != Domain.Enums.Status.Passive,
+                orderBy: x => x.OrderBy(x => x.Name)
+                );
+
+            return model;
+        }
+
+        public async Task<ProductDetailsVM> GetProductDetails(int id)
+        {
+            var product = await _productRepo.GetFilteredFirstOrDefault(
+                select: x => new ProductDetailsVM
+                {
+                    Name = x.Name,
+                    Description = x.Description,
+                    Price = x.Price,
+                    StockQuantity = x.StockQuantity,
+                    CategoryName = x.Category.Name,
+                    ImagePath = x.ImagePath, CreateDate = x.CreateDate
+                },
+                where: x => x.Id == id,
+                orderBy: x => x.OrderBy(x => x.Name),
+                include: x => x.Include(x => x.Category)
+                );
+
+            return product;
+        }
     }
 }
 

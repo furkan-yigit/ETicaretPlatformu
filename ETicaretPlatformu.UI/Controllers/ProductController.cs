@@ -1,4 +1,5 @@
-﻿using ETicaretPlatformu.Application.Services.ProductService;
+﻿using ETicaretPlatformu.Application.Models.DTOs.ProductDTOs;
+using ETicaretPlatformu.Application.Services.ProductService;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ETicaretPlatformu.UI.Controllers
@@ -12,14 +13,60 @@ namespace ETicaretPlatformu.UI.Controllers
             _productService = productService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
+        {
+            var productList = await _productService.GetProducts();
+            return View(productList);
+        }
+
+        public IActionResult Create()
         {
             return View();
         }
 
-        public Task<IActionResult> Create()
+        public async Task<IActionResult> Create(AddProductDto model)
         {
-
+            if (ModelState.IsValid)
+            {
+                await _productService.Add(model);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(model);
+            }
         }
+
+        public async Task<IActionResult> Update(int id)
+        {
+            var product = await _productService.GetById(id);
+            return View(product);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(UpdateProductDto model)
+        {
+            if (ModelState.IsValid)
+            {
+                await _productService.UpdateProduct(model);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(model);
+            }
+        }
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _productService.Delete(id);
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> Detail(int id)
+        {
+            var product=await _productService.GetProductDetails(id);
+            return View(product);
+        }
+
     }
 }
