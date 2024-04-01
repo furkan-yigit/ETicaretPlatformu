@@ -1,0 +1,79 @@
+﻿@model IEnumerable<ETicaretPlatformu.Application.Models.VMs.ProductVMs.ProductVM>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Products</h1>
+
+
+
+
+<div class="container-fluid px-4">
+    <div>
+        <a asp-action="Create" asp-area="Admin" asp-controller="Product" class="btn btn-success">Create New Product</a>
+    </div>
+    <br />
+<div class="row"></div>
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Product Table
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Price)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.StockQuantity)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CategoryName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ImagePath)
+                        </th>
+                        <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Price)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StockQuantity)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CategoryName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ImagePath)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Güncelle", "Update", new { /* id=item.PrimaryKey */ }) |
+                                @Html.ActionLink("Detay", "Details", new { /* id=item.PrimaryKey */ }) |
+                                @Html.ActionLink("Sil", "Delete", new { /* id=item.PrimaryKey */ })
+                            </td>
+                        </tr>
+                    }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>

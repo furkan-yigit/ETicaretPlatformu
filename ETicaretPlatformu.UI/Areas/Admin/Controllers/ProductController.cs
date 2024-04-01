@@ -1,22 +1,27 @@
 ﻿using ETicaretPlatformu.Application.Models.DTOs.ProductDTOs;
+using ETicaretPlatformu.Application.Models.VMs.ProductVMs;
 using ETicaretPlatformu.Application.Services.ProductService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ETicaretPlatformu.UI.Controllers
+namespace ETicaretPlatformu.UI.Areas.Admin.Controllers
 {
+    [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class ProductController : Controller
     {
         private readonly IProductService _productService;
-
+       
         public ProductController(IProductService productService)
         {
             _productService = productService;
         }
 
+     
         public async Task<IActionResult> Index()
         {
             var productList = await _productService.GetProducts();
-            return View(productList);
+                        return View(productList);
         }
 
         public IActionResult Create()
@@ -24,6 +29,7 @@ namespace ETicaretPlatformu.UI.Controllers
             return View();
         }
 
+        [HttpPost]
         public async Task<IActionResult> Create(AddProductDto model)
         {
             if (ModelState.IsValid)
@@ -64,9 +70,8 @@ namespace ETicaretPlatformu.UI.Controllers
 
         public async Task<IActionResult> Detail(int id)
         {
-            var product=await _productService.GetProductDetails(id);
+            var product = await _productService.GetProductDetails(id);
             return View(product);
         }
-
     }
 }
