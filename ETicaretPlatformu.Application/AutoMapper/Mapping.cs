@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using ETicaretPlatformu.Application.Models.DTOs;
 using ETicaretPlatformu.Application.Models.DTOs.CatagoryDto;
+using ETicaretPlatformu.Application.Models.DTOs.UserDtos;
 using ETicaretPlatformu.Application.Models.VMs.CatagoryVM;
 using ETicaretPlatformu.Domain.Entities;
 using Microsoft.Extensions.Hosting;
