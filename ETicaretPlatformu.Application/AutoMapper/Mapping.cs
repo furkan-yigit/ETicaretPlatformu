@@ -22,6 +22,8 @@ namespace ETicaretPlatformu.Application.AutoMapper
             CreateMap<User, UserDto>().ReverseMap();
             CreateMap<Category,CatagoryVM>().ReverseMap();
             CreateMap<Category, CreateCatogoryDto>().ReverseMap();  
+            CreateMap<CatagoryVM,UpdateCatagoryDto>().ReverseMap();
+            CreateMap<UpdateCatagoryDto,Category>().ReverseMap();
 
             //CreateMap<Product, CreateAuthorDto>().ReverseMap();
 
