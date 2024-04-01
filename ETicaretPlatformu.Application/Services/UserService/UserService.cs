@@ -126,7 +126,7 @@ namespace ETicaretPlatformu.Application.Services.UserService
 
         public async Task<bool> UserInRole(string userName, string role)
         {
-            var user = await _userManager.FindByNameAsync(userName.ToUpper());
+            var user = await _userManager.FindByNameAsync(userName);
             bool isInRole = await _userManager.IsInRoleAsync(user, role);
 
             return isInRole;

@@ -12,9 +12,22 @@ namespace ETicaretPlatformu.Application.Extensions
     {
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
+            if (value == null)
+            {
+                return ValidationResult.Success;
+            }
             IFormFile file = value as IFormFile;
+            if (file == null)
+            {
+                return new ValidationResult("Geçerli bir dosya yükleyin.");
+            }
 
             var extension = Path.GetExtension(file.FileName).ToLower();
+
+            if (string.IsNullOrEmpty(extension))
+            {
+                return new ValidationResult("Dosya uzantısı alınamadı.");
+            }
 
             string[] extensions = { "jpg", "jpeg", "png" };
 

@@ -34,10 +34,20 @@
                                     <i class="fas fa-user fa-fw text-dark"></i> @User.Identity.Name
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="#!">My Orders</a></li>
-                                    <li><hr class="dropdown-divider" /></li>
-                                    <li><a class="dropdown-item" asp-controller="Account" asp-action="Logout">Logout</a></li>
-                                </ul>
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        <li><a class="dropdown-item" asp-area="Admin" asp-controller="Home" asp-action="Index">Admin Panel</a></li>
+                                        <li><a class="dropdown-item" asp-controller="Account" asp-action="Logout">Logout</a></li>
+                                        <li><a class="dropdown-item" asp-controller="Account" asp-action="Edit" asp-route-userName="@User.Identity.Name">Edit</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a class="dropdown-item" href="#!">My Orders</a></li>
+                                        <li><hr class="dropdown-divider" /></li>
+                                        <li><a class="dropdown-item" asp-controller="Account" asp-action="Logout">Logout</a></li>
+                                    }
+                                    
+                                </ul>                                
                             </li>
                         </ul>
                     }

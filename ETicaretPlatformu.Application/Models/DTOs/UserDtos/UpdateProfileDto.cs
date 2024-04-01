@@ -44,6 +44,6 @@ namespace ETicaretPlatformu.Application.Models.DTOs.UserDtos
         public IFormFile UploadPath { get; set; }
         public DateTime UpdateDate => DateTime.Now;
         public Status Status => Status.Modified;
-        public PaymentMethod PaymentMethod { get; set; }
+        //public PaymentMethod PaymentMethod { get; set; }
     }
 }
