@@ -17,9 +17,9 @@ namespace ETicaretPlatformu.UI.Controllers
             return View();
         }
 
-        //public Task<IActionResult> Create() 
-        //{
-            
-        //}
+        public Task<IActionResult> Create()
+        {
+
+        }
     }
 }

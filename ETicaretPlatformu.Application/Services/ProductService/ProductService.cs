@@ -105,10 +105,10 @@ namespace ETicaretPlatformu.Application.Services.ProductService
                 }
 
                 await _productRepo.Update(product);
-            }
-
-           
+            }           
         }
+
+        public async Task<List<ProductVM>>
     }
 }
 
