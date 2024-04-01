@@ -12,6 +12,7 @@ namespace ETicaretPlatformu.Application.Models.DTOs
     {
         [Required(ErrorMessage = "Kullanici adi girisi zorunludur")]
         [Display(Name = "Kullanici Adi")]
+        public string UserName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
 

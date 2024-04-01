@@ -12,8 +12,12 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ETicaretPlatformu.InfraStructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240331185014_DtoFirst-LastName")]
-    partial class DtoFirstLastName
+<<<<<<<< HEAD:ETicaretPlatformu.InfraStructure/Migrations/20240401092341_init.Designer.cs
+    [Migration("20240401092341_init")]
+========
+    [Migration("20240331204849_init")]
+>>>>>>>> origin/omer:ETicaretPlatformu.InfraStructure/Migrations/20240331204849_init.Designer.cs
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -328,6 +332,22 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "Admin",
+                            ConcurrencyStamp = "00000000-0000-0000-0000-000000000000",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "Member",
+                            ConcurrencyStamp = "00000000-0000-0000-0000-000000000000",
+                            Name = "Member",
+                            NormalizedName = "MEMBER"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

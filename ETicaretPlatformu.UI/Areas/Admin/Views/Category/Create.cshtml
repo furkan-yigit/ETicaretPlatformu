@@ -1,0 +1,103 @@
+﻿@model ETicaretPlatformu.Application.Models.DTOs.CatagoryDto.CreateCatogoryDto
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Category</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Custom Styles */
+        body {
+            background-color: #f8f9fa;
+            padding-top: 50px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            color: #343a40;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            border: 2px solid #ced4da;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+        }
+
+            .form-control:focus {
+                border-color: #007bff;
+                box-shadow: none;
+            }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+        }
+
+            .btn-primary:hover {
+                background-color: #0056b3;
+            }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Create</h1>
+    <div class="container form-container">
+        <h4>Create Category</h4>
+        <hr />
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Name:</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label">Description:</label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            
+            
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary btn-block" />
+            </div>
+            <div class="form-group">
+                <a asp-action="Index" class="btn btn-danger">Back to List</a>
+            </div>
+        </form>
+        
+       
+    </div>
+</body>
+</html>
+
+
+

@@ -1,0 +1,81 @@
+﻿@model IEnumerable<ETicaretPlatformu.Application.Models.VMs.CatagoryVM.CatagoryVM>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+       
+        body {
+            background-color: #f8f9fa;
+            padding-top: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .btn-create {
+            margin-bottom: 20px;
+        }
+
+        .table {
+            background-color: #fff;
+        }
+
+        th, td {
+            vertical-align: middle;
+        }
+
+        .btn-action {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Category List</h1>
+        <a asp-action="Create" asp-area="Admin" asp-controller="Category" class="btn btn-danger btn-create">Create New</a>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                        <td>
+                            <a asp-action="Update" class="btn btn-primary btn-action">Edit</a>
+                            <a asp-action="Details" class="btn btn-info btn-action">Details</a>
+                            <a asp-action="Delete" class="btn btn-danger btn-action">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+
+
+
+
