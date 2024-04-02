@@ -12,17 +12,18 @@ namespace ETicaretPlatformu.UI.Areas.Admin.Controllers
     public class CategoryController : Controller
     {
         private readonly ICategoryService _categoryService;
-        private readonly ICategoryRepo _categoryRepo;
         
-        public CategoryController(ICategoryService categoryService, ICategoryRepo categoryRepo)
+        
+        public CategoryController(ICategoryService categoryService)
         {
             _categoryService = categoryService;
-            _categoryRepo = categoryRepo;
+            
         }
 
         public async Task<IActionResult> Index()
         {
             return View(await _categoryService.GetCatagories());
+            
         }
         public IActionResult Create()
         {
@@ -62,11 +63,10 @@ namespace ETicaretPlatformu.UI.Areas.Admin.Controllers
             return View(await _categoryService.GetById(model.Id));
         }
         
-        public async Task<IActionResult> Search(string name)
-        {
-            return View("Index", await _categoryRepo.GetDefault(x => x.Name.Contains(name)));
-            
-        }
+       
+        
+
+        
         
 
         
