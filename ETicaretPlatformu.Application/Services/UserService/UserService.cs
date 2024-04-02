@@ -101,15 +101,18 @@ namespace ETicaretPlatformu.Application.Services.UserService
 
                 await _userRepo.Update(user);
             }
+            user.FirstName = model.FirstName;
+            user.LastName = model.LastName;
+
 
             if (!string.IsNullOrEmpty(model.Password))
             {
-                var isUserNameExist = await _userManager.FindByNameAsync(model.UserName.ToUpper());
+                var isUserNameExist = await _userManager.FindByNameAsync(model.UserName);
 
-                if (isUserNameExist != null)
+                if (isUserNameExist == null)
                 {
                     await _userManager.SetUserNameAsync(user, model.UserName);
-                    await _signInManager.SignInAsync(user, false);
+                    await _signInManager.SignInAsync(user, false);                   
                 }
             }
 
@@ -117,7 +120,7 @@ namespace ETicaretPlatformu.Application.Services.UserService
             {
                 var isUserEmailExist = await _userManager.FindByEmailAsync(model.Email.ToUpper());
 
-                if (isUserEmailExist != null)
+                if (isUserEmailExist == null)
                 {
                     await _userManager.SetEmailAsync(user, model.Email);
                 }

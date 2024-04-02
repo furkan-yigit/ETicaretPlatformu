@@ -26,7 +26,8 @@
                             <div class="card shadow-lg border-0 rounded-lg mt-5">
                                 <div class="card-header"><h3 class="text-center font-weight-light my-4" style="color: #1488e1;">Edit Profile</h3></div>
                                 <div class="card-body">
-                                    <form asp-controller="Account" asp-action="Edit" method="post">
+                                    <form asp-controller="Account" asp-action="Edit" method="post" enctype="multipart/form-data">
+                                        <input type="hidden" asp-for="Id" />
                                         <div class="row mb-3">
                                             <div class="col-md-6">
                                                 <div class="form-floating mb-3 mb-md-0">
@@ -70,9 +71,9 @@
                                             </div>                                            
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <label asp-for="UploadPath"></label>
-                                            <input asp-for="UserName" type="file" class="form-control" />
-                                            <span asp-validation-for="UserName"></span>
+                                            @* <label asp-for="UploadPath"></label> *@
+                                            <input asp-for="UploadPath" type="file" class="form-control" />
+                                            <span asp-validation-for="UploadPath"></span>
                                         </div>
 
                                         <div class="form-floating">
