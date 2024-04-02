@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using ETicaretPlatformu.Application.Models.DTOs.Cart;
+using ETicaretPlatformu.Application.Models.DTOs;
 using ETicaretPlatformu.Application.Models.DTOs.ProductDTOs;
 using ETicaretPlatformu.Application.Models.DTOs.Cart;
 using ETicaretPlatformu.Application.Models.DTOs.CatagoryDto;

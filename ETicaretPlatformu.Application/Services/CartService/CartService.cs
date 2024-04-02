@@ -14,13 +14,16 @@ namespace ETicaretPlatformu.Application.Services.CartService
 {
     public class CartService : ICartService
     {
-        private readonly IBaseRepo<Cart> _cartRepo;
+        private readonly ICartRepo _cartRepo;
+        private readonly IProductRepo _productRepo;
+
         private readonly IMapper _mapper;
 
-        public CartService(IBaseRepo<Cart> cartRepo, IMapper mapper)
+        public CartService(ICartRepo cartRepo, IMapper mapper, IProductRepo productRepo)
         {
             _cartRepo = cartRepo;
             _mapper = mapper;
+            _productRepo = productRepo;
         }
 
         public async Task Create(CreateCartDto model)
@@ -74,12 +77,17 @@ namespace ETicaretPlatformu.Application.Services.CartService
             //}
         }
 
-        public async Task Delete(int cartId)
+        public async Task RemoveProductFromCart(int cartId, int productId)
         {
             var cart = await _cartRepo.GetDefault(c => c.Id == cartId);
             if (cart != null)
             {
-                await _cartRepo.Delete(cart);
+                var productToRemove = cart.Products.FirstOrDefault(p => p.Id == productId);
+                if (productToRemove != null)
+                {
+                    cart.Products.Remove(productToRemove);
+                    await _cartRepo.Update(cart);
+                }
             }
         }
 
@@ -121,12 +129,36 @@ namespace ETicaretPlatformu.Application.Services.CartService
 
         }
 
-        public async Task<List<CartVM>> GetAllCarts()
+        public async Task AddProductToCart(int cartId, int productId)
         {
-            var carts = await _cartRepo.GetDefaults(c => true);
-            return _mapper.Map<List<CartVM>>(carts);
+            var cart = await _cartRepo.GetDefault(c => c.Id == cartId);
+            if (cart != null)
+            {
+                var productToAdd = await _productRepo.GetDefault(p => p.Id == productId);
+                if (productToAdd != null)
+                {
+                    cart.Products.Add(productToAdd);
+                    await _cartRepo.Update(cart);
+                }
+            }
         }
 
+        public async Task RemoveAllProductFromCart(int cartId, int productId)
+        {
+            var cart = await _cartRepo.GetDefault(c => c.Id == cartId);
+            if (cart != null)
+            {
+                var productToRemove = cart.Products.Where(p => p.Id == productId).ToList();
+                if (productToRemove != null)
+                {
+                    foreach (var item in productToRemove)
+                    {
+                        cart.Products.Remove(item);
+                    }
+                    await _cartRepo.Update(cart);
+                }
+            }
+        }
     }
 }
 

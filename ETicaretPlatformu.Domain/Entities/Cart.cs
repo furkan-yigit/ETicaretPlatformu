@@ -11,7 +11,10 @@ namespace ETicaretPlatformu.Domain.Entities
     {
         private static Dictionary<int, Cart> _carts = new Dictionary<int, Cart>();
 
-        private Cart() { }
+        private Cart() 
+        {
+            Products = new List<Product>();
+        }
 
         public static Cart Instance(int userId)
         {
@@ -24,7 +27,7 @@ namespace ETicaretPlatformu.Domain.Entities
         public int Id { get; set; }
         public string UserId { get; set; }
         public User User { get; set; }
-        public ICollection<Product> Products { get; set; }
+        public List<Product> Products { get; set; }
 
 
         public DateTime CreateDate { get; set; }
