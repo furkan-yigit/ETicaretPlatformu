@@ -1,0 +1,92 @@
+﻿@using ETicaretPlatformu.Application.Models.VMs.ProductVMs
+@model ETicaretPlatformu.Application.Models.DTOs.ProductDTOs.AddProductDto
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<body class="bg-primary">
+    <div>
+        <div>
+            <main>
+                <div class="container">
+                    <div class="row justify-content-center" >
+                        <div class="col-lg-9">
+                            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                <div class="card-header"><h3 class="text-center font-weight-light my-4" style="color: #1488e1;">Create</h3></div>
+                                <div class="card-body">
+                                    <form asp-action="Create" method="post">
+                                       
+                                        <div class="form-floating mb-3">
+                                            <input asp-for="Name"  class="form-control" />
+                                            <label asp-for="Name" class="control-label"></label>
+                                            <span asp-validation-for="Name" class="text-danger"></span>
+                                        </div>
+                                       
+                                        <div class="form-floating mb-3">
+                                            <input asp-for="Description" class="form-control" />
+                                            <label asp-for="Description" class="control-label"></label>
+                                            <span asp-validation-for="Description" class="text-danger"></span>
+                                        </div>
+
+                                        <div class="form-floating mb-3">
+                                            <input asp-for="Price" class="form-control" />
+                                            <label asp-for="Price" class="control-label"></label>
+                                            <span asp-validation-for="Price" class="text-danger"></span>
+                                        </div>
+
+
+                                        <div class="form-floating mb-3">
+                                            <input asp-for="StockQuantity" class="form-control" />
+                                            <label asp-for="StockQuantity" class="control-label"></label>
+                                            <span asp-validation-for="StockQuantity" class="text-danger"></span>
+                                        </div>                                        
+
+
+                                        <div class="form-floating mb-3">
+                                            @{
+                                                var categories = new List<ProductCategoryVM>();
+                                            }
+                                            <select asp-for="CategoryId" class="form-control" asp-items="@(new SelectList(categories, "Id", "Name"))">
+                                                <option value="">Kategori seçiniz</option>
+                                            </select>
+                                            <label asp-for="CategoryId" class="control-label"></label>
+                                            <span asp-validation-for="CategoryId" class="text-danger"></span>
+                                        </div>
+
+                                        <div class="form-floating mb-3">
+                                            <input asp-for="ImagePath" class="form-control" />
+                                            <label asp-for="ImagePath" class="control-label"></label>
+                                            <span asp-validation-for="ImagePath" class="text-danger"></span>
+                                        </div>                                   
+
+
+
+                                        <div class="d-flex justify-content-between mt-4 mb-0">
+                                            <div>
+                                                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                                            </div>
+                                            <input type="submit" value="Create" class="btn btn-primary" />
+                                            
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="card-footer text-center py-3">
+                                    <div class="small"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+   @*  <script src="/sb-admin-2/js/scripts.js"></script> *@
+
+    <!-- Visual Studio Browser Link -->
+    @* <script type="text/javascript" src="/_vs/browserLink" async="async" id="__browserLink_initializationData" data-requestId="ef763705b4fb4e1e80c939d295980225" data-requestMappingFromServer="false" data-connectUrl="http://localhost:65104/dd4c240f816d49f3858ae429cf67fc54/browserLink"></script>
+    <!-- End Browser Link -->
+    <script src="/_framework/aspnetcore-browser-refresh.js"></script> *@
+</body>
