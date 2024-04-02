@@ -19,7 +19,7 @@
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
         <!-- Navbar Search-->
         <div class="ms-auto">
-            <div class="d-none d-md-inline-block form-inline me-0 me-md-3 my-2 my-md-0">
+            @* <div class="d-none d-md-inline-block form-inline me-0 me-md-3 my-2 my-md-0">
                 <a class="nav-link me-2" asp-area="" asp-controller="" asp-action="">
                     <div class="btn btn-primary"><i class="fa-solid fa-cart-shopping"></i>Shopping</div>
                 </a>
@@ -28,15 +28,15 @@
                 <a class="nav-link" asp-area="" asp-controller="" asp-action="">
                     <div class="btn btn-primary"><i class="fa-solid fa-house"></i>Home</div>
                 </a>
-            </div>
+            </div> *@
         </div>
         <!-- Navbar-->
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">@User.Identity.Name<i class="fas fa-user fa-fw"></i></a>
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i>@User.Identity.Name</a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#!">Settings</a></li>
-                    <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+                    <li><a class="dropdown-item" asp-area="Admin" asp-controller="Home" asp-action="Index">Admin Panel</a></li>
+                    <li><a class="dropdown-item" asp-controller="Account" asp-action="Edit" asp-route-userName="@User.Identity.Name">Edit</a></li>
                     <li><hr class="dropdown-divider" /></li>
                     <li><a class="dropdown-item" asp-controller="Home" asp-action="Logout">Logout</a></li>
                 </ul>
@@ -50,24 +50,24 @@
                     <div class="nav">
                         
                         <div class="sb-sidenav-menu-heading">Menu</div>
-                        <a class="nav-link" href="tables.html">
+                        <a class="nav-link" asp-area="Admin" asp-controller="Home" asp-action="Index">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
                             Users
                         </a>
-                        <a class="nav-link" href="charts.html">
+                        <a class="nav-link" asp-area="Admin" asp-controller="" asp-action="Index">
                             <div class="sb-nav-link-icon"><i class="fab fa-product-hunt"></i></div>
                             Products
                         </a>
-                        <a class="nav-link" href="tables.html">
+                        <a class="nav-link" asp-area="Admin" asp-controller="" asp-action="Index">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-cart-shopping"></i></div>
                             Orders
                         </a>
                         
-                        <a class="nav-link" href="tables.html">
+                        <a class="nav-link" asp-area="Admin" asp-controller="" asp-action="Index">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-receipt"></i></div>
                             Order Detail
                         </a>
-                        <a class="nav-link" href="/Admin/Category">
+                        <a class="nav-link" asp-area="Admin" asp-controller="Category" asp-action="Index">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-tags"></i></div>
                             Category
                         </a>
