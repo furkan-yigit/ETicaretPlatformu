@@ -1,6 +1,7 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using ETicaretPlatformu.Application.IoC;
+using ETicaretPlatformu.Application.Services.CartService;
 using ETicaretPlatformu.Domain.Entities;
 using ETicaretPlatformu.InfraStructure.Context;
 using Microsoft.AspNetCore.Identity;
@@ -40,6 +41,10 @@ namespace ETicaretPlatformu.UI
             {
                 builder.RegisterModule(new DependencyResolver());
             });
+
+            builder.Services.AddScoped<ICartService, CartService>();
+
+
 
             var app = builder.Build();
 

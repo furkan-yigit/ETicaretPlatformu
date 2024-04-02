@@ -12,9 +12,10 @@ namespace ETicaretPlatformu.Application.Services.CartService
     {
         Task Create(CreateCartDto model);
         Task Update(UpdateCartDto model);
-        Task Delete(int cartId);
+        Task RemoveProductFromCart(int cartId, int productId);
+        Task RemoveAllProductFromCart(int cartId, int productId);
+        Task AddProductToCart(int cartId, int productId);
         Task<CartDto> GetCartById(int cartId);
-        Task<List<CartVM>> GetAllCarts();
 
     }
 }
