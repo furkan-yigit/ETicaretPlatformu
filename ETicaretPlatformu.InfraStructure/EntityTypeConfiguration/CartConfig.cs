@@ -18,7 +18,9 @@ namespace ETicaretPlatformu.InfraStructure.EntityTypeConfiguration
             
             
             builder.Property(x => x.Products).IsRequired(true);
+            
             base.Configure(builder);
+
         }
     }
 }

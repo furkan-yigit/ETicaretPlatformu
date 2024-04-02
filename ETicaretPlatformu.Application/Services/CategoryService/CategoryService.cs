@@ -72,6 +72,8 @@ namespace ETicaretPlatformu.Application.Services.CategoryService
             
         }
 
+        
+
         public Task<bool> IsCatagoryExist(string name)
         {
             var isExist = _categoryRepo.Any(x => x.Name == name);
