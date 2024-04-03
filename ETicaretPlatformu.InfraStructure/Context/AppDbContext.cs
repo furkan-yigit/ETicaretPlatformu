@@ -31,7 +31,7 @@ namespace ETicaretPlatformu.InfraStructure.Context
         {
             //optionsBuilder.UseSqlServer("Server=DESKTOP-NNPAIJ5;Database=01-Eticaret;Uid=sa;Pwd=789");
             //optionsBuilder.UseSqlServer("Server=DESKTOP-JI3UVS4;Database=OnionETicaretProjectApp;Uid=sa;Pwd=123");            
-            //optionsBuilder.UseSqlServer("Server=DESKTOP-G2S16HQ;Database=OnionETicaretProjectApp;Uid=sa;Pwd=123");            
+            optionsBuilder.UseSqlServer("Server=DESKTOP-G2S16HQ;Database=OnionETicaretProjectApp;Uid=sa;Pwd=123");
             //optionsBuilder.UseSqlServer("Server=DESKTOP-FJ8OJV2;Database=ETicaretApp;Uid=sa;Pwd=789");
 
         }
