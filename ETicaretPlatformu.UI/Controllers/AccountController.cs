@@ -35,8 +35,21 @@ namespace ETicaretPlatformu.UI.Controllers
             {
                 return View(registerDto);
             }
+
             var result = await _userService.AdminRegister(registerDto);
-            return RedirectToAction("Index", "Home");
+
+            if (result.Succeeded)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+                return View(registerDto);
+            }
         }
         #endregion
 
@@ -60,7 +73,19 @@ namespace ETicaretPlatformu.UI.Controllers
                 return View(registerDto);
             }
             var result = await _userService.MemberRegister(registerDto);
-            return RedirectToAction("Index", "Home");
+            if (result.Succeeded)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+                return View(registerDto);
+            }
+            
         }
         #endregion
 
@@ -122,15 +147,19 @@ namespace ETicaretPlatformu.UI.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(UpdateProfileDto update)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
+            {
+                return View(update);
+            }
+            try
             {
                 await _userService.UpdateUser(update);
-                TempData["Success"] = "Guncelleme islemi basarili";
+                TempData["Success"] = "Profile successfully updated";
                 return RedirectToAction("Index", "Home");
             }
-            else
+            catch (Exception ex)
             {
-                TempData["Error"] = "Guncelleme islemi basarisiz";
+                ModelState.AddModelError("", "Error: " + ex.Message);
                 return View(update);
             }
         }

@@ -70,11 +70,12 @@ namespace ETicaretPlatformu.Application.Services.UserService
         {
             var user = _mapper.Map<User>(model);
 
-            var result = await _userManager.CreateAsync(user, model.Password);
-            await _userManager.AddToRoleAsync(user, "ADMIN");
+            var result = await _userManager.CreateAsync(user, model.Password);            
 
             if (result.Succeeded)
             {
+                await _userManager.AddToRoleAsync(user, "ADMIN");
+
                 await _signInManager.SignInAsync(user, false);
             }
 
@@ -83,14 +84,15 @@ namespace ETicaretPlatformu.Application.Services.UserService
         }
 
         public async Task<IdentityResult> MemberRegister(RegisterDto model)
-        {
+        {    
             var user = _mapper.Map<User>(model);
 
             var result = await _userManager.CreateAsync(user, model.Password);
-            await _userManager.AddToRoleAsync(user, "MEMBER");
 
             if (result.Succeeded)
             {
+                await _userManager.AddToRoleAsync(user, "MEMBER");
+
                 await _signInManager.SignInAsync(user, false);
             }
 
