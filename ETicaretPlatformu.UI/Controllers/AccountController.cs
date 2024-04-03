@@ -40,6 +40,7 @@ namespace ETicaretPlatformu.UI.Controllers
 
             if (result.Succeeded)
             {
+                TempData["Success"] = "Admin registration successful.";
                 return RedirectToAction("Index", "Home");
             }
             else
@@ -48,6 +49,7 @@ namespace ETicaretPlatformu.UI.Controllers
                 {
                     ModelState.AddModelError("", error.Description);
                 }
+                TempData["Error"] = "Admin registration failed.";
                 return View(registerDto);
             }
         }
@@ -75,6 +77,7 @@ namespace ETicaretPlatformu.UI.Controllers
             var result = await _userService.MemberRegister(registerDto);
             if (result.Succeeded)
             {
+                TempData["Success"] = "Member registration successful.";
                 return RedirectToAction("Index", "Home");
             }
             else
@@ -83,6 +86,7 @@ namespace ETicaretPlatformu.UI.Controllers
                 {
                     ModelState.AddModelError("", error.Description);
                 }
+                TempData["Error"] = "Member registration failed.";
                 return View(registerDto);
             }
             
@@ -111,16 +115,20 @@ namespace ETicaretPlatformu.UI.Controllers
                 {
                     if (await _userService.UserInRole(loginDto.UserName, "Admin"))
                     {
+                        TempData["Success"] = "Login successful as admin.";
                         return RedirectToAction("Index", "Home", new { area = "Admin" });
                     }
                     else if (await _userService.UserInRole(loginDto.UserName, "Member"))
                     {
+                        TempData["Success"] = "Login successful as member.";
                         return RedirectToAction("Index", "Home", new { area = "Member" });
                     }
+                    TempData["Success"] = "Login successful.";
                     return RedirectToAction("Index", "Home");
                 }
-                ModelState.AddModelError("", "Hatali giris islemi");
+                ModelState.AddModelError("", "Invalid login credentials.");
             }
+            TempData["Error"] = "Invalid login credentials.";
             return View(loginDto);
         }
 
@@ -160,6 +168,7 @@ namespace ETicaretPlatformu.UI.Controllers
             catch (Exception ex)
             {
                 ModelState.AddModelError("", "Error: " + ex.Message);
+                TempData["Error"] = "Failed to update profile.";
                 return View(update);
             }
         }
@@ -167,6 +176,7 @@ namespace ETicaretPlatformu.UI.Controllers
         public async Task<IActionResult> Logout()
         {
             await _userService.LogOut();
+            TempData["Success"] = "Successfully Logout";
             return RedirectToAction("Index", "Home");
         }
 
@@ -177,11 +187,11 @@ namespace ETicaretPlatformu.UI.Controllers
 
             if (result)
             {
-                TempData["Success"] = "asfasfg";
+                TempData["Success"] = "User status updated successfully";
             }
             else
             {
-                TempData["Error"] = "asfasfg";
+                TempData["Error"] = "Failed to update user status";
             }
 
             return RedirectToAction("Index", "Home", new { area = "Admin" });

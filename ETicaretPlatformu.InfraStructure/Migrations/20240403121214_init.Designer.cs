@@ -12,11 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ETicaretPlatformu.InfraStructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-<<<<<<<< HEAD:ETicaretPlatformu.InfraStructure/Migrations/20240403111733_init.Designer.cs
-    [Migration("20240403111733_init")]
-========
-    [Migration("20240403091047_init")]
->>>>>>>> origin/omer:ETicaretPlatformu.InfraStructure/Migrations/20240403091047_init.Designer.cs
+    [Migration("20240403121214_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

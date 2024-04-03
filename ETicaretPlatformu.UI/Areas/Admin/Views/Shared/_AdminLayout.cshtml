@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var successMessage = TempData["Success"] as string;
+}
+@{
+    var errorMessage = TempData["Error"] as string;
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -89,7 +95,8 @@
         </div>
         <div id="layoutSidenav_content">
             <main>
-                <partial name="_NotificationPartial" />
+                <div id="notification-area">
+                </div>
                 @RenderBody()
                 
             </main>
@@ -102,6 +109,7 @@
             </footer>
         </div>
     </div>
+    <script src="~/js/site.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="~/sb-admin-2/js/scripts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
@@ -109,5 +117,17 @@
     <script src="~/sb-admin-2/assets/demo/chart-bar-demo.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
     <script src="~/sb-admin-2/js/datatables-simple-demo.js"></script>
+
+    <script>
+        var successMessage = '@(successMessage != null ? successMessage : "")';
+        if (successMessage.trim() !== "") {
+            showNotification('success', successMessage);
+        }
+
+        var errorMessage = '@(errorMessage != null ? errorMessage : "")';
+        if (errorMessage.trim() !== "") {
+            showNotification('error', errorMessage);
+        }
+    </script>
 </body>
 </html>
