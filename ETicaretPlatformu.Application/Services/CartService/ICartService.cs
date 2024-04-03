@@ -1,5 +1,6 @@
 ﻿using ETicaretPlatformu.Application.Models.DTOs.Cart;
 using ETicaretPlatformu.Application.Models.VMs.CartVMs;
+using ETicaretPlatformu.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +11,12 @@ namespace ETicaretPlatformu.Application.Services.CartService
 {
     public interface ICartService
     {
-        Task Create(CreateCartDto model);
-        Task Update(UpdateCartDto model);
-        Task RemoveProductFromCart(int cartId, int productId);
-        Task RemoveAllProductFromCart(int cartId, int productId);
-        Task AddProductToCart(int cartId, int productId);
-        Task<CartDto> GetCartById(int cartId);
+        Task<CartDto> Create(string userId);
+        Task RemoveProductFromCart(string userId, int productId);
+        Task RemoveAllProductFromCart(string userId, int productId);
+        Task AddProductToCart(string userId, int productId);
+        Task<CartDto> GetCartById(string cartId);
+        Task<CartDto> GetCartByUserId(string userId);
 
     }
 }

@@ -1,70 +1,64 @@
-﻿using ETicaretPlatformu.Application.AutoMapper;
+﻿using AutoMapper;
+using ETicaretPlatformu.Application.AutoMapper;
 using ETicaretPlatformu.Application.Models.DTOs.Cart;
 using ETicaretPlatformu.Application.Services.CartService;
 using ETicaretPlatformu.Application.Services.UserService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace ETicaretPlatformu.UI.Controllers
 {
+    //[Authorize]
     public class CartController : Controller
     {
 
         private readonly ICartService _cartService;
         private readonly IUserService _userService;
-
+        private readonly Mapper _mapper;
+        public string _userId; 
+        
         public CartController(ICartService cartService, IUserService userService)
         {
             _cartService = cartService;
             _userService = userService;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Index(string name)
+        public async Task<IActionResult> Index(string userName)
         {
-            var user = await _userService.GetByUserName(name);
+            var user = await _userService.GetByUserName(userName);
+            _userId = user.Id;
             
-            CreateCartDto createCartDto = new CreateCartDto();
-            createCartDto.UserId = user.Id;
-            await CreateCart(createCartDto);
+            var cart = await _cartService.GetCartByUserId(_userId);
 
-            return View(createCartDto);
+            if (cart == null)
+            {
+               cart = await _cartService.Create(_userId);
+            }
+            return View(cart);
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateCart(CreateCartDto model)
+        public async Task<IActionResult> AddProductToCart(int productId)
         {
-            await _cartService.Create(model);
+            await _cartService.AddProductToCart(_userId, productId);
             return View("Index");
         }
 
-        [HttpPost]
-        public async Task<IActionResult> AddProductToCart(int cartId, int productId)
+        public async Task<IActionResult> DeleteCart(int productId)
         {
-            await _cartService.AddProductToCart(cartId, productId);
+            await _cartService.RemoveAllProductFromCart(_userId, productId);
             return View("Index");
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateCart(UpdateCartDto model)
+        public async Task<IActionResult> RemoveProductFromCart(int productId)
         {
-            await _cartService.Update(model);
-            return View("Index");
-        }
-
-        public async Task<IActionResult> DeleteCart(int cartId, int productId)
-        {
-            await _cartService.RemoveAllProductFromCart(cartId, productId);
-            return View("Index");
-        }
-
-        public async Task<IActionResult> RemoveProductFromCart(int cartId, int productId)
-        {
-            await _cartService.RemoveProductFromCart(cartId, productId);
+            await _cartService.RemoveProductFromCart(_userId, productId);
             return View("Index");
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetCart(int id)
+        public async Task<IActionResult> GetCart(string id)
         {
             var cart = await _cartService.GetCartById(id);
             if (cart == null)

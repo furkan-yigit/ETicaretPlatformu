@@ -9,6 +9,6 @@ namespace ETicaretPlatformu.Application.Models.DTOs.Cart
     public class CreateCartDto
     {
         public string UserId { get; set; }
-        public ICollection<ProductDto> Products { get; set; }
+        public List<ProductDto> Products { get; set; }
     }
 }
