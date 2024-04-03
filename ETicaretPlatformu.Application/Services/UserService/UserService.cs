@@ -4,6 +4,7 @@ using ETicaretPlatformu.Domain.Entities;
 using ETicaretPlatformu.Domain.Enums;
 using ETicaretPlatformu.Domain.Repositories;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
 using System;
@@ -11,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 namespace ETicaretPlatformu.Application.Services.UserService
 {
