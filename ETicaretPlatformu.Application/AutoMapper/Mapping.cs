@@ -41,7 +41,10 @@ namespace ETicaretPlatformu.Application.AutoMapper
 
             CreateMap<Cart, CreateCartDto>().ReverseMap();
             CreateMap<Cart, UpdateCartDto>().ReverseMap();
+            CreateMap<Cart, CartDto>().ReverseMap();
+            CreateMap<CreateCartDto, Cart>().ReverseMap();
             CreateMap<CartDto, Cart>().ReverseMap();
+            CreateMap<CartDto, CreateCartDto>().ReverseMap();
             CreateMap<CartVM, Cart>().ReverseMap();
 
             //CreateMap<Category, PostVm>().ReverseMap();

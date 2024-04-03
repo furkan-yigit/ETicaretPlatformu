@@ -16,7 +16,6 @@ namespace ETicaretPlatformu.Application.Services.CartService
     {
         private readonly ICartRepo _cartRepo;
         private readonly IProductRepo _productRepo;
-
         private readonly IMapper _mapper;
 
         public CartService(ICartRepo cartRepo, IMapper mapper, IProductRepo productRepo)
@@ -26,60 +25,42 @@ namespace ETicaretPlatformu.Application.Services.CartService
             _productRepo = productRepo;
         }
 
-        public async Task Create(CreateCartDto model)
+        public async Task<CartDto> Create(string userId)
         {
-            var cart = _mapper.Map<Cart>(model);
+            var cart = await _cartRepo.GetDefault(x => x.UserId == userId);
 
-            //cart.UserId = model.UserId;
-            //cart.Products = model.Products.Select(p => new Product
-            //{
-            //    Id = p.Id,
-            //    Name = p.Name,
-            //    Description = p.Description,
-            //    Price = p.Price,
-            //    StockQuantity = p.StockQuantity,
-            //    CategoryId = p.CategoryId,
-            //    ImagePath = p.ImagePath
-            //}).ToList();
-            cart.CreateDate = DateTime.Now;
-            cart.Status = Status.Active;
-
-            await _cartRepo.Create(cart);
+            if (cart == null)
+            {
+                cart = Cart.Instance(userId);
+            }
+            return _mapper.Map<CartDto>(cart);
         }
 
-
-        public async Task Update(UpdateCartDto model)
+        public async Task<CartDto> GetCartById(string cartId)
         {
-            var cart = await _cartRepo.GetDefault(c => c.Id == model.Id);
+
+            var cart = await _cartRepo.GetDefault(c => c.Id == cartId);
             if (cart != null)
             {
-                _mapper.Map<Cart>(model);
-                cart.UpdateDate = DateTime.Now;
-                await _cartRepo.Update(cart);
+                return _mapper.Map<CartDto>(cart);
             }
+            return null;
 
-            //var cart = await _cartRepo.GetDefault(c => c.Id == model.Id);
-            //if (cart != null)
-            //{
-            //    cart.UserId = model.UserId;
-            //    cart.Products = model.Products.Select(p => new Product
-            //    {
-            //        Id = p.Id,
-            //        Name = p.Name,
-            //        Description = p.Description,
-            //        Price = p.Price,
-            //        StockQuantity = p.StockQuantity,
-            //        CategoryId = p.CategoryId,
-            //        ImagePath = p.ImagePath
-            //    }).ToList();
-            //    cart.UpdateDate = DateTime.Now;
-            //    await _cartRepo.Update(cart);
-            //}
         }
 
-        public async Task RemoveProductFromCart(int cartId, int productId)
+
+        public async Task<CartDto> GetCartByUserId(string userId)
         {
-            var cart = await _cartRepo.GetDefault(c => c.Id == cartId);
+            var cart = await _cartRepo.GetDefault(x => x.UserId == userId);
+            if (cart != null)
+                return _mapper.Map<CartDto>(cart);
+            else
+                return null;
+        }
+
+        public async Task RemoveProductFromCart(string userId, int productId)
+        {
+            var cart = await _cartRepo.GetDefault(x => x.UserId == userId);
             if (cart != null)
             {
                 var productToRemove = cart.Products.FirstOrDefault(p => p.Id == productId);
@@ -91,47 +72,10 @@ namespace ETicaretPlatformu.Application.Services.CartService
             }
         }
 
-        public async Task<CartDto> GetCartById(int cartId)
+
+        public async Task AddProductToCart(string userId, int productId)
         {
-
-            var cart = await _cartRepo.GetDefault(c => c.Id == cartId);
-            if (cart != null)
-            {
-                return _mapper.Map<CartDto>(cart);
-            }
-            return null;
-
-            //    var cart = await _cartRepo.GetDefault(c => c.Id == cartId);
-            //    if (cart != null)
-            //    {
-            //        var cartDto = new CartDto
-            //        {
-            //            Id = cart.Id,
-            //            UserId = cart.UserId,
-            //            Products = cart.Products.Select(p => new ProductDto
-            //            {
-            //                Id = p.Id,
-            //                Name = p.Name,
-            //                Description = p.Description,
-            //                Price = p.Price,
-            //                StockQuantity = p.StockQuantity,
-            //                CategoryId = p.CategoryId,
-            //                ImagePath = p.ImagePath
-            //            }).ToList(),
-            //            CreateDate = cart.CreateDate,
-            //            UpdateDate = cart.UpdateDate,
-            //            Status = cart.Status
-            //        };
-            //        return cartDto;
-            //    }
-            //    return null;
-            //}
-
-        }
-
-        public async Task AddProductToCart(int cartId, int productId)
-        {
-            var cart = await _cartRepo.GetDefault(c => c.Id == cartId);
+            var cart = await _cartRepo.GetDefault(x => x.UserId == userId);
             if (cart != null)
             {
                 var productToAdd = await _productRepo.GetDefault(p => p.Id == productId);
@@ -143,9 +87,9 @@ namespace ETicaretPlatformu.Application.Services.CartService
             }
         }
 
-        public async Task RemoveAllProductFromCart(int cartId, int productId)
+        public async Task RemoveAllProductFromCart(string userId, int productId)
         {
-            var cart = await _cartRepo.GetDefault(c => c.Id == cartId);
+            var cart = await _cartRepo.GetDefault(x => x.UserId == userId);
             if (cart != null)
             {
                 var productToRemove = cart.Products.Where(p => p.Id == productId).ToList();
@@ -159,6 +103,8 @@ namespace ETicaretPlatformu.Application.Services.CartService
                 }
             }
         }
+
+
     }
 }
 

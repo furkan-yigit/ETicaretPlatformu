@@ -4,6 +4,7 @@ using ETicaretPlatformu.InfraStructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,19 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ETicaretPlatformu.InfraStructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+<<<<<<<< HEAD:ETicaretPlatformu.InfraStructure/Migrations/20240403121145_init.Designer.cs
+<<<<<<<< HEAD:ETicaretPlatformu.InfraStructure/Migrations/20240403121214_init.Designer.cs
+    [Migration("20240403121214_init")]
+========
+    [Migration("20240403121145_init")]
+>>>>>>>> origin/omer:ETicaretPlatformu.InfraStructure/Migrations/20240403121145_init.Designer.cs
+    partial class init
+========
+    [Migration("20240403132332_initial")]
+    partial class initial
+>>>>>>>> origin/Sila:ETicaretPlatformu.InfraStructure/Migrations/20240403132332_initial.Designer.cs
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
