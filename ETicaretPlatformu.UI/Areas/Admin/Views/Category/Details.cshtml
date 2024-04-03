@@ -1,0 +1,109 @@
+﻿@model ETicaretPlatformu.Application.Models.DTOs.CatagoryDto.UpdateCatagoryDto
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<style>
+.details-container {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+.details-header h2 {
+    margin-top: 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.details-content {
+    margin-top: 20px;
+}
+
+.detail-section {
+    margin-bottom: 20px;
+}
+
+.detail-item {
+    margin-bottom: 10px;
+}
+
+.label {
+    font-weight: bold;
+}
+
+.value {
+    margin-left: 10px;
+}
+
+.details-footer {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    background-color: #545b62;
+}
+</style>
+<div class="details-container">
+    <div class="details-header">
+        <h2>Details</h2>
+    </div>
+    <div class="details-content">
+        <div class="detail-section">
+            <h4>Update Category Information</h4>
+            <hr />
+            <div class="detail-item">
+                <span class="label">ID:</span>
+                <span class="value">@Model.Id</span>
+            </div>
+            <div class="detail-item">
+                <span class="label">Name:</span>
+                <span class="value">@Model.Name</span>
+            </div>
+            <div class="detail-item">
+                <span class="label">Description:</span>
+                <span class="value">@Model.Description</span>
+            </div>
+            <div class="detail-item">
+                <span class="label">Update Date:</span>
+                <span class="value">@Model.UpdateDate.ToString("yyyy-MM-dd")</span>
+            </div>
+            <div class="detail-item">
+                <span class="label">Status:</span>
+                <span class="value">@Model.Status</span>
+            </div>
+        </div>
+    </div>
+    <div class="details-footer">
+        <a href="@Url.Action("Update", "Update", new { id = Model.Id})" class="btn btn-primary">Update</a>
+        <a href="@Url.Action("Index")" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>
