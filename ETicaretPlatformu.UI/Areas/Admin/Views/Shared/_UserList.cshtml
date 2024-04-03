@@ -9,5 +9,25 @@
         <td>@user.CreateDate</td>
         <td>@user.Status</td>
         <td><img src="@user.ImagePath" alt="User Image" width="50" height="50" /></td>
+        @if (user.Status == ETicaretPlatformu.Domain.Enums.Status.Active)
+        {
+            <td>
+                <form asp-area="" asp-controller="Account" asp-action="UpdateUserStatus" method="post">
+                    <input type="hidden" name="userName" value="@user.UserName" />
+                    <input type="hidden" name="status" value="Passive" />
+                    <button type="submit" class="btn btn-danger">Passive</button>
+                </form>
+            </td>            
+        }
+        else
+        {
+            <td>
+                <form asp-area="" asp-controller="Account" asp-action="UpdateUserStatus" method="post">
+                    <input type="hidden" name="userName" value="@user.UserName" />
+                    <input type="hidden" name="status" value="Active" />
+                    <button type="submit" class="btn btn-success">Active</button>
+                </form>
+            </td>            
+        }        
     </tr>
 }

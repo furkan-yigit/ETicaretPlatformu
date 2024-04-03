@@ -1,4 +1,5 @@
 ﻿using ETicaretPlatformu.Application.Models.DTOs.UserDtos;
+using ETicaretPlatformu.Domain.Enums;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -22,5 +23,6 @@ namespace ETicaretPlatformu.Application.Services.UserService
         Task<UpdateProfileDto> GetByUserName(string userName);
         Task<bool> UserInRole(string userName, string role);
         Task<IEnumerable<UserDto>> GetUsers();
+        Task<bool> UpdateUserStatus(string userName, string status);
     }
 }

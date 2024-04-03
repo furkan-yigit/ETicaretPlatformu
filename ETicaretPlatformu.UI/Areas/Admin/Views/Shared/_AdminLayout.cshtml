@@ -38,7 +38,7 @@
                     <li><a class="dropdown-item" asp-area="Admin" asp-controller="Home" asp-action="Index">Admin Panel</a></li>
                     <li><a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="Edit" asp-route-userName="@User.Identity.Name">Edit</a></li>
                     <li><hr class="dropdown-divider" /></li>
-                    <li><a class="dropdown-item" asp-controller="Home" asp-action="Logout">Logout</a></li>
+                    <li><a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a></li>
                 </ul>
             </li>
         </ul>

@@ -1,5 +1,6 @@
 ﻿using ETicaretPlatformu.Application.Models.DTOs.UserDtos;
 using ETicaretPlatformu.Application.Services.UserService;
+using ETicaretPlatformu.Domain.Enums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -65,18 +66,17 @@ namespace ETicaretPlatformu.UI.Controllers
 
 
         [AllowAnonymous]
-        public IActionResult Login(string returnUrl = "/")
+        public IActionResult Login()
         {
             if (User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Index", "Home");
-            }
-            ViewData["returnUrl"] = returnUrl;
+            }            
             return View();
         }
 
         [HttpPost, AllowAnonymous]
-        public async Task<IActionResult> Login(LoginDto loginDto, string returnUrl)
+        public async Task<IActionResult> Login(LoginDto loginDto)
         {
             if (ModelState.IsValid)
             {
@@ -92,7 +92,7 @@ namespace ETicaretPlatformu.UI.Controllers
                     {
                         return RedirectToAction("Index", "Home", new { area = "Member" });
                     }
-                    return RedirectToAction(returnUrl);
+                    return RedirectToAction("Index", "Home");
                 }
                 ModelState.AddModelError("", "Hatali giris islemi");
             }
@@ -139,6 +139,23 @@ namespace ETicaretPlatformu.UI.Controllers
         {
             await _userService.LogOut();
             return RedirectToAction("Index", "Home");
+        }
+
+        
+        public async Task<IActionResult> UpdateUserStatus(string userName, string status)
+        {
+            var result = await _userService.UpdateUserStatus(userName, status);
+
+            if (result)
+            {
+                TempData["Success"] = "asfasfg";
+            }
+            else
+            {
+                TempData["Error"] = "asfasfg";
+            }
+
+            return RedirectToAction("Index", "Home", new { area = "Admin" });
         }
     }
 }

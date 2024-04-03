@@ -46,8 +46,17 @@ namespace ETicaretPlatformu.Application.Services.UserService
 
         public async Task<SignInResult> Login(LoginDto model)
         {
-            var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, false, false);
-            return result;
+            var user = await _userRepo.GetDefault(x => x.UserName.Equals(model.UserName));
+            if (user.Status != Status.Passive)
+            {
+                var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, false, false);
+                return result;                
+            }
+            else
+            {
+                return SignInResult.Failed;
+            }
+            
         }
 
         public async Task LogOut()
@@ -112,7 +121,7 @@ namespace ETicaretPlatformu.Application.Services.UserService
                 if (isUserNameExist == null)
                 {
                     await _userManager.SetUserNameAsync(user, model.UserName);
-                    await _signInManager.SignInAsync(user, false);                   
+                    await _signInManager.SignInAsync(user, false);
                 }
             }
 
@@ -137,8 +146,30 @@ namespace ETicaretPlatformu.Application.Services.UserService
 
         public async Task<IEnumerable<UserDto>> GetUsers()
         {
-            var users = await _userRepo.GetDefaults(x => x.Status != Status.Passive);
+            var users = await _userRepo.GetDefaults(x=>true);
             return _mapper.Map<IEnumerable<UserDto>>(users);
+        }
+
+        public async Task<bool> UpdateUserStatus(string userName, string status)
+        {
+            var user = await _userRepo.GetDefault(x => x.UserName.Equals(userName));
+
+            if (user == null)
+            {
+                return false;
+            }
+
+            if (status == "Active")
+            {
+                user.Status = Status.Active;
+            }
+            else
+            {
+                user.Status = Status.Passive;
+            }
+            
+            await _userRepo.Update(user);
+            return true;
         }
     }
 }
