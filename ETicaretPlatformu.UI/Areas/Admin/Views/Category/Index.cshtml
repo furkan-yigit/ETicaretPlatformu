@@ -5,8 +5,6 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,18 +44,12 @@
 <body>
     <div class="container">
         <h1 class="text-center">Category List</h1>
-        <a asp-action="Create" asp-area="Admin" asp-controller="Category" class="btn btn-danger btn-create">Create New</a>
+        <div class="text-right">
+            <a asp-action="Create" asp-area="Admin" asp-controller="Category" class="btn btn-danger btn-create">Create New</a>
+        </div>
 
-        @* <form asp-action="Index" asp-controller="Category" method="get">
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" name="search" placeholder="Search for category">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="submit">Search</button>
-                </div>
-            </div>
-        </form> *@
         <div class="card-body">
-            <table id="datatablesSimple">
+            <table id="datatablesSimple" class="table table-striped">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
@@ -65,9 +57,7 @@
                         <th scope="col">Description</th>
                         <th scope="col">Actions</th>
                     </tr>
-
                 </thead>
-
                 <tbody>
                     @foreach (var item in Model)
                     {
@@ -87,12 +77,6 @@
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
 </body>
 </html>
-
-
-
-

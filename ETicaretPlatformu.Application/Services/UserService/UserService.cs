@@ -4,6 +4,7 @@ using ETicaretPlatformu.Domain.Entities;
 using ETicaretPlatformu.Domain.Enums;
 using ETicaretPlatformu.Domain.Repositories;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
 using System;
@@ -11,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 namespace ETicaretPlatformu.Application.Services.UserService
 {
@@ -46,8 +48,17 @@ namespace ETicaretPlatformu.Application.Services.UserService
 
         public async Task<SignInResult> Login(LoginDto model)
         {
-            var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, false, false);
-            return result;
+            var user = await _userRepo.GetDefault(x => x.UserName.Equals(model.UserName));
+            if (user.Status != Status.Passive)
+            {
+                var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, false, false);
+                return result;                
+            }
+            else
+            {
+                return SignInResult.Failed;
+            }
+            
         }
 
         public async Task LogOut()
@@ -59,11 +70,12 @@ namespace ETicaretPlatformu.Application.Services.UserService
         {
             var user = _mapper.Map<User>(model);
 
-            var result = await _userManager.CreateAsync(user, model.Password);
-            await _userManager.AddToRoleAsync(user, "ADMIN");
+            var result = await _userManager.CreateAsync(user, model.Password);            
 
             if (result.Succeeded)
             {
+                await _userManager.AddToRoleAsync(user, "ADMIN");
+
                 await _signInManager.SignInAsync(user, false);
             }
 
@@ -72,14 +84,15 @@ namespace ETicaretPlatformu.Application.Services.UserService
         }
 
         public async Task<IdentityResult> MemberRegister(RegisterDto model)
-        {
+        {    
             var user = _mapper.Map<User>(model);
 
             var result = await _userManager.CreateAsync(user, model.Password);
-            await _userManager.AddToRoleAsync(user, "MEMBER");
 
             if (result.Succeeded)
             {
+                await _userManager.AddToRoleAsync(user, "MEMBER");
+
                 await _signInManager.SignInAsync(user, false);
             }
 
@@ -112,7 +125,7 @@ namespace ETicaretPlatformu.Application.Services.UserService
                 if (isUserNameExist == null)
                 {
                     await _userManager.SetUserNameAsync(user, model.UserName);
-                    await _signInManager.SignInAsync(user, false);                   
+                    await _signInManager.SignInAsync(user, false);
                 }
             }
 
@@ -137,8 +150,30 @@ namespace ETicaretPlatformu.Application.Services.UserService
 
         public async Task<IEnumerable<UserDto>> GetUsers()
         {
-            var users = await _userRepo.GetDefaults(x => x.Status != Status.Passive);
+            var users = await _userRepo.GetDefaults(x=>true);
             return _mapper.Map<IEnumerable<UserDto>>(users);
+        }
+
+        public async Task<bool> UpdateUserStatus(string userName, string status)
+        {
+            var user = await _userRepo.GetDefault(x => x.UserName.Equals(userName));
+
+            if (user == null)
+            {
+                return false;
+            }
+
+            if (status == "Active")
+            {
+                user.Status = Status.Active;
+            }
+            else
+            {
+                user.Status = Status.Passive;
+            }
+            
+            await _userRepo.Update(user);
+            return true;
         }
     }
 }

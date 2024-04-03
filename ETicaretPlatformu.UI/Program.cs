@@ -28,7 +28,7 @@ namespace ETicaretPlatformu.UI
                 o.SignIn.RequireConfirmedPhoneNumber = false;
                 o.SignIn.RequireConfirmedAccount = false;
 
-                o.User.RequireUniqueEmail = false;
+                o.User.RequireUniqueEmail = true;
 
                 o.Password.RequireUppercase = false;
                 o.Password.RequiredLength = 3;

@@ -34,7 +34,7 @@ namespace ETicaretPlatformu.Application.Models.DTOs.UserDtos
 
 
         public DateTime CreateDate => DateTime.Now;
-        public Status Status { get; set; }
+        public Status Status => Status.Active;
 
     }
 }

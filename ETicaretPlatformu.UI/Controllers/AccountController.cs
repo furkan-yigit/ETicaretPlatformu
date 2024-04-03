@@ -1,5 +1,6 @@
 ﻿using ETicaretPlatformu.Application.Models.DTOs.UserDtos;
 using ETicaretPlatformu.Application.Services.UserService;
+using ETicaretPlatformu.Domain.Enums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -34,8 +35,23 @@ namespace ETicaretPlatformu.UI.Controllers
             {
                 return View(registerDto);
             }
+
             var result = await _userService.AdminRegister(registerDto);
-            return RedirectToAction("Index", "Home");
+
+            if (result.Succeeded)
+            {
+                TempData["Success"] = "Admin registration successful.";
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+                TempData["Error"] = "Admin registration failed.";
+                return View(registerDto);
+            }
         }
         #endregion
 
@@ -59,24 +75,37 @@ namespace ETicaretPlatformu.UI.Controllers
                 return View(registerDto);
             }
             var result = await _userService.MemberRegister(registerDto);
-            return RedirectToAction("Index", "Home");
+            if (result.Succeeded)
+            {
+                TempData["Success"] = "Member registration successful.";
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+                TempData["Error"] = "Member registration failed.";
+                return View(registerDto);
+            }
+            
         }
         #endregion
 
 
         [AllowAnonymous]
-        public IActionResult Login(string returnUrl = "/")
+        public IActionResult Login()
         {
             if (User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Index", "Home");
-            }
-            ViewData["returnUrl"] = returnUrl;
+            }            
             return View();
         }
 
         [HttpPost, AllowAnonymous]
-        public async Task<IActionResult> Login(LoginDto loginDto, string returnUrl)
+        public async Task<IActionResult> Login(LoginDto loginDto)
         {
             if (ModelState.IsValid)
             {
@@ -86,16 +115,20 @@ namespace ETicaretPlatformu.UI.Controllers
                 {
                     if (await _userService.UserInRole(loginDto.UserName, "Admin"))
                     {
+                        TempData["Success"] = "Login successful as admin.";
                         return RedirectToAction("Index", "Home", new { area = "Admin" });
                     }
                     else if (await _userService.UserInRole(loginDto.UserName, "Member"))
                     {
+                        TempData["Success"] = "Login successful as member.";
                         return RedirectToAction("Index", "Home", new { area = "Member" });
                     }
-                    return RedirectToAction(returnUrl);
+                    TempData["Success"] = "Login successful.";
+                    return RedirectToAction("Index", "Home");
                 }
-                ModelState.AddModelError("", "Hatali giris islemi");
+                ModelState.AddModelError("", "Invalid login credentials.");
             }
+            TempData["Error"] = "Invalid login credentials.";
             return View(loginDto);
         }
 
@@ -122,15 +155,20 @@ namespace ETicaretPlatformu.UI.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(UpdateProfileDto update)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
+            {
+                return View(update);
+            }
+            try
             {
                 await _userService.UpdateUser(update);
-                TempData["Success"] = "Guncelleme islemi basarili";
+                TempData["Success"] = "Profile successfully updated";
                 return RedirectToAction("Index", "Home");
             }
-            else
+            catch (Exception ex)
             {
-                TempData["Error"] = "Guncelleme islemi basarisiz";
+                ModelState.AddModelError("", "Error: " + ex.Message);
+                TempData["Error"] = "Failed to update profile.";
                 return View(update);
             }
         }
@@ -138,7 +176,25 @@ namespace ETicaretPlatformu.UI.Controllers
         public async Task<IActionResult> Logout()
         {
             await _userService.LogOut();
+            TempData["Success"] = "Successfully Logout";
             return RedirectToAction("Index", "Home");
+        }
+
+        
+        public async Task<IActionResult> UpdateUserStatus(string userName, string status)
+        {
+            var result = await _userService.UpdateUserStatus(userName, status);
+
+            if (result)
+            {
+                TempData["Success"] = "User status updated successfully";
+            }
+            else
+            {
+                TempData["Error"] = "Failed to update user status";
+            }
+
+            return RedirectToAction("Index", "Home", new { area = "Admin" });
         }
     }
 }
