@@ -12,17 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ETicaretPlatformu.InfraStructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-<<<<<<<< HEAD:ETicaretPlatformu.InfraStructure/Migrations/20240401135559_init.Designer.cs
-<<<<<<<< HEAD:ETicaretPlatformu.InfraStructure/Migrations/20240401135559_init.Designer.cs
-    [Migration("20240401135559_init")]
-========
-    [Migration("20240401150752_init")]
->>>>>>>> origin/ece:ETicaretPlatformu.InfraStructure/Migrations/20240401150752_init.Designer.cs
-    partial class init
-========
-    [Migration("20240401115212_initial")]
+    [Migration("20240403041223_initial")]
     partial class initial
->>>>>>>> origin/Sila:ETicaretPlatformu.InfraStructure/Migrations/20240401115212_initial.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

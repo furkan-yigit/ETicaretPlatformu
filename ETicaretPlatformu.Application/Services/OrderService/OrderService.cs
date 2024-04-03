@@ -72,21 +72,16 @@ namespace ETicaretPlatformu.Application.Services.OrderService
 
             return order;
         }
-
-        public async Task<List<GetOrderVm>> GetPostsForMembers()
+        public async Task<List<OrderVm>> GetOrdersForUser(string userId)
         {
-            var posts = await _orderRepo.GetFilteredList(select: x => new GetOrderVm
-            {
-                Id = x.Id,
-                UserFirstName = x.User.FirstName,
-                UserLastName = x.User.LastName,
-                CreateDate = x.CreateDate,
-                OrderDetails = x.OrderDetails,
-            }, where: x => x.Status != Status.Passive
-            );
+            var order = await _orderRepo.GetFilteredList
+                 (select: x => _mapper.Map<OrderVm>(x),
+            where: x => x.Status != Status.Passive && x.UserId==userId);
 
-            return posts;
+
+            return order;
         }
+
 
         public async Task Update(UpdateOrderDto model)
         {

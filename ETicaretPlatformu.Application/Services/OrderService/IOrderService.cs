@@ -1,5 +1,6 @@
 ﻿using ETicaretPlatformu.Application.Models.DTOs.OrderDto;
 using ETicaretPlatformu.Application.Models.VMs.Order;
+using ETicaretPlatformu.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace ETicaretPlatformu.Application.Services.OrderService
         Task Update(UpdateOrderDto model);
         Task Delete(int id);
         Task<List<OrderVm>> GetOrders();
+        Task<List<OrderVm>> GetOrdersForUser(string userId);
         Task<UpdateOrderDto> GetById(int id);
-        Task<List<GetOrderVm>> GetPostsForMembers();
     }
 }

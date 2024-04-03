@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewData["Title"] = "Siparişler";
+}
+
+<h1>Siparişlerim</h1>
+
+@if (TempData["user"]== null)
+{
+    <h4>Giriş yapmadığınız için siparişlerinizi gösteremiyoruz</h4>
+}
+else
+{
+    List<OrderVm> orderlist = ViewBag.orders;
+
+    if (orderlist.Count==0)
+    {
+        <h4>Henüz bir siparişiniz yok!</h4>
+    }
+    else
+        foreach (OrderVm order in orderlist)
+    {
+        
+    }
+
+}
+

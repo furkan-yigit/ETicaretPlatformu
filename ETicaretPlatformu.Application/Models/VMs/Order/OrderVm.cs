@@ -11,7 +11,7 @@ namespace ETicaretPlatformu.Application.Models.VMs.Order
     {
         public int Id { get; set; }
 
-        public ICollection<OrderDetailVm> OrderDetails { get; set; }
+      public ICollection<OrderDetailVm> OrderDetails { get; set; }
         public string UserId { get; set; }
     }
 }
