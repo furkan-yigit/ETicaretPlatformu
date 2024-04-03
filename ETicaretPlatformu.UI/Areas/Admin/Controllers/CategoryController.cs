@@ -36,7 +36,7 @@ namespace ETicaretPlatformu.UI.Areas.Admin.Controllers
             {
                 return View(model);
             }
-            TempData["Success"] = "Kategori oluşturuldu.";
+            TempData["Success"] = "Kategori olusturuldu.";
             await _categoryService.Create(model);
             return RedirectToAction(nameof(Index));
         }
@@ -55,7 +55,7 @@ namespace ETicaretPlatformu.UI.Areas.Admin.Controllers
             await _categoryService.Update(model);
 
             
-            TempData["Success"] = "Kategori güncellendi.";
+            TempData["Success"] = "Kategori guncellendi.";
 
             return RedirectToAction(nameof(Index));
         }
@@ -65,11 +65,11 @@ namespace ETicaretPlatformu.UI.Areas.Admin.Controllers
             try
             {
                 await _categoryService.Delete(id);
-                TempData["Success"] = "Category başarılı bir şekilde silindi.";
+                TempData["Success"] = "Kategori basarili bir sekilde silindi.";
             }
             catch (Exception ex)
             {
-                TempData["Error"] = "Silme işlemi yapılırken bir hata meydana geldi.";
+                TempData["Error"] = "Silme islemi yapilirken bir hata meydana geldi.";
                 
             }
 
