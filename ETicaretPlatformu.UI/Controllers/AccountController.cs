@@ -154,7 +154,7 @@ namespace ETicaretPlatformu.UI.Controllers
             try
             {
                 await _userService.UpdateUser(update);
-                TempData["Success"] = "Profile successfully updated";
+                TempData["Success"] = "Profil başarılı bir şekilde güncellendi";
                 return RedirectToAction("Index", "Home");
             }
             catch (Exception ex)
@@ -177,11 +177,11 @@ namespace ETicaretPlatformu.UI.Controllers
 
             if (result)
             {
-                TempData["Success"] = "asfasfg";
+                TempData["Success"] = "Kullanıcı aktif hale getirildi.";
             }
             else
             {
-                TempData["Error"] = "asfasfg";
+                TempData["Error"] = "Kullanıcı pasif Hale getirildi";
             }
 
             return RedirectToAction("Index", "Home", new { area = "Admin" });
