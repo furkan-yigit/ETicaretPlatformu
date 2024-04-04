@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ETicaretPlatformu.Application.Models.DTOs.UserDtos;
+using ETicaretPlatformu.Application.Services.CartService;
 using ETicaretPlatformu.Domain.Entities;
 using ETicaretPlatformu.Domain.Enums;
 using ETicaretPlatformu.Domain.Repositories;
@@ -22,6 +23,8 @@ namespace ETicaretPlatformu.Application.Services.UserService
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly IMapper _mapper;
+        private readonly ICartRepo _cartRepo;
+        private readonly ICartService _cartService;
 
         public UserService(IUserRepo userRepo,
                            UserManager<User> userManager,
@@ -97,7 +100,6 @@ namespace ETicaretPlatformu.Application.Services.UserService
 
                 await _signInManager.SignInAsync(user, false);
             }
-
 
             return result;
         }
