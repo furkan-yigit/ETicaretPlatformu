@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 @model UpdateProfileDto
@@ -12,85 +11,166 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Edit</title>
+    <title>Edit Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="~/sb-admin-2/css/styles.css" rel="stylesheet" />
-    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-</head>
-<body class="bg-primary">
-    <div id="layoutAuthentication">
-        <div id="layoutAuthentication_content">
-            <main>
-                <div class="container">
-                    <div class="row justify-content-center" style="margin-top: 10vh;">
-                        <div class="col-lg-7">
-                            <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                <div class="card-header"><h3 class="text-center font-weight-light my-4" style="color: #1488e1;">Edit Profile</h3></div>
-                                <div class="card-body">
-                                    <form asp-controller="Account" asp-action="Edit" method="post" enctype="multipart/form-data">
-                                        <input type="hidden" asp-for="Id" />
-                                        <div class="row mb-3">
-                                            <div class="col-md-6">
-                                                <div class="form-floating mb-3 mb-md-0">
-                                                    <input asp-for="FirstName" type="text" class="form-control" placeholder="Enter your first name" />
-                                                    <label asp-for="FirstName"><i class="fa-solid fa-person fa-lg" style="color: #74C0FC;"></i>   First name</label>
-                                                    <span asp-validation-for="FirstName"></span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-floating">
-                                                    <input asp-for="LastName" type="text" class="form-control" placeholder="Enter your last name" />
-                                                    <label asp-for="LastName">   Last name</label>
-                                                    <span asp-validation-for="LastName"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-floating mb-3">
-                                            <input asp-for="UserName" type="text" class="form-control" placeholder="User Name" />
-                                            <label asp-for="UserName"><i class="fa-solid fa-user" style="color: #74C0FC;"></i>   User Name</label>
-                                            <span asp-validation-for="UserName"></span>
-                                        </div>
-                                        <div class="form-floating mb-3">
-                                            <input asp-for="Email" type="email" class="form-control" placeholder="name@example.com" />
-                                            <label asp-for="Email"><span class="fas fa-envelope" style="color: #74C0FC;"></span>   Email address</label>
-                                            <span asp-validation-for="Email"></span>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <div class="col-md-6">
-                                                <div class="form-floating mb-3 mb-md-0">
-                                                    <input asp-for="Password" type="password" class="form-control" placeholder="Create a password" />
-                                                    <label asp-for="Password"><span class="fas fa-lock" style="color: #74C0FC;"></span>   Password</label>
-                                                    <span asp-validation-for="Password"></span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-floating mb-3 mb-md-0">
-                                                    <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Confirm password" />
-                                                    <label asp-for="ConfirmPassword"><span class="fas fa-lock" style="color: #74C0FC;"></span>  Confirm Password</label>
-                                                    <span asp-validation-for="ConfirmPassword"></span>
-                                                </div>
-                                            </div>                                            
-                                        </div>
-                                        <div class="form-floating mb-3">
-                                            @* <label asp-for="UploadPath"></label> *@
-                                            <input asp-for="UploadPath" type="file" class="form-control" />
-                                            <span asp-validation-for="UploadPath"></span>
-                                        </div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-4K2QLKc0nfhj9bS/LcZ5E28FLQvrn+DmeETEdXKZTrQoVTufIATFYbU+ovnX9KtZfjfS+hRX3GjEudcM2N44aA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fc;
+        }
 
-                                        <div class="form-floating">
-                                            <input type="submit" class="btn btn-primary btn-block" value="Guncelle" />
-                                            <a asp-action="Index" asp-controller="Home" class="btn btn-primary btn-block float-end">Ana Sayfaya Don</a>
-                                        </div>
-                                        
-                                    </form>
-                                </div>                                
-                            </div>
+        .profile-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .profile-card {
+            width: 400px;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+            .profile-header h3 {
+                font-weight: 700;
+                color: #1488e1;
+            }
+
+        .form-floating {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+            .form-floating input[type="text"],
+            .form-floating input[type="email"],
+            .form-floating input[type="password"],
+            .form-floating input[type="file"] {
+                width: 100%;
+                padding: 12px 20px;
+                font-size: 16px;
+                border: 1px solid #ced4da;
+                border-radius: 5px;
+                background-color: #f8f9fc;
+                transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+            }
+
+                .form-floating input[type="text"]:focus,
+                .form-floating input[type="email"]:focus,
+                .form-floating input[type="password"]:focus,
+                .form-floating input[type="file"]:focus {
+                    border-color: #74c0fc;
+                    outline: 0;
+                    box-shadow: 0 0 0 0.25rem rgba(118, 175, 233, 0.25);
+                }
+
+            .form-floating label {
+                position: absolute;
+                top: 0;
+                left: 0;
+                padding: 10px 20px;
+                font-size: 16px;
+                color: #495057;
+                pointer-events: none;
+                transition: transform 0.15s ease-in-out, opacity 0.15s ease-in-out;
+            }
+
+            .form-floating input::placeholder {
+                color: #6c757d;
+            }
+
+            .form-floating input:focus ~ label,
+            .form-floating input:not(:placeholder-shown) ~ label {
+                transform: translateY(-30px);
+                opacity: 0.5;
+                font-size: 12px;
+            }
+
+        .update-btn {
+            width: 100%;
+            padding: 14px 20px;
+            font-size: 16px;
+            font-weight: 500;
+            color: #fff;
+            background-color: #1488e1;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            .update-btn:hover {
+                background-color: #0b6ed6;
+            }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <div class="profile-card">
+            <div class="profile-header">
+                <h3>Edit Profile</h3>
+            </div>
+            <form asp-controller="Account" asp-action="Edit" method="post" enctype="multipart/form-data">
+                <input type="hidden" asp-for="Id" />
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3 mb-md-0">
+                            <input asp-for="FirstName" class="form-control" id="firstName" placeholder=" " />
+                            <label for="firstName"><i class="fas fa-user" style="color: #74C0FC;"></i> First Name</label>
+                            <span asp-validation-for="FirstName"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating">
+                            <input asp-for="LastName" class="form-control" id="lastName" placeholder=" " />
+                            <label for="lastName"><i class="fas fa-user" style="color: #74C0FC;"></i> Last Name</label>
+                            <span asp-validation-for="LastName"></span>
                         </div>
                     </div>
                 </div>
-            </main>
-        </div>        
+                <div class="form-floating mb-3">
+                    <input asp-for="UserName" class="form-control" id="userName" placeholder=" " />
+                    <label for="userName"><i class="fas fa-user" style="color: #74C0FC;"></i> User Name</label>
+                    <span asp-validation-for="UserName"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Email" class="form-control" id="email" placeholder=" " />
+                    <label for="email"><span class="fas fa-envelope" style="color: #74C0FC;"></span> Email address</label>
+                    <span asp-validation-for="Email"></span>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3 mb-md-0">
+                            <input asp-for="Password" type="password" class="form-control" id="password" placeholder=" " />
+                            <label for="password"><span class="fas fa-lock" style="color: #74C0FC;"></span> Password</label>
+                            <span asp-validation-for="Password"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3 mb-md-0">
+                            <input asp-for="ConfirmPassword" type="password" class="form-control" id="confirmPassword" placeholder=" " />
+                            <label for="confirmPassword"><span class="fas fa-lock" style="color: #74C0FC;"></span> Confirm Password</label>
+                            <span asp-validation-for="ConfirmPassword"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="UploadPath" type="file" class="form-control" id="uploadPath" />
+                    <label for="uploadPath"><span class="fas fa-upload" style="color: #74C0FC;"></span> Upload Image</label>
+                    <span asp-validation-for="UploadPath"></span>
+                </div>
+                <button type="submit" class="update-btn">Update Profile</button>
+            </form>
+        </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="~/sb-admin-2/js/scripts.js"></script>
 </body>
 </html>

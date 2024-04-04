@@ -1,0 +1,20 @@
+﻿
+@if(TempData["Success"] != null)
+{
+    <div class="alert alert-success swal2-validation-message">
+        @TempData["Success"]
+    </div>
+}
+@if(TempData["Error"] != null)
+{
+    <div class="alert alert-danger swal2-validation-message">
+        @TempData["Error"]
+    </div>
+}
+@if(TempData["Warning"] != null)
+{
+    <div class="alert alert-warning swal2-validation-message">
+        @TempData["Warning"]
+    </div>
+}
+

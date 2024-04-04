@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Update";
+    
 }
 
 <!DOCTYPE html>
@@ -40,6 +41,54 @@
             color: #007bff;
             text-decoration: none;
         }
+
+        /* Custom CSS for a more creative design */
+        .form-container {
+            background-color: #f8f9fa;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-container h4 {
+            color: #007bff;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .form-label {
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        .form-control {
+            border: 2px solid #007bff;
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-weight: bold;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .back-link {
+            color: #007bff;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -62,7 +111,10 @@
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
            
-            <button type="submit" class="btn btn-primary btn-block">Save</button>
+            <button type="submit" class="btn btn-primary btn-block mx-auto">
+                <i class="fas fa-save"></i> Save
+            </button>
+            
         </form>
         <a asp-action="Index" class="back-link">Back to List</a>
     </div>
