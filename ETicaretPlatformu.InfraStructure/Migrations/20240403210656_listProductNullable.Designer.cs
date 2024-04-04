@@ -12,12 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ETicaretPlatformu.InfraStructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-<<<<<<<< HEAD:ETicaretPlatformu.InfraStructure/Migrations/20240403121214_init.Designer.cs
-    [Migration("20240403121214_init")]
-========
-    [Migration("20240403121145_init")]
->>>>>>>> origin/omer:ETicaretPlatformu.InfraStructure/Migrations/20240403121145_init.Designer.cs
-    partial class init
+    [Migration("20240403210656_listProductNullable")]
+    partial class listProductNullable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,11 +26,8 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
 
             modelBuilder.Entity("ETicaretPlatformu.Domain.Entities.Cart", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
@@ -172,8 +165,8 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("CartId")
-                        .HasColumnType("int");
+                    b.Property<string>("CartId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
