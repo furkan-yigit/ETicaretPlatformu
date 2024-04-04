@@ -36,7 +36,7 @@
                             @Html.DisplayNameFor(model => model.CategoryName)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.ImagePath)
+                           Image
                         </th>
                         <th></th>
                 </tr>
@@ -61,13 +61,17 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.CategoryName)
                             </td>
-                            <td>
+                            @* <td>
                                 @Html.DisplayFor(modelItem => item.ImagePath)
+                            </td> *@
+
+                            <td>
+                                <img src="@item.ImagePath" alt="@item.Name" width="50" height="50" />
                             </td>
                             <td>
-                                @Html.ActionLink("Güncelle", "Update", new { /* id=item.PrimaryKey */ }) |
-                                @Html.ActionLink("Detay", "Details", new { /* id=item.PrimaryKey */ }) |
-                                @Html.ActionLink("Sil", "Delete", new { /* id=item.PrimaryKey */ })
+                                @Html.ActionLink("Güncelle", "Update", new {  id=item.Id  }) |
+                                @Html.ActionLink("Detay", "Detail", new {  id=item.Id }) |
+                                @Html.ActionLink("Sil", "Delete", new {  id=item.Id })
                             </td>
                         </tr>
                     }
