@@ -1,7 +1,9 @@
 ﻿using ETicaretPlatformu.Application.Models.DTOs.UserDtos;
 using ETicaretPlatformu.Application.Services.UserService;
+using ETicaretPlatformu.Domain.Entities;
 using ETicaretPlatformu.Domain.Enums;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ETicaretPlatformu.UI.Controllers
@@ -9,12 +11,13 @@ namespace ETicaretPlatformu.UI.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        
-            private readonly IUserService _userService;
+        private readonly UserManager<User> _userManager;
+        private readonly IUserService _userService;
 
-        public AccountController(IUserService userService)
+        public AccountController(IUserService userService, UserManager<User> userManager)
         {
             _userService = userService;
+            _userManager = userManager;
         }
 
         #region AdminRegisterView
@@ -36,8 +39,14 @@ namespace ETicaretPlatformu.UI.Controllers
                 return View(registerDto);
             }
 
-            var result = await _userService.AdminRegister(registerDto);
 
+            if (await CheckExistingUser(registerDto))
+            {
+                return View(registerDto);
+            }
+
+
+            var result = await _userService.AdminRegister(registerDto);
             if (result.Succeeded)
             {
                 TempData["Success"] = "Admin registration successful.";
@@ -49,10 +58,10 @@ namespace ETicaretPlatformu.UI.Controllers
                 {
                     ModelState.AddModelError("", error.Description);
                 }
-                TempData["Error"] = "Admin registration failed.";
                 return View(registerDto);
             }
         }
+
         #endregion
 
 
@@ -74,6 +83,12 @@ namespace ETicaretPlatformu.UI.Controllers
             {
                 return View(registerDto);
             }
+
+            if (await CheckExistingUser(registerDto))
+            {
+                return View(registerDto);
+            }
+
             var result = await _userService.MemberRegister(registerDto);
             if (result.Succeeded)
             {
@@ -195,6 +210,37 @@ namespace ETicaretPlatformu.UI.Controllers
             }
 
             return RedirectToAction("Index", "Home", new { area = "Admin" });
+        }
+
+
+        private async Task<bool> CheckExistingUser(RegisterDto registerDto)
+        {
+            var existingEmailUser = await _userManager.FindByEmailAsync(registerDto.Email);
+            var existingUserName = await _userManager.FindByNameAsync(registerDto.UserName);
+
+            if (existingEmailUser != null || existingUserName != null)
+            {
+                if (existingEmailUser != null && existingUserName != null)
+                {
+                    ModelState.AddModelError("Email", "This email is already in use.");
+                    ModelState.AddModelError("UserName", "This username is already in use.");
+                    return true;
+                }
+                else
+                {
+                    if (existingEmailUser != null)
+                    {
+                        ModelState.AddModelError("Email", "This email is already in use.");
+                        return true;
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("UserName", "This username is already in use.");
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
 }

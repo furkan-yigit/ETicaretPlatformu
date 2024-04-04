@@ -27,11 +27,11 @@ namespace ETicaretPlatformu.Application.Services.CartService
 
         public async Task<CartDto> Create(string userId)
         {
-            var cart = await _cartRepo.GetDefault(x => x.UserId == userId);
+            Cart cart = await _cartRepo.GetDefault(x => x.UserId == userId);
 
             if (cart == null)
             {
-                cart = Cart.Instance(userId);
+                cart = new Cart();
             }
             return _mapper.Map<CartDto>(cart);
         }

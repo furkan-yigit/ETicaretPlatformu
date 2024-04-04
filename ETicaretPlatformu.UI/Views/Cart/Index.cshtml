@@ -45,8 +45,8 @@ else
                             </td>
                             <td>@item.Name</td>
                             <td>@item.Price</td>
-                            <td>@item.StockQuantity</td>
-                            <td>@(item.StockQuantity*item.Price)</td>
+                            <td>@item.Quantity</td>
+                            <td>@(item.Quantity*item.Price)</td>
                             <td>
 
                                 <form asp-controller="Cart" asp-action="RemoveProductFromCart" method="post">

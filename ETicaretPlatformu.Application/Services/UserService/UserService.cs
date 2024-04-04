@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ETicaretPlatformu.Application.Models.DTOs.UserDtos;
+using ETicaretPlatformu.Application.Services.CartService;
 using ETicaretPlatformu.Domain.Entities;
 using ETicaretPlatformu.Domain.Enums;
 using ETicaretPlatformu.Domain.Repositories;
@@ -22,6 +23,8 @@ namespace ETicaretPlatformu.Application.Services.UserService
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly IMapper _mapper;
+        private readonly ICartRepo _cartRepo;
+        private readonly ICartService _cartService;
 
         public UserService(IUserRepo userRepo,
                            UserManager<User> userManager,
@@ -69,6 +72,7 @@ namespace ETicaretPlatformu.Application.Services.UserService
         public async Task<IdentityResult> AdminRegister(RegisterDto model)
         {
             var user = _mapper.Map<User>(model);
+            user.ImagePath = $"/images/01-admin.jpg";
 
             var result = await _userManager.CreateAsync(user, model.Password);            
 
@@ -84,8 +88,9 @@ namespace ETicaretPlatformu.Application.Services.UserService
         }
 
         public async Task<IdentityResult> MemberRegister(RegisterDto model)
-        {    
+        {  
             var user = _mapper.Map<User>(model);
+            user.ImagePath = $"/images/02-member.jpg";
 
             var result = await _userManager.CreateAsync(user, model.Password);
 
@@ -95,7 +100,6 @@ namespace ETicaretPlatformu.Application.Services.UserService
 
                 await _signInManager.SignInAsync(user, false);
             }
-
 
             return result;
         }
@@ -151,7 +155,17 @@ namespace ETicaretPlatformu.Application.Services.UserService
         public async Task<IEnumerable<UserDto>> GetUsers()
         {
             var users = await _userRepo.GetDefaults(x=>true);
-            return _mapper.Map<IEnumerable<UserDto>>(users);
+            //return _mapper.Map<IEnumerable<UserDto>>(users);
+            var userDtos = new List<UserDto>();
+            foreach (var user in users)
+            {
+                var roles = await _userManager.GetRolesAsync(user);
+                var userDto = _mapper.Map<UserDto>(user);
+                userDto.Role = roles.FirstOrDefault();
+                userDto.Email = user.Email;
+                userDtos.Add(userDto);
+            }
+            return userDtos;
         }
 
         public async Task<bool> UpdateUserStatus(string userName, string status)

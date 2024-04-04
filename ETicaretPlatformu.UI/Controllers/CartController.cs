@@ -15,7 +15,6 @@ namespace ETicaretPlatformu.UI.Controllers
 
         private readonly ICartService _cartService;
         private readonly IUserService _userService;
-        private readonly Mapper _mapper;
         public string _userId; 
         
         public CartController(ICartService cartService, IUserService userService)
@@ -33,7 +32,7 @@ namespace ETicaretPlatformu.UI.Controllers
 
             if (cart == null)
             {
-               cart = await _cartService.Create(_userId);
+                cart = await _cartService.Create(_userId);
             }
             return View(cart);
         }
@@ -45,7 +44,7 @@ namespace ETicaretPlatformu.UI.Controllers
             return View("Index");
         }
 
-        public async Task<IActionResult> DeleteCart(int productId)
+        public async Task<IActionResult> RemoveAllProductFromCart(int productId)
         {
             await _cartService.RemoveAllProductFromCart(_userId, productId);
             return View("Index");
