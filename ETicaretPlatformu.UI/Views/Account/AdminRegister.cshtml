@@ -139,10 +139,12 @@
                 <div class="form-floating">
                     <input asp-for="UserName" class="form-control" id="userName" placeholder=" " />
                     <label for="userName"><i class="fas fa-user" style="color: #74C0FC;"></i> User Name</label>
+                    <span asp-validation-for="UserName" class="text-danger"></span>
                 </div>
                 <div class="form-floating">
                     <input asp-for="Email" class="form-control" id="email" placeholder=" " />
                     <label for="email"><i class="fas fa-envelope" style="color: #74C0FC;"></i> Email Address</label>
+                    <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
                 <div class="form-floating">
                     <input asp-for="Password" type="password" class="form-control" id="password" placeholder=" " />
