@@ -296,6 +296,30 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "60f3fa09-955d-4ef5-8f39-5d078a3711af",
+                            CreateDate = new DateTime(2024, 4, 4, 13, 40, 2, 514, DateTimeKind.Local).AddTicks(7102),
+                            Email = "admin@example.com",
+                            EmailConfirmed = true,
+                            FirstName = "admin",
+                            ImagePath = "/images/01-admin.jpg",
+                            LastName = "admin",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@EXAMPLE.COM",
+                            NormalizedUserName = "ADMIN",
+                            PasswordHash = "AQAAAAEAACcQAAAAEP449EOYb2EDo8LCkZV77yW6JRH43/GBwPa5IQEjwHGlrgDZG2aOebuTKk4MSLwLMA==",
+                            PaymentMethod = 0,
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "b227dbc9-e395-4d17-8777-aa437da5a4ec",
+                            Status = 1,
+                            TwoFactorEnabled = false,
+                            UserName = "admin"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -426,6 +450,13 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "1",
+                            RoleId = "Admin"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>

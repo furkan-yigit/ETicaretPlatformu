@@ -301,6 +301,16 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[] { "Member", "00000000-0000-0000-0000-000000000000", "Member", "MEMBER" });
 
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreateDate", "DeleteDate", "Email", "EmailConfirmed", "FirstName", "ImagePath", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PaymentMethod", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Status", "TwoFactorEnabled", "UpdateDate", "UserName" },
+                values: new object[] { "1", 0, "60f3fa09-955d-4ef5-8f39-5d078a3711af", new DateTime(2024, 4, 4, 13, 40, 2, 514, DateTimeKind.Local).AddTicks(7102), null, "admin@example.com", true, "admin", "/images/01-admin.jpg", "admin", false, null, "ADMIN@EXAMPLE.COM", "ADMIN", "AQAAAAEAACcQAAAAEP449EOYb2EDo8LCkZV77yW6JRH43/GBwPa5IQEjwHGlrgDZG2aOebuTKk4MSLwLMA==", 0, null, false, "b227dbc9-e395-4d17-8777-aa437da5a4ec", 1, false, null, "admin" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[] { "Admin", "1" });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
