@@ -30,7 +30,7 @@ namespace ETicaretPlatformu.InfraStructure.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer("Server=DESKTOP-NNPAIJ5;Database=01-Eticaret;Uid=sa;Pwd=789");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-NNPAIJ5;Database=01-Eticaret;Uid=sa;Pwd=789");
             //optionsBuilder.UseSqlServer("Server=DESKTOP-JI3UVS4;Database=OnionETicaretProjectApp;Uid=sa;Pwd=123");            
             //optionsBuilder.UseSqlServer("Server=DESKTOP-G2S16HQ;Database=OnionETicaretProjectApp;Uid=sa;Pwd=123");
             //optionsBuilder.UseSqlServer("Server=DESKTOP-FJ8OJV2;Database=ETicaretApp;Uid=sa;Pwd=789");
@@ -55,6 +55,8 @@ namespace ETicaretPlatformu.InfraStructure.Context
                 ConcurrencyStamp = new Guid().ToString(),
             });
 
+
+            #region Admin Seed Data
             var adminUser = new User
             {
                 Id = "1",
@@ -80,6 +82,8 @@ namespace ETicaretPlatformu.InfraStructure.Context
                         RoleId = "Admin",
                         UserId = adminUser.Id
                     });
+            #endregion
+
 
             // En Altta
             base.OnModelCreating(builder);

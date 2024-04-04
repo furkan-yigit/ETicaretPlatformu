@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ETicaretPlatformu.InfraStructure.Migrations
 {
-    public partial class initial : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -260,6 +260,32 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "CartLine",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    CartId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CartLine", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CartLine_Carts_CartId",
+                        column: x => x.CartId,
+                        principalTable: "Carts",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_CartLine_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "OrderDetails",
                 columns: table => new
                 {
@@ -304,7 +330,7 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreateDate", "DeleteDate", "Email", "EmailConfirmed", "FirstName", "ImagePath", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PaymentMethod", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Status", "TwoFactorEnabled", "UpdateDate", "UserName" },
-                values: new object[] { "1", 0, "60f3fa09-955d-4ef5-8f39-5d078a3711af", new DateTime(2024, 4, 4, 13, 40, 2, 514, DateTimeKind.Local).AddTicks(7102), null, "admin@example.com", true, "admin", "/images/01-admin.jpg", "admin", false, null, "ADMIN@EXAMPLE.COM", "ADMIN", "AQAAAAEAACcQAAAAEP449EOYb2EDo8LCkZV77yW6JRH43/GBwPa5IQEjwHGlrgDZG2aOebuTKk4MSLwLMA==", 0, null, false, "b227dbc9-e395-4d17-8777-aa437da5a4ec", 1, false, null, "admin" });
+                values: new object[] { "1", 0, "e7cb61d2-0db6-4be3-b682-6d16d196c76b", new DateTime(2024, 4, 4, 15, 32, 46, 151, DateTimeKind.Local).AddTicks(6799), null, "admin@example.com", true, "admin", "/images/01-admin.jpg", "admin", false, null, "ADMIN@EXAMPLE.COM", "ADMIN", "AQAAAAEAACcQAAAAEM70RC4cYXksnR/Car52vx6mLrZ9rFG/nwLlo1uOAMx7Bom9fS4u7hTUcmkUcyVjOw==", 0, null, false, "8cab1dfb-4696-4ca3-b8ee-85a1582e471f", 1, false, null, "admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
@@ -349,6 +375,16 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CartLine_CartId",
+                table: "CartLine",
+                column: "CartId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CartLine_ProductId",
+                table: "CartLine",
+                column: "ProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Carts_UserId",
@@ -397,6 +433,9 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "CartLine");
 
             migrationBuilder.DropTable(
                 name: "OrderDetails");
