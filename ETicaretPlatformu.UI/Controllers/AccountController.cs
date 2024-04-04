@@ -162,7 +162,7 @@ namespace ETicaretPlatformu.UI.Controllers
             try
             {
                 await _userService.UpdateUser(update);
-                TempData["Success"] = "Profil başarılı bir şekilde güncellendi";
+                TempData["Success"] = "Profile updated successfully.";
                 return RedirectToAction("Index", "Home");
             }
             catch (Exception ex)
