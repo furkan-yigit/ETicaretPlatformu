@@ -8,6 +8,7 @@ using ETicaretPlatformu.Application.Services.CategoryService;
 using ETicaretPlatformu.Domain.Entities;
 using ETicaretPlatformu.InfraStructure.Context;
 using Microsoft.AspNetCore.Identity;
+using ETicaretPlatformu.Application.Services.UserService;
 
 namespace ETicaretPlatformu.UI
 {
@@ -47,6 +48,10 @@ namespace ETicaretPlatformu.UI
             });
 
             builder.Services.AddScoped<ICartService, CartService>();
+            builder.Services.AddScoped<IOrderDetailService, OrderDetailService>();
+            builder.Services.AddScoped<IOrderService, OrderService>();
+            builder.Services.AddScoped<ICategoryService, CategoryService>();
+            builder.Services.AddScoped<IUserService, UserService>();
 
 
 
