@@ -14,6 +14,7 @@ namespace ETicaretPlatformu.Application.Models.VMs.Order
         public int Quantity { get; set; }
         public decimal UnitPrice { get; set; }
         public int OrderId { get; set; }
+        public Product Product { get; set; }
         public int ProductId { get; set; }
         public DateTime CreateDate { get; set; }
         public Status Status { get; set; }
