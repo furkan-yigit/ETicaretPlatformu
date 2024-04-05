@@ -12,13 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ETicaretPlatformu.InfraStructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-<<<<<<<< HEAD:ETicaretPlatformu.InfraStructure/Migrations/20240403041223_initial.Designer.cs
-    [Migration("20240403041223_initial")]
-    partial class initial
-========
-    [Migration("20240405131531_update4")]
-    partial class update4
->>>>>>>> origin/Sila:ETicaretPlatformu.InfraStructure/Migrations/20240405131531_update4.Designer.cs
+    [Migration("20240405131327_update3")]
+    partial class update3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -211,12 +206,6 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-<<<<<<<< HEAD:ETicaretPlatformu.InfraStructure/Migrations/20240403041223_initial.Designer.cs
-                    b.Property<int?>("CartId")
-                        .HasColumnType("int");
-
-========
->>>>>>>> origin/Sila:ETicaretPlatformu.InfraStructure/Migrations/20240405131531_update4.Designer.cs
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
@@ -351,8 +340,8 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0215d83b-9eb3-4d31-a948-088789420618",
-                            CreateDate = new DateTime(2024, 4, 5, 16, 15, 30, 471, DateTimeKind.Local).AddTicks(1795),
+                            ConcurrencyStamp = "7336e7e9-5f09-4696-a50a-194a956b3a28",
+                            CreateDate = new DateTime(2024, 4, 5, 16, 13, 27, 17, DateTimeKind.Local).AddTicks(7694),
                             Email = "admin@example.com",
                             EmailConfirmed = true,
                             FirstName = "admin",
@@ -361,10 +350,10 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@EXAMPLE.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAENGEhQXfnUlDNi2E66cOK42VQTKhOeK3hk1uexnhjm1QqMrq8Lnj2pRNwnQMrbZ2UA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBOC4iC3feCQlrhejHzE4+hKDvxK9Oh0NhyolwFd57CMtnfKCH0xGBllfrw5juaxzA==",
                             PaymentMethod = 0,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a6800c2c-690e-47d3-a883-0762c90dc5ab",
+                            SecurityStamp = "a0d697ed-ac5b-4ecc-bc9a-21d5627bf5a0",
                             Status = 1,
                             TwoFactorEnabled = false,
                             UserName = "admin"

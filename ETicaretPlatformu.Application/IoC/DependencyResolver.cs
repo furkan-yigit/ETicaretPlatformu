@@ -24,6 +24,7 @@ namespace ETicaretPlatformu.Application.IoC
         {
             builder.RegisterType<UserRepo>().As<IUserRepo>().InstancePerLifetimeScope();
             builder.RegisterType<CartRepo>().As<ICartRepo>().InstancePerLifetimeScope();
+            builder.RegisterType<CartLineRepo>().As<ICartLineRepo>().InstancePerLifetimeScope();
             builder.RegisterType<ProductRepo>().As<IProductRepo>().InstancePerLifetimeScope();
             builder.RegisterType<CategoryRepo>().As<ICategoryRepo>().InstancePerLifetimeScope();
             builder.RegisterType<OrderDetailRepo>().As<IOrderDetailRepo>().InstancePerLifetimeScope();

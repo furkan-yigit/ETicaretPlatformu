@@ -12,13 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ETicaretPlatformu.InfraStructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-<<<<<<<< HEAD:ETicaretPlatformu.InfraStructure/Migrations/20240403041223_initial.Designer.cs
-    [Migration("20240403041223_initial")]
+    [Migration("20240405122954_initial")]
     partial class initial
-========
-    [Migration("20240405131531_update4")]
-    partial class update4
->>>>>>>> origin/Sila:ETicaretPlatformu.InfraStructure/Migrations/20240405131531_update4.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -211,12 +206,6 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-<<<<<<<< HEAD:ETicaretPlatformu.InfraStructure/Migrations/20240403041223_initial.Designer.cs
-                    b.Property<int?>("CartId")
-                        .HasColumnType("int");
-
-========
->>>>>>>> origin/Sila:ETicaretPlatformu.InfraStructure/Migrations/20240405131531_update4.Designer.cs
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
@@ -351,8 +340,8 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0215d83b-9eb3-4d31-a948-088789420618",
-                            CreateDate = new DateTime(2024, 4, 5, 16, 15, 30, 471, DateTimeKind.Local).AddTicks(1795),
+                            ConcurrencyStamp = "3fdbb5b4-272f-4523-a5d9-e3d5eb4572f1",
+                            CreateDate = new DateTime(2024, 4, 5, 15, 29, 54, 515, DateTimeKind.Local).AddTicks(644),
                             Email = "admin@example.com",
                             EmailConfirmed = true,
                             FirstName = "admin",
@@ -361,10 +350,10 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@EXAMPLE.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAENGEhQXfnUlDNi2E66cOK42VQTKhOeK3hk1uexnhjm1QqMrq8Lnj2pRNwnQMrbZ2UA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJxN+AiKeGWDsdQ+GASX562tCl10KC3E4UUJ/b9SBrZ3rZMcoGPKACAAhgR3Wy24xQ==",
                             PaymentMethod = 0,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a6800c2c-690e-47d3-a883-0762c90dc5ab",
+                            SecurityStamp = "3bad4184-a3ea-4e8d-8570-ffd12d955340",
                             Status = 1,
                             TwoFactorEnabled = false,
                             UserName = "admin"

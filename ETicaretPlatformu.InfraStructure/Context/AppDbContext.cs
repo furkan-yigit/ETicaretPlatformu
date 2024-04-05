@@ -1,10 +1,12 @@
 ﻿using ETicaretPlatformu.Domain.Entities;
+using ETicaretPlatformu.InfraStructure.EntityTypeConfiguration;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,6 +25,7 @@ namespace ETicaretPlatformu.InfraStructure.Context
         }
         public DbSet<User> Users { get; set; }
         public DbSet<Cart> Carts { get; set; }
+        public DbSet<CartLine> CartLines { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
@@ -32,7 +35,7 @@ namespace ETicaretPlatformu.InfraStructure.Context
         {
             optionsBuilder.UseSqlServer("Server=DESKTOP-NNPAIJ5;Database=01-Eticaret;Uid=sa;Pwd=789");
             //optionsBuilder.UseSqlServer("Server=DESKTOP-JI3UVS4;Database=OnionETicaretProjectApp;Uid=sa;Pwd=123");            
-            //optionsBuilder.UseSqlServer("Server=DESKTOP-G2S16HQ;Database=OnionETicaretProjectApp;Uid=sa;Pwd=123");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-G2S16HQ;Database=OnionETicaretProjectApp;Uid=sa;Pwd=123");
             //optionsBuilder.UseSqlServer("Server=DESKTOP-FJ8OJV2;Database=ETicaretApp;Uid=sa;Pwd=789");
             optionsBuilder.UseSqlServer("Server=DESKTOP-LLGUTIH;Database=ETicaretApp;Uid=sa;Pwd=123");
 
@@ -85,6 +88,9 @@ namespace ETicaretPlatformu.InfraStructure.Context
                     });
             #endregion
 
+
+            builder.ApplyConfiguration(new CartLineConfig());
+            builder.ApplyConfiguration(new CartConfig());
 
             // En Altta
             base.OnModelCreating(builder);
