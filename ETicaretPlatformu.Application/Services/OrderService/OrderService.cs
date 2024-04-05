@@ -4,6 +4,9 @@ using ETicaretPlatformu.Application.Models.VMs.Order;
 using ETicaretPlatformu.Domain.Entities;
 using ETicaretPlatformu.Domain.Enums;
 using ETicaretPlatformu.Domain.Repositories;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.EntityFrameworkCore.Query;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,28 +49,32 @@ namespace ETicaretPlatformu.Application.Services.OrderService
                 detail.DeleteDate = DateTime.Now;
                 detail.Status = Status.Passive;
             }
+            _orderRepo.Update(order);
         }
 
         public async Task<UpdateOrderDto> GetById(int id)
         {
             var order = await _orderRepo.GetFilteredFirstOrDefault
                  (select: x => _mapper.Map<UpdateOrderDto>(x),
-            where: x => x.Id == id && x.Status != Status.Passive);
+            where: x => x.Id == id && x.Status != Status.Passive,
+            include: x => x.Include(x => x.OrderDetails).Include(x => x.User)
+            );
 
-            order.OrderDetails = await _orderDetailRepo.GetFilteredList(
-              select: x => new OrderDetail(),
-              where: x => x.OrderId == id && x.Status != Status.Passive); ;
 
             return order;
         }
 
+        Func<IQueryable<OrderVm>, IIncludableQueryable<OrderVm, object>> includeExpression = query => query.Include(entity => entity.User);
 
 
         public async Task<List<OrderVm>> GetOrders()
         {
             var order = await _orderRepo.GetFilteredList
-                 (select: x => _mapper.Map<OrderVm>(x),
-            where: x => x.Status != Status.Passive);
+                 (
+                select: x => _mapper.Map<OrderVm>(x),
+            where: x => x.Status != Status.Passive,
+            include:x=>x.Include(x=> x.OrderDetails).Include(x => x.User)
+            );
 
 
             return order;
@@ -76,7 +83,9 @@ namespace ETicaretPlatformu.Application.Services.OrderService
         {
             var order = await _orderRepo.GetFilteredList
                  (select: x => _mapper.Map<OrderVm>(x),
-            where: x => x.Status != Status.Passive && x.UserId==userId);
+            where: x => x.Status != Status.Passive && x.UserId==userId,
+            include: x => x.Include(x => x.OrderDetails).Include(x => x.User)
+            );
 
 
             return order;

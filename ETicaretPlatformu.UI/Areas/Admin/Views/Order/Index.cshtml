@@ -1,0 +1,68 @@
+﻿@using ETicaretPlatformu.Application.Models.VMs.Order
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<OrderVm>
+
+
+<div class="container-fluid px-4">
+    <div>
+        <a asp-action="Create" asp-area="Admin" asp-controller="Order" class="btn btn-success">Create New Order</a>
+    </div>
+    <br />
+    <div class="row"></div>
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            Order Table
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th>
+                            Sipariş No
+                        </th>
+                        <th>
+                            Ürünler
+                        </th>
+                        <th>
+                            Siparişi veren kullanıcı
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(model => item.Id)
+                            </td>
+                            <td>
+                               
+                                @foreach(OrderDetailVm detail in item.OrderDetails)
+                                {
+                                    @detail.Product.Name
+                                 
+                                }
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model=>item.User.UserName)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Güncelle", "Update", new { id = item.Id }) |
+                                @Html.ActionLink("Detay", "Detail", new { id = item.Id }) |
+                                @Html.ActionLink("Sil", "Delete", new { id = item.Id })
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

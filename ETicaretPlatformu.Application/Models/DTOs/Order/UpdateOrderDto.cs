@@ -11,6 +11,7 @@ namespace ETicaretPlatformu.Application.Models.DTOs.OrderDto
     public class UpdateOrderDto
     {
         public int Id { get; set; }
+        public User User { get; set; }
         public string UserId { get; set; }
         public ICollection<OrderDetail> OrderDetails { get; set; }
 

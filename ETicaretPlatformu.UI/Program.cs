@@ -2,6 +2,7 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using ETicaretPlatformu.Application.IoC;
 using ETicaretPlatformu.Application.Services.CartService;
+using ETicaretPlatformu.Application.Services.OrderDetailService;
 using ETicaretPlatformu.Application.Services.OrderService;
 using ETicaretPlatformu.Domain.Entities;
 using ETicaretPlatformu.InfraStructure.Context;
@@ -45,6 +46,7 @@ namespace ETicaretPlatformu.UI
 
             builder.Services.AddScoped<ICartService, CartService>();
             builder.Services.AddScoped<IOrderService, OrderService>();
+            builder.Services.AddScoped<IOrderDetailService, OrderDetailService>();
 
 
 
