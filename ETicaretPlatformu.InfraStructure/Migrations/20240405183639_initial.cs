@@ -327,19 +327,16 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[] { "Member", "00000000-0000-0000-0000-000000000000", "Member", "MEMBER" });
 
-<<<<<<<< HEAD:ETicaretPlatformu.InfraStructure/Migrations/20240403041223_initial.cs
-========
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreateDate", "DeleteDate", "Email", "EmailConfirmed", "FirstName", "ImagePath", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PaymentMethod", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Status", "TwoFactorEnabled", "UpdateDate", "UserName" },
-                values: new object[] { "1", 0, "3fdbb5b4-272f-4523-a5d9-e3d5eb4572f1", new DateTime(2024, 4, 5, 15, 29, 54, 515, DateTimeKind.Local).AddTicks(644), null, "admin@example.com", true, "admin", "/images/01-admin.jpg", "admin", false, null, "ADMIN@EXAMPLE.COM", "ADMIN", "AQAAAAEAACcQAAAAEJxN+AiKeGWDsdQ+GASX562tCl10KC3E4UUJ/b9SBrZ3rZMcoGPKACAAhgR3Wy24xQ==", 0, null, false, "3bad4184-a3ea-4e8d-8570-ffd12d955340", 1, false, null, "admin" });
+                values: new object[] { "1", 0, "1dc1bd39-48fd-42c2-998f-29746bf0374c", new DateTime(2024, 4, 5, 21, 36, 38, 946, DateTimeKind.Local).AddTicks(2888), null, "admin@example.com", true, "admin", "/images/01-admin.jpg", "admin", false, null, "ADMIN@EXAMPLE.COM", "ADMIN", "AQAAAAEAACcQAAAAEHMuM+0ela8oDC3wn5s6B4VxeUdF4iCJz02cCtXlgUFFEqBip688ErhhaLRKr//HgA==", 0, null, false, "b13ce7b9-d4d7-4039-a500-ffcda9af44fc", 1, false, null, "admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
                 values: new object[] { "Admin", "1" });
 
->>>>>>>> origin/Sila:ETicaretPlatformu.InfraStructure/Migrations/20240405122954_initial.cs
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",

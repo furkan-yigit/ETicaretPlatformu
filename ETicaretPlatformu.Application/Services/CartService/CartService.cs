@@ -54,13 +54,18 @@ namespace ETicaretPlatformu.Application.Services.CartService
                 else
                 {
                     var product = await _productRepo.GetDefault(x => x.Id == productId);
-                    cartLine = new CartLine
+                    if (product != null)
                     {
-                        ProductId = productId,
-                        CartId = cart.Id,
-                        Quantity = 1,
-                    };
-                    await _cartLineRepo.Create(cartLine);
+                        cartLine = new CartLine
+                        {
+                            ProductId = productId,
+                            CartId = cart.Id,
+                            Quantity = 1,
+                        };
+                        await _cartLineRepo.Create(cartLine);
+                    }
+                    else
+                        throw new Exception("Product not found !");
                 }
             }
         }
@@ -73,14 +78,23 @@ namespace ETicaretPlatformu.Application.Services.CartService
                             c => c.CartLines
                         );
 
-            foreach (var cartLine in cart.CartLines)
+            if (cart == null)
             {
-                cartLine.Product = await _productRepo.GetDefaultIncluding(
-                        p => p.Id == cartLine.ProductId,
-                        p => p.Category
-                    );
+                await Create(userId);
+                cart =  await GetCartByUserId(userId);
+                return cart;
             }
-            return cart;
+            else
+            {
+                foreach (var cartLine in cart.CartLines)
+                {
+                    cartLine.Product = await _productRepo.GetDefaultIncluding(
+                            p => p.Id == cartLine.ProductId,
+                            p => p.Category
+                        );
+                }
+                return cart;
+            }
         }
 
 
@@ -102,7 +116,12 @@ namespace ETicaretPlatformu.Application.Services.CartService
                         await _cartLineRepo.Update(productToRemove);
                     }
                 }
+                else
+                    throw new Exception("Product not found !");
             }
+            else
+                throw new Exception("Cart not found !");
+
             await _cartRepo.Update(cart);
         }
     }

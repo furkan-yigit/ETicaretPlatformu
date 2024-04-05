@@ -10,7 +10,7 @@ using System.Security.Claims;
 
 namespace ETicaretPlatformu.UI.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class CartController : Controller
     {
 
@@ -38,9 +38,15 @@ namespace ETicaretPlatformu.UI.Controllers
         public async Task<IActionResult> AddProductToCart(string userName, int productId)
         {
             var user = await _userService.GetByUserName(userName);
-
-            await _cartService.AddProductToCart(user.Id, productId);
-            TempData["Success"] = "Add to cart successful.";
+            try
+            {
+                await _cartService.AddProductToCart(user.Id, productId);
+                TempData["Success"] = "Add to cart successful.";
+            }
+            catch (Exception)
+            {
+                TempData["Error"] = "An error occurred while adding the product to the cart.";
+            }
 
             return RedirectToAction("GetCart", new { userId = user.Id });
         }
@@ -49,8 +55,15 @@ namespace ETicaretPlatformu.UI.Controllers
         {
             var user = await _userService.GetByUserName(userName);
 
-            await _cartService.RemoveProductFromCart(user.Id, productId);
-            TempData["Success"] = "Delete from cart successful.";
+            try
+            {
+                await _cartService.RemoveProductFromCart(user.Id, productId);
+                TempData["Success"] = "Delete from cart successful.";
+            }
+            catch (Exception)
+            {
+                TempData["Error"] = "An error occurred while removing the product from the cart.";
+            }
 
             return RedirectToAction("GetCart", new { userId = user.Id });
         }
@@ -60,9 +73,8 @@ namespace ETicaretPlatformu.UI.Controllers
         {
             var cart = await _cartService.GetCartByUserId(userId);
             if (cart == null)
-                return NotFound();
+                TempData["Error"] = "Cart not found.";
 
-            ViewBag.CartLineCount = cart.CartLines.Sum(cl => cl.Quantity); 
             return View(cart);
         }
     }
