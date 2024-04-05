@@ -15,96 +15,96 @@ namespace ETicaretPlatformu.Application.Services.CartService
     public class CartService : ICartService
     {
         private readonly ICartRepo _cartRepo;
+        private readonly ICartLineRepo _cartLineRepo;
         private readonly IProductRepo _productRepo;
-        private readonly IMapper _mapper;
 
-        public CartService(ICartRepo cartRepo, IMapper mapper, IProductRepo productRepo)
+        public CartService(ICartRepo cartRepo, IProductRepo productRepo, ICartLineRepo cartLineRepo)
         {
             _cartRepo = cartRepo;
-            _mapper = mapper;
             _productRepo = productRepo;
+            _cartLineRepo = cartLineRepo;
         }
 
-        public async Task<CartDto> Create(string userId)
+        public async Task Create(string userId)
         {
-            Cart cart = await _cartRepo.GetDefault(x => x.UserId == userId);
+            var cart = await _cartRepo.GetDefault(x => x.UserId == userId);
 
             if (cart == null)
             {
-                cart = new Cart();
-            }
-            return _mapper.Map<CartDto>(cart);
-        }
-
-        public async Task<CartDto> GetCartById(string cartId)
-        {
-
-            var cart = await _cartRepo.GetDefault(c => c.Id == cartId);
-            if (cart != null)
-            {
-                return _mapper.Map<CartDto>(cart);
-            }
-            return null;
-
-        }
-
-
-        public async Task<CartDto> GetCartByUserId(string userId)
-        {
-            var cart = await _cartRepo.GetDefault(x => x.UserId == userId);
-            if (cart != null)
-                return _mapper.Map<CartDto>(cart);
-            else
-                return null;
-        }
-
-        public async Task RemoveProductFromCart(string userId, int productId)
-        {
-            var cart = await _cartRepo.GetDefault(x => x.UserId == userId);
-            if (cart != null)
-            {
-                var productToRemove = cart.Products.FirstOrDefault(p => p.Id == productId);
-                if (productToRemove != null)
-                {
-                    cart.Products.Remove(productToRemove);
-                    await _cartRepo.Update(cart);
-                }
+                cart = new Cart { UserId = userId };
+                await _cartRepo.Create(cart);
             }
         }
 
 
         public async Task AddProductToCart(string userId, int productId)
         {
-            var cart = await _cartRepo.GetDefault(x => x.UserId == userId);
-            if (cart != null)
+            var cart = await GetCartByUserId(userId);
+
+            if (cart == null)
+                await Create(userId);
+            else
             {
-                var productToAdd = await _productRepo.GetDefault(p => p.Id == productId);
-                if (productToAdd != null)
+                var cartLine = await _cartLineRepo.GetDefault(x => x.CartId == cart.Id && x.ProductId == productId);
+                if (cartLine != null)
                 {
-                    cart.Products.Add(productToAdd);
-                    await _cartRepo.Update(cart);
+                    cartLine.Quantity++;
+                    await _cartLineRepo.Update(cartLine);
+                }
+                else
+                {
+                    var product = await _productRepo.GetDefault(x => x.Id == productId);
+                    cartLine = new CartLine
+                    {
+                        ProductId = productId,
+                        CartId = cart.Id,
+                        Quantity = 1,
+                    };
+                    await _cartLineRepo.Create(cartLine);
                 }
             }
         }
 
-        public async Task RemoveAllProductFromCart(string userId, int productId)
+
+        public async Task<Cart> GetCartByUserId(string userId)
         {
-            var cart = await _cartRepo.GetDefault(x => x.UserId == userId);
+            var cart = await _cartRepo.GetDefaultIncluding(
+                            x => x.UserId == userId,
+                            c => c.CartLines
+                        );
+
+            foreach (var cartLine in cart.CartLines)
+            {
+                cartLine.Product = await _productRepo.GetDefaultIncluding(
+                        p => p.Id == cartLine.ProductId,
+                        p => p.Category
+                    );
+            }
+            return cart;
+        }
+
+
+        public async Task RemoveProductFromCart(string userId, int productId)
+        {
+            var cart = await GetCartByUserId(userId);
+
             if (cart != null)
             {
-                var productToRemove = cart.Products.Where(p => p.Id == productId).ToList();
+                var productToRemove = cart.CartLines.FirstOrDefault(p => p.ProductId == productId);
+
                 if (productToRemove != null)
                 {
-                    foreach (var item in productToRemove)
+                    if (productToRemove.Quantity == 1)
+                        await _cartLineRepo.Delete(productToRemove);
+                    else
                     {
-                        cart.Products.Remove(item);
+                        productToRemove.Quantity--;
+                        await _cartLineRepo.Update(productToRemove);
                     }
-                    await _cartRepo.Update(cart);
                 }
             }
+            await _cartRepo.Update(cart);
         }
-
-
     }
 }
 

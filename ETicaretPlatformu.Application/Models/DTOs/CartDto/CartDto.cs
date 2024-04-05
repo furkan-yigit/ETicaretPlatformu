@@ -1,4 +1,5 @@
-﻿using ETicaretPlatformu.Domain.Enums;
+﻿using ETicaretPlatformu.Domain.Entities;
+using ETicaretPlatformu.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace ETicaretPlatformu.Application.Models.DTOs.Cart
     {
         public string Id { get; set; }
         public string UserId { get; set; }
-        public List<ProductDto> Products { get; set; }
+        public List<CartLine> CartLines { get; set; }
 
     }
 }

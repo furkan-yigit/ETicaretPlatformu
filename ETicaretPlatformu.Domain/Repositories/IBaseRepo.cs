@@ -17,6 +17,7 @@ namespace ETicaretPlatformu.Domain.Repositories
 
         Task<T> GetDefault(Expression<Func<T, bool>> expression);
         Task<List<T>> GetDefaults(Expression<Func<T, bool>> expression);
+        Task<T> GetDefaultIncluding(Expression<Func<T, bool>> expression, params Expression<Func<T, object>>[] includes);
         Task<bool> Any(Expression<Func<T, bool>> expression);
 
         Task<TResult> GetFilteredFirstOrDefault<TResult>(Expression<Func<T, TResult>> select,

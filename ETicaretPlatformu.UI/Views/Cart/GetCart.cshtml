@@ -1,0 +1,241 @@
+﻿
+@{
+    ViewData["Title"] = "GetCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model ETicaretPlatformu.Domain.Entities.Cart
+
+
+<div style="width:90%;margin:auto" class="mt-2">
+    @if (Model != null && Model.CartLines != null && Model.CartLines.Count > 0)
+    {
+        <h5>My Cart</h5>
+
+        <table class="table table-striped">
+            <tr>
+                <th>Book</th>
+                <th>Image</th>
+                <th>Genre</th>
+                <th>Unit Price(INR)</th>
+                <th>Total Price</th>
+                <th>Action</th>
+            </tr>
+            @foreach (var item in Model.CartLines)
+            {
+                <tr>
+                    <td>@item.Product.Name</td>
+                    <td>
+                        @if (string.IsNullOrEmpty(item.Product.ImagePath))
+                        {
+                            <img src="/images/NoImage.png" style="width:80px;height:100px" />
+                        }
+                        @*else
+                            {
+                                <img src="/images/@item.Product." style="width:80px;height:100px" />
+                            }*@
+                    </td>
+                    <td>@item.Product.Category.Name</td>
+                    <td>@item.Product.Price X @item.Quantity</td>
+                    <td>@(item.Product.Price * item.Quantity)</td>
+                    <td>
+                        @*<form asp-controller="Cart" asp-action="AddProductToCart" asp-route-productId="@item.ProductId" asp-route-userName="@User.Identity.Name" method="post">
+                                <a class="btn btn-info">+</a>
+                            </form>*@
+
+                        <form asp-controller="Cart" asp-action="AddProductToCart" asp-route-userName="@User.Identity.Name" method="post">
+                            <input type="hidden" name="productId" value="@item.ProductId" />
+                            <button type="submit" class="btn btn-info">+</button>
+                        </form>
+
+                        <form>
+                            <a class="btn btn-info" asp-controller="Cart" asp-action="RemoveProductFromCart" asp-route-productId="@item.ProductId" asp-route-userName="@User.Identity.Name">-</a>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </table>
+
+        <div class="my-2">
+            <h5>Total(INR): </h5>
+            @(Model.CartLines.Select(item => item.Product.Price * item.Quantity).Sum())
+        </div>
+
+        <div class="my-2">
+            <a class="btn btn-primary" href="/Cart/Checkout">Checkout</a>
+        </div>
+
+    }
+    else
+    {
+        <h5>Cart is empty</h5>
+    }
+</div>
+
+
+@*<h1 class="h3">Shopping Cart</h1>
+    <hr>
+
+    @if (Model != null && Model.CartLines != null && Model.CartLines.Count > 0)
+    {
+        <div class="row">
+            <div class="col-12">
+                <div class="alert alert-warning">
+                    Sepetinizde ürün yok.
+                </div>
+            </div>
+        </div>
+    }
+
+    else
+    {
+        <div class="row">
+            <div class="col-md-8">
+                <div class="text-left">
+                    <h4>Cart Items</h4>
+                </div>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Product Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.CartLines)
+                        {
+                            <tr>
+                                <td>
+                                    <img src="~/img/@item" width="80" alt="">
+                                </td>
+                                <td>@item.Name</td>
+                                <td>@item.Price</td>
+                                <td>@item.Quantity</td>
+                                <td>@(item.Quantity*item.Price)</td>
+                                <td>
+
+                                    <form asp-controller="Cart" asp-action="RemoveProductFromCart" method="post">
+                                        <input type="hidden" name="productId" value="@item.Id">
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            <i class="fa fa-times fa-fw"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-4">
+                <div class="text-left">
+                    <h4>Cart Summary</h4>
+                </div>
+                <table class="table">
+    <tbody>
+            <tr>
+                <th>Cart Total</th>
+                <td>@Model.TotalPrice().ToString("c")</td>
+            </tr>
+            <tr>
+                <th>Shipping</th>
+                <th>Free</th>
+            </tr>
+            <tr>
+                <th>Order Total</th>
+                <th>@Model.TotalPrice().ToString("c")</th>
+            </tr>
+        </tbody>
+    </table>
+                <div class="text-center">
+                    <a href="/" class="btn btn-primary">
+                        <i class="fa fa-arrow-circle-left fa-fw"></i> Alışverişe Devam Et
+                    </a>
+                    <a href="/checkout" class="btn btn-primary">
+                        <i class="fa fa-arrow-circle-right fa-fw"></i> Checkout
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+    <section class="h-100" style="background-color: #eee;">
+            <div class="container h-100 py-5">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-10">
+
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h3 class="fw-normal mb-0 text-black">Shopping Cart</h3>
+                        </div>
+
+                        <div class="card rounded-3 mb-4">
+                            <div class="card-body p-4">
+                                <div class="row d-flex justify-content-between align-items-center">
+
+                                    @if (Model.Products == null || Model.Products.Count == 0)
+                                    {
+                                        <div class="text-center">
+                                            <h2>SEPETİNİZ BOŞ !</h2>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        @foreach (var product in Model.Products)
+                                        {
+                                            <div class="col-md-2 col-lg-2 col-xl-2">
+                                                <img src=@product.ImagePath
+                                                     class="img-fluid rounded-3" alt="Cotton T-shirt">
+                                            </div>
+                                            <div class="col-md-3 col-lg-3 col-xl-3">
+                                                <p class="lead fw-normal mb-2">@product.Name</p>
+                                                <p><span class="text-muted">@product.Description</span></p>
+                                            </div>
+                                            <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                                                <form asp-controller="Cart" asp-action="RemoveProductFromCart">
+                                                    <button class="btn btn-link px-2"
+                                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                                        <i class="fas fa-minus"></i>
+                                                    </button>
+                                                </form>
+
+                                                <input id="form1" min="0" name="quantity" value=@product.StockQuantity type="number"
+                                                       class="form-control form-control-sm" />
+
+                                                <form asp-controller="Cart"
+                                                      asp-action="AddProductToCart" asp-route-cartId="" asp-route-productId="productId" method="post">
+                                                    <button class="btn btn-link px-2"
+                                                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                                        <i class="fas fa-plus"></i>
+                                                    </button>
+                                                </form>
+
+                                            </div>
+                                            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                                <h5 class="mb-0">@product.Price</h5>
+                                            </div>
+                                            <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                                                <form asp-controller="Cart" asp-action="DeleteCart">
+                                                    <button class="btn">
+                                                        <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="card">
+                            <div class="card-body">
+                                <button type="button" class="btn btn-warning btn-block btn-lg">Proceed to Pay</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>*@
