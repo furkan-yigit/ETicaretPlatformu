@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ETicaretPlatformu.Application.Models.VMs.ProductVMs;
 using ETicaretPlatformu.Application.Models.VMs.Order;
 using ETicaretPlatformu.Application.Models.DTOs.OrderDto;
 
@@ -34,6 +35,7 @@ namespace ETicaretPlatformu.Application.AutoMapper
 
             CreateMap<Product, AddProductDto>().ReverseMap();
             CreateMap<Product, UpdateProductDto>().ReverseMap();
+            CreateMap<ProductVM, UpdateProductDto>().ReverseMap();
 
             //CreateMap<Order, CreateGenreDTO>().ReverseMap();
 

@@ -16,7 +16,8 @@ namespace ETicaretPlatformu.InfraStructure.Context
         {
 
         }
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+        public AppDbContext(DbContextOptions<AppDbContext> options) : 
+            base(options)
         {
 
         }
@@ -31,7 +32,7 @@ namespace ETicaretPlatformu.InfraStructure.Context
         {
             optionsBuilder.UseSqlServer("Server=DESKTOP-NNPAIJ5;Database=01-Eticaret;Uid=sa;Pwd=789");
             //optionsBuilder.UseSqlServer("Server=DESKTOP-JI3UVS4;Database=OnionETicaretProjectApp;Uid=sa;Pwd=123");            
-            optionsBuilder.UseSqlServer("Server=DESKTOP-G2S16HQ;Database=OnionETicaretProjectApp;Uid=sa;Pwd=123");
+            //optionsBuilder.UseSqlServer("Server=DESKTOP-G2S16HQ;Database=OnionETicaretProjectApp;Uid=sa;Pwd=123");
             //optionsBuilder.UseSqlServer("Server=DESKTOP-FJ8OJV2;Database=ETicaretApp;Uid=sa;Pwd=789");
             optionsBuilder.UseSqlServer("Server=DESKTOP-LLGUTIH;Database=ETicaretApp;Uid=sa;Pwd=123");
 
@@ -56,12 +57,38 @@ namespace ETicaretPlatformu.InfraStructure.Context
             });
 
 
+            #region Admin Seed Data
+            var adminUser = new User
+            {
+                Id = "1",
+                UserName = "admin",
+                NormalizedUserName = "ADMIN",
+                Email = "admin@example.com",
+                NormalizedEmail = "ADMIN@EXAMPLE.COM",
+                FirstName = "admin",
+                LastName = "admin",
+                CreateDate = DateTime.Now,
+                ImagePath = $"/images/01-admin.jpg",
+                Status = Domain.Enums.Status.Active,
+                EmailConfirmed = true
+            };
 
+            var passwordHasher = new PasswordHasher<User>();
+            adminUser.PasswordHash = passwordHasher.HashPassword(adminUser, "1234");
+
+            builder.Entity<User>().HasData(adminUser);
+            builder.Entity<IdentityUserRole<string>>().HasData(
+                    new IdentityUserRole<string>
+                    {
+                        RoleId = "Admin",
+                        UserId = adminUser.Id
+                    });
+            #endregion
 
 
             // En Altta
             base.OnModelCreating(builder);
-            
+
         }
     }
 }

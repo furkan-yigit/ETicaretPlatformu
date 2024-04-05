@@ -1,4 +1,5 @@
 ﻿using ETicaretPlatformu.Application.Extensions;
+using ETicaretPlatformu.Application.Models.VMs.CatagoryVM;
 using ETicaretPlatformu.Application.Models.VMs.ProductVMs;
 using ETicaretPlatformu.Domain.Entities;
 using ETicaretPlatformu.Domain.Enums;
@@ -26,13 +27,13 @@ namespace ETicaretPlatformu.Application.Models.DTOs.ProductDTOs
         [Required(ErrorMessage = "Lütfen kategori seçiniz")]
         public int CategoryId { get; set; }
 
-        public List<ProductCategoryVM> Categories { get; set; }
+        //public List<CatagoryVM> Categories { get; set; }
 
         public string? ImagePath { get; set; }
         
         [PictureFileExtensionAttiribute]
         public IFormFile? UploadPath { get; set; }
-        public DateTime? UpdateDat => DateTime.Now;
+        public DateTime? UpdateDate => DateTime.Now;
 
         public Status Status => Status.Modified;
     }

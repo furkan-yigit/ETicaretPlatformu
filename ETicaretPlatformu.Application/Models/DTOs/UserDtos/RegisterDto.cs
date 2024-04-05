@@ -10,28 +10,28 @@ namespace ETicaretPlatformu.Application.Models.DTOs.UserDtos
 {
     public class RegisterDto
     {
-        [Required(ErrorMessage = "Kullanici adi girisi zorunludur")]
-        [Display(Name = "Kullanici Adi")]
+        [Required(ErrorMessage = "Username is required")]
+        [Display(Name = "Username")]
         public string UserName { get; set; }
+
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
-        [Required(ErrorMessage = "Sifre girisi zorunludur")]
-        [Display(Name = "Kullanici Sifresi")]
-        [DataType(DataType.Password, ErrorMessage = "Sifreniz gerekli kriterleri karsilamiyor")]
+        [Required(ErrorMessage = "Password is required")]
+        [Display(Name = "Password")]
+        [DataType(DataType.Password, ErrorMessage = "Your password does not meet the required criteria")]
         public string Password { get; set; }
 
-        [Required(ErrorMessage = "Sifre tekrari girisi zorunludur")]
-        [Display(Name = "Kullanici Sifresi Tekrar")]
+        [Required(ErrorMessage = "Password confirmation is required")]
+        [Display(Name = "Confirm Password")]
         [DataType(DataType.Password)]
-        [Compare(nameof(Password), ErrorMessage = "Sifreler birbirine esit olmalidir")]
+        [Compare(nameof(Password), ErrorMessage = "Passwords must match")]
         public string ConfirmPassword { get; set; }
 
-        [Required(ErrorMessage = "email adresi girilmesi zorunludur")]
-        [Display(Name = "E-Posta")]
-        [DataType(DataType.EmailAddress, ErrorMessage = "E-Posta bilgilerinizi kontrol edin, gecerli bir e-posta adresi girin")]
+        [Required(ErrorMessage = "Email address is required")]
+        [Display(Name = "Email")]
+        [DataType(DataType.EmailAddress, ErrorMessage = "Please check your email address and enter a valid one")]
         public string Email { get; set; }
-
 
         public DateTime CreateDate => DateTime.Now;
         public Status Status => Status.Active;

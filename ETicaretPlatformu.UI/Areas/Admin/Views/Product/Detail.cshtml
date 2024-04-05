@@ -1,0 +1,115 @@
+﻿@using ETicaretPlatformu.Application.Models.VMs.ProductVMs
+@model ProductDetailsVM
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<h1>Detail</h1>
+
+<style>
+    .readonly-input {
+        background-color: #f2f2f2;
+        pointer-events: none;
+    }
+    
+</style>
+
+<body class="bg-primary">
+    <div>
+        <div>
+            <main>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-9">
+                            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                <div class="card-header"><h3 class="text-center font-weight-light my-4" style="color: #1488e1;">Detail</h3></div>
+                                <div class="card-body">
+                                    <form asp-action="Detail">
+
+                                        <div class="form-floating mb-3">
+                                            <input asp-for="Id" class="form-control readonly-input" readonly />
+                                            <label asp-for="Id" class="control-label"></label>
+                                            <span asp-validation-for="Id" class="text-danger"></span>
+                                        </div>
+
+                                        <div class="form-floating mb-3">
+                                            <input asp-for="Name" class="form-control readonly-input" readonly />
+                                            <label asp-for="Name" class="control-label"></label>
+                                            <span asp-validation-for="Name" class="text-danger"></span>
+                                        </div>
+
+                                        <div class="form-floating mb-3">
+                                            <input asp-for="Description" class="form-control readonly-input" readonly />
+                                            <label asp-for="Description" class="control-label"></label>
+                                            <span asp-validation-for="Description" class="text-danger"></span>
+                                        </div>
+
+                                        <div class="form-floating mb-3">
+                                            <input asp-for="Price" class="form-control readonly-input" readonly />
+                                            <label asp-for="Price" class="control-label"></label>
+                                            <span asp-validation-for="Price" class="text-danger"></span>
+                                        </div>
+
+
+                                        <div class="form-floating mb-3">
+                                            <input asp-for="StockQuantity" class="form-control readonly-input" readonly />
+                                            <label asp-for="StockQuantity" class="control-label"></label>
+                                            <span asp-validation-for="StockQuantity" class="text-danger"></span>
+                                        </div>
+
+
+                                        <div class="form-floating mb-3">
+
+                                            <input asp-for="CategoryName" class="form-control readonly-input" readonly />
+                                            <label asp-for="CategoryName" class="control-label"></label>
+                                            <span asp-validation-for="CategoryName" class="text-danger"></span>
+                                        </div>
+
+                                   
+
+                                        <div class="form-floating mb-3" style="position: relative;">
+                                            <input class="form-control readonly-input" readonly />
+                                            <img src="@Url.Content(Model.ImagePath)" alt="Uploaded Image" width="100" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);" />
+                                            <label class="control-label">Image</label>
+                                            <span asp-validation-for="ImagePath" class="text-danger"></span>
+                                        </div>
+                                        
+
+                                        <div class="form-floating mb-3">
+                                            <input asp-for="CreateDate" class="form-control readonly-input" readonly />
+                                            <label asp-for="CreateDate" class="control-label"></label>
+                                            <span asp-validation-for="CreateDate" class="text-danger"></span>
+                                        </div>
+
+                                        <div class="form-floating mb-3">
+                                            <input asp-for="Status" class="form-control readonly-input" readonly />
+                                            <label asp-for="Status" class="control-label"></label>
+                                            <span asp-validation-for="Status" class="text-danger"></span>
+                                        </div>
+
+                                        <div class="d-flex justify-content-between mt-4 mb-0">
+                                            
+                                                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                                                                               
+
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="card-footer text-center py-3">
+                                    <div class="small"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        @*  <script src="/sb-admin-2/js/scripts.js"></script> *@
+
+        <!-- Visual Studio Browser Link -->
+        @* <script type="text/javascript" src="/_vs/browserLink" async="async" id="__browserLink_initializationData" data-requestId="ef763705b4fb4e1e80c939d295980225" data-requestMappingFromServer="false" data-connectUrl="http://localhost:65104/dd4c240f816d49f3858ae429cf67fc54/browserLink"></script>
+        <!-- End Browser Link -->
+        <script src="/_framework/aspnetcore-browser-refresh.js"></script> *@
+</body>

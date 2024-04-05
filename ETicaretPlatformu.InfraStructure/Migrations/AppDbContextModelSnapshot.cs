@@ -50,6 +50,32 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                     b.ToTable("Carts");
                 });
 
+            modelBuilder.Entity("ETicaretPlatformu.Domain.Entities.CartLine", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("CartId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CartId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("CartLine");
+                });
+
             modelBuilder.Entity("ETicaretPlatformu.Domain.Entities.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -296,6 +322,30 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "e7cb61d2-0db6-4be3-b682-6d16d196c76b",
+                            CreateDate = new DateTime(2024, 4, 4, 15, 32, 46, 151, DateTimeKind.Local).AddTicks(6799),
+                            Email = "admin@example.com",
+                            EmailConfirmed = true,
+                            FirstName = "admin",
+                            ImagePath = "/images/01-admin.jpg",
+                            LastName = "admin",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@EXAMPLE.COM",
+                            NormalizedUserName = "ADMIN",
+                            PasswordHash = "AQAAAAEAACcQAAAAEM70RC4cYXksnR/Car52vx6mLrZ9rFG/nwLlo1uOAMx7Bom9fS4u7hTUcmkUcyVjOw==",
+                            PaymentMethod = 0,
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "8cab1dfb-4696-4ca3-b8ee-85a1582e471f",
+                            Status = 1,
+                            TwoFactorEnabled = false,
+                            UserName = "admin"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -426,6 +476,13 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "1",
+                            RoleId = "Admin"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -456,6 +513,21 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ETicaretPlatformu.Domain.Entities.CartLine", b =>
+                {
+                    b.HasOne("ETicaretPlatformu.Domain.Entities.Cart", null)
+                        .WithMany("CartLines")
+                        .HasForeignKey("CartId");
+
+                    b.HasOne("ETicaretPlatformu.Domain.Entities.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("ETicaretPlatformu.Domain.Entities.Order", b =>
@@ -556,6 +628,8 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
 
             modelBuilder.Entity("ETicaretPlatformu.Domain.Entities.Cart", b =>
                 {
+                    b.Navigation("CartLines");
+
                     b.Navigation("Products");
                 });
 

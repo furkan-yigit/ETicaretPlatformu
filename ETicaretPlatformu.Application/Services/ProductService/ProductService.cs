@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ETicaretPlatformu.Application.Models.DTOs.ProductDTOs;
+using ETicaretPlatformu.Application.Models.VMs.CatagoryVM;
 using ETicaretPlatformu.Application.Models.VMs.ProductVMs;
 using ETicaretPlatformu.Domain.Entities;
 using ETicaretPlatformu.Domain.Repositories;
@@ -53,7 +54,7 @@ namespace ETicaretPlatformu.Application.Services.ProductService
             AddProductDto model = new AddProductDto()
             {
                 Categories = await _categoryRepo.GetFilteredList(
-                    select: x => new ProductCategoryVM
+                    select: x => new CatagoryVM
                     {
                         Id = x.Id,
                         Name = x.Name
@@ -84,7 +85,7 @@ namespace ETicaretPlatformu.Application.Services.ProductService
 
             if (product is not null)
             {
-                _mapper.Map(model, product);
+               
 
                 if (product.CategoryId != model.CategoryId)
                 {
@@ -92,19 +93,39 @@ namespace ETicaretPlatformu.Application.Services.ProductService
                     product.Category= await _categoryRepo.GetDefault(x => x.Id==model.CategoryId);
                 }
 
-                if (product.UploadPath != null)
+
+                if (model.UploadPath != null && model.UploadPath.Length > 0)
                 {
-                    using var image = Image.Load(model.UploadPath.OpenReadStream());
-                    image.Mutate(x => x.Resize(600, 560));
-                    Guid guid = Guid.NewGuid();
-                    image.Save($"wwwroot/images/{guid}.png");
-                    product.ImagePath = $"wwwroot/images/{guid}.png";                    
+                    
+                    string fileName = $"{Guid.NewGuid()}{Path.GetExtension(model.UploadPath.FileName)}";
+
+                    
+                    string uploadDirectory = Path.Combine("wwwroot", "images");
+
+                    
+                    Directory.CreateDirectory(uploadDirectory);
+
+                    
+                    string filePath = Path.Combine(uploadDirectory, fileName);
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await model.UploadPath.CopyToAsync(stream);
+                    }
+
+                    
+                    product.ImagePath = $"/{Path.Combine("images", fileName)}";
                 }
                 else
                 {
-                    product.ImagePath = model.ImagePath;                    
+                   product.ImagePath = model.ImagePath ?? product.ImagePath;
                 }
 
+                product.Name = model.Name;
+                product.Description = model.Description;
+                product.Price = model.Price;
+                product.StockQuantity = model.StockQuantity;
+                product.CategoryId = model.CategoryId;
+                
                 await _productRepo.Update(product);
             }           
         }
@@ -136,6 +157,7 @@ namespace ETicaretPlatformu.Application.Services.ProductService
                      {
                          Id = x.Id,
                          Name = x.Name,
+                         Description=x.Description,
                          Price = x.Price,
                          StockQuantity = x.StockQuantity,
                          CategoryId=x.CategoryId,
@@ -144,16 +166,6 @@ namespace ETicaretPlatformu.Application.Services.ProductService
                 where: x => x.Id==id               
                 );
             var model = _mapper.Map<UpdateProductDto>(product);
-
-            model.Categories = await _categoryRepo.GetFilteredList(
-                select: x => new ProductCategoryVM
-                {
-                    Id=x.Id,
-                    Name=x.Name
-                },
-                where: x => x.Status != Domain.Enums.Status.Passive,
-                orderBy: x => x.OrderBy(x => x.Name)
-                );
 
             return model;
         }
@@ -168,7 +180,9 @@ namespace ETicaretPlatformu.Application.Services.ProductService
                     Price = x.Price,
                     StockQuantity = x.StockQuantity,
                     CategoryName = x.Category.Name,
-                    ImagePath = x.ImagePath, CreateDate = x.CreateDate
+                    ImagePath = x.ImagePath, 
+                    CreateDate = x.CreateDate,                    
+                    Status=x.Status
                 },
                 where: x => x.Id == id,
                 orderBy: x => x.OrderBy(x => x.Name),

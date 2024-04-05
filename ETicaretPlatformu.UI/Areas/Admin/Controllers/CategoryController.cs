@@ -34,9 +34,10 @@ namespace ETicaretPlatformu.UI.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                TempData["Error"] = "An error occurred while creating the category.";
+                return View(model);               
             }
-            TempData["Success"] = "Kategori oluşturuldu.";
+            TempData["Success"] = "Category created successfully.";
             await _categoryService.Create(model);
             return RedirectToAction(nameof(Index));
         }
@@ -49,13 +50,14 @@ namespace ETicaretPlatformu.UI.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
+                TempData["Error"] = "An error occurred while updating the category.";
                 return View(model);
             }
 
             await _categoryService.Update(model);
 
             
-            TempData["Success"] = "Kategori güncellendi.";
+            TempData["Success"] = "Category updated successfully.";
 
             return RedirectToAction(nameof(Index));
         }
@@ -65,11 +67,11 @@ namespace ETicaretPlatformu.UI.Areas.Admin.Controllers
             try
             {
                 await _categoryService.Delete(id);
-                TempData["Success"] = "Category başarılı bir şekilde silindi.";
+                TempData["Success"] = "Category deleted successfully.";
             }
             catch (Exception ex)
             {
-                TempData["Error"] = "Silme işlemi yapılırken bir hata meydana geldi.";
+                TempData["Error"] = "An error occurred while deleting the category.";
                 
             }
 
@@ -77,6 +79,7 @@ namespace ETicaretPlatformu.UI.Areas.Admin.Controllers
         }
        public async Task<IActionResult> Details(CatagoryVM  model)
         {
+            
             return View(await _categoryService.GetById(model.Id));
         }
         

@@ -1,4 +1,5 @@
-﻿using ETicaretPlatformu.Application.Models.VMs.ProductVMs;
+﻿using ETicaretPlatformu.Application.Models.VMs.CatagoryVM;
+using ETicaretPlatformu.Application.Models.VMs.ProductVMs;
 using ETicaretPlatformu.Domain.Entities;
 using ETicaretPlatformu.Domain.Enums;
 using Microsoft.AspNetCore.Http;
@@ -28,7 +29,7 @@ namespace ETicaretPlatformu.Application.Models.DTOs.ProductDTOs
         [Required(ErrorMessage = "Lütfen kategori seçiniz")]
         public int CategoryId { get; set; }
 
-        public List<ProductCategoryVM>? Categories { get; set; }
+        public List<CatagoryVM>? Categories { get; set; }
 
         public string? ImagePath { get; set; }
 

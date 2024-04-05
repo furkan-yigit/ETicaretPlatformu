@@ -1,0 +1,103 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f9fc;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-card {
+    width: 400px;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+    .login-header h3 {
+        font-weight: 700;
+        color: #1488e1;
+    }
+
+.form-floating {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+    .form-floating input {
+        width: 100%;
+        padding: 12px 20px;
+        font-size: 16px;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+        background-color: #f8f9fc;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+        .form-floating input:focus {
+            border-color: #74c0fc;
+            outline: 0;
+            box-shadow: 0 0 0 0.25rem rgba(118, 175, 233, 0.25);
+        }
+
+    .form-floating label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 10px 20px;
+        font-size: 16px;
+        color: #495057;
+        pointer-events: none;
+        transition: transform 0.15s ease-in-out, opacity 0.15s ease-in-out;
+    }
+
+    .form-floating input::placeholder {
+        color: #6c757d;
+    }
+
+    .form-floating input:focus ~ label,
+    .form-floating input:not(:placeholder-shown) ~ label {
+        transform: translateY(-30px);
+        opacity: 0.5;
+        font-size: 12px;
+    }
+
+.login-btn {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+    background-color: #1488e1;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    .login-btn:hover {
+        background-color: #0b6ed6;
+    }
+
+.small {
+    font-size: 14px;
+}
+
+.register-link {
+    color: #1488e1;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+    .register-link:hover {
+        color: #0b6ed6;
+    }
