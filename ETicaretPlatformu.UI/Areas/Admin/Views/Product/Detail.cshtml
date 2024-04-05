@@ -68,9 +68,14 @@
                                    
 
                                         <div class="form-floating mb-3" style="position: relative;">
+                                            
                                             <input class="form-control readonly-input" readonly />
-                                            <img src="@Url.Content(Model.ImagePath)" alt="Uploaded Image" width="100" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);" />
+                                           
                                             <label class="control-label">Image</label>
+                                            @if (!string.IsNullOrEmpty(Model.ImagePath))
+                                            {
+                                                <img src="@Model.ImagePath" alt="Current Image" style="max-width: 200px;" />
+                                            }
                                             <span asp-validation-for="ImagePath" class="text-danger"></span>
                                         </div>
                                         

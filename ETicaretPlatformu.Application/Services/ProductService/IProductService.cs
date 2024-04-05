@@ -1,5 +1,7 @@
 ﻿using ETicaretPlatformu.Application.Models.DTOs.ProductDTOs;
 using ETicaretPlatformu.Application.Models.VMs.ProductVMs;
+using ETicaretPlatformu.Domain.Entities;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +14,7 @@ namespace ETicaretPlatformu.Application.Services.ProductService
     {
         Task Add(AddProductDto model);
 
-        Task<AddProductDto> AddProduct();
+        //Task<AddProductDto> AddProduct();
 
         Task UpdateProduct(UpdateProductDto model);
 
@@ -23,6 +25,15 @@ namespace ETicaretPlatformu.Application.Services.ProductService
         Task<UpdateProductDto> GetById(int id);
 
         Task<ProductDetailsVM> GetProductDetails(int id);
+
+        Task<string> SaveFile(IFormFile file);
+
+        Task<List<ProductVM>> GetByCategory(int categoryId);
+
+
+        Task<List<ProductVM>> SearchByName(string term = "");
+
+        Task<List<ProductVM>> FilterByPrice(decimal maxPrice, decimal minPrice = 0);
 
     }
 }
