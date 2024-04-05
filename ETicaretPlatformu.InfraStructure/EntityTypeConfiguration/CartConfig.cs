@@ -10,15 +10,20 @@ namespace ETicaretPlatformu.InfraStructure.EntityTypeConfiguration
 {
     public class CartConfig:BaseEntityConfig<Cart>
     {
-        public void Configure(EntityTypeBuilder<Cart> builder)
+        public new void Configure(EntityTypeBuilder<Cart> builder)
         {
+            builder.HasKey(c => c.Id);
+            builder.Property(c => c.UserId).IsRequired();
 
-            
-            builder.Property(x => x.UserId).IsRequired(true);
-            
-            
-            builder.Property(x => x.Products).IsRequired(true);
-            
+            builder.HasMany(c => c.CartLines)
+                   .WithOne(cl => cl.Cart)
+                   .HasForeignKey(cl => cl.CartId);
+
+            builder.Property(c => c.CreateDate).IsRequired();
+            builder.Property(c => c.UpdateDate);
+            builder.Property(c => c.DeleteDate);
+            builder.Property(c => c.Status).IsRequired();
+
             base.Configure(builder);
 
         }

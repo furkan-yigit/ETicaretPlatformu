@@ -24,8 +24,11 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
 
             modelBuilder.Entity("ETicaretPlatformu.Domain.Entities.Cart", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
@@ -48,6 +51,44 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Carts");
+                });
+
+            modelBuilder.Entity("ETicaretPlatformu.Domain.Entities.CartLine", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("CartId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CartId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("CartLines");
                 });
 
             modelBuilder.Entity("ETicaretPlatformu.Domain.Entities.Category", b =>
@@ -163,9 +204,6 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("CartId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
@@ -199,8 +237,6 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CartId");
 
                     b.HasIndex("CategoryId");
 
@@ -302,8 +338,8 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "60f3fa09-955d-4ef5-8f39-5d078a3711af",
-                            CreateDate = new DateTime(2024, 4, 4, 13, 40, 2, 514, DateTimeKind.Local).AddTicks(7102),
+                            ConcurrencyStamp = "0215d83b-9eb3-4d31-a948-088789420618",
+                            CreateDate = new DateTime(2024, 4, 5, 16, 15, 30, 471, DateTimeKind.Local).AddTicks(1795),
                             Email = "admin@example.com",
                             EmailConfirmed = true,
                             FirstName = "admin",
@@ -312,10 +348,10 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@EXAMPLE.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEP449EOYb2EDo8LCkZV77yW6JRH43/GBwPa5IQEjwHGlrgDZG2aOebuTKk4MSLwLMA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENGEhQXfnUlDNi2E66cOK42VQTKhOeK3hk1uexnhjm1QqMrq8Lnj2pRNwnQMrbZ2UA==",
                             PaymentMethod = 0,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b227dbc9-e395-4d17-8777-aa437da5a4ec",
+                            SecurityStamp = "a6800c2c-690e-47d3-a883-0762c90dc5ab",
                             Status = 1,
                             TwoFactorEnabled = false,
                             UserName = "admin"
@@ -489,6 +525,25 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("ETicaretPlatformu.Domain.Entities.CartLine", b =>
+                {
+                    b.HasOne("ETicaretPlatformu.Domain.Entities.Cart", "Cart")
+                        .WithMany("CartLines")
+                        .HasForeignKey("CartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ETicaretPlatformu.Domain.Entities.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cart");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("ETicaretPlatformu.Domain.Entities.Order", b =>
                 {
                     b.HasOne("ETicaretPlatformu.Domain.Entities.User", "User")
@@ -521,10 +576,6 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
 
             modelBuilder.Entity("ETicaretPlatformu.Domain.Entities.Product", b =>
                 {
-                    b.HasOne("ETicaretPlatformu.Domain.Entities.Cart", null)
-                        .WithMany("Products")
-                        .HasForeignKey("CartId");
-
                     b.HasOne("ETicaretPlatformu.Domain.Entities.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
@@ -587,7 +638,7 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
 
             modelBuilder.Entity("ETicaretPlatformu.Domain.Entities.Cart", b =>
                 {
-                    b.Navigation("Products");
+                    b.Navigation("CartLines");
                 });
 
             modelBuilder.Entity("ETicaretPlatformu.Domain.Entities.Category", b =>

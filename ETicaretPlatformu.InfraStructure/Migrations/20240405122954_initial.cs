@@ -184,7 +184,8 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                 name: "Carts",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -240,21 +241,46 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Status = table.Column<int>(type: "int", nullable: false),
-                    CartId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    Status = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Products_Carts_CartId",
-                        column: x => x.CartId,
-                        principalTable: "Carts",
-                        principalColumn: "Id");
-                    table.ForeignKey(
                         name: "FK_Products_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CartLines",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    CartId = table.Column<int>(type: "int", nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Status = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CartLines", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CartLines_Carts_CartId",
+                        column: x => x.CartId,
+                        principalTable: "Carts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CartLines_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -304,7 +330,7 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreateDate", "DeleteDate", "Email", "EmailConfirmed", "FirstName", "ImagePath", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PaymentMethod", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Status", "TwoFactorEnabled", "UpdateDate", "UserName" },
-                values: new object[] { "1", 0, "60f3fa09-955d-4ef5-8f39-5d078a3711af", new DateTime(2024, 4, 4, 13, 40, 2, 514, DateTimeKind.Local).AddTicks(7102), null, "admin@example.com", true, "admin", "/images/01-admin.jpg", "admin", false, null, "ADMIN@EXAMPLE.COM", "ADMIN", "AQAAAAEAACcQAAAAEP449EOYb2EDo8LCkZV77yW6JRH43/GBwPa5IQEjwHGlrgDZG2aOebuTKk4MSLwLMA==", 0, null, false, "b227dbc9-e395-4d17-8777-aa437da5a4ec", 1, false, null, "admin" });
+                values: new object[] { "1", 0, "3fdbb5b4-272f-4523-a5d9-e3d5eb4572f1", new DateTime(2024, 4, 5, 15, 29, 54, 515, DateTimeKind.Local).AddTicks(644), null, "admin@example.com", true, "admin", "/images/01-admin.jpg", "admin", false, null, "ADMIN@EXAMPLE.COM", "ADMIN", "AQAAAAEAACcQAAAAEJxN+AiKeGWDsdQ+GASX562tCl10KC3E4UUJ/b9SBrZ3rZMcoGPKACAAhgR3Wy24xQ==", 0, null, false, "3bad4184-a3ea-4e8d-8570-ffd12d955340", 1, false, null, "admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
@@ -351,6 +377,16 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CartLines_CartId",
+                table: "CartLines",
+                column: "CartId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CartLines_ProductId",
+                table: "CartLines",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Carts_UserId",
                 table: "Carts",
                 column: "UserId");
@@ -369,11 +405,6 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                 name: "IX_Orders_UserId",
                 table: "Orders",
                 column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Products_CartId",
-                table: "Products",
-                column: "CartId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_CategoryId",
@@ -399,10 +430,16 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "CartLines");
+
+            migrationBuilder.DropTable(
                 name: "OrderDetails");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Carts");
 
             migrationBuilder.DropTable(
                 name: "Orders");
@@ -411,13 +448,10 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                 name: "Products");
 
             migrationBuilder.DropTable(
-                name: "Carts");
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "Categories");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUsers");
         }
     }
 }

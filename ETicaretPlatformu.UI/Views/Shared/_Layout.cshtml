@@ -4,6 +4,11 @@
 @{
     var errorMessage = TempData["Error"] as string;
 }
+
+@inject ETicaretPlatformu.Application.Services.CartService.ICartService _cartService
+@inject ETicaretPlatformu.Application.Services.UserService.IUserService _userService
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -75,22 +80,39 @@
                             </li>
                         </ul>
                     }
-                    
-                    
-                <form class="d-flex" asp-controller="Cart" asp-action="Index" asp-route-userName="@User.Identity.Name">
-                    <button class="btn btn-outline-dark" type="submit">
-                        <i class="bi-cart-fill me-1"></i>
-                        Cart
-                        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                    </button>
-                </form>
+
+
+                    <form class="d-flex" asp-controller="Cart" asp-action="Index" asp-route-userName="@User.Identity.Name">
+                        <button class="btn btn-outline-dark" type="submit">
+                            <i class="bi-cart-fill me-1"></i>
+                            Cart
+
+                            @{
+                                var cartItemCount = 0; 
+                                if (!string.IsNullOrEmpty(User.Identity.Name))
+                                {
+                                    var user = await _userService.GetByUserName(User.Identity.Name);
+                                    if (user != null)
+                                    {
+                                        var cart = await _cartService.GetCartByUserId(user.Id);
+                                        if (cart != null && cart.CartLines != null)
+                                        {
+                                            cartItemCount = cart.CartLines.Sum(cl => cl.Quantity);
+                                        }
+                                    }
+                                }
+                            }
+
+                            <span class="badge bg-dark text-white ms-1 rounded-pill">@cartItemCount</span>
+                        </button>
+                    </form>
                 </div>
             </div>
         </nav>
     </header>
     <div class="container-fluid">
         <main role="main" class="pb-3">
-            
+
             <div id="notification-area">
             </div>
             @RenderBody()
@@ -122,6 +144,7 @@
             showNotification('error', errorMessage);
         }
     </script>
-    @await RenderSectionAsync("Scripts", required: false)   
+    @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>

@@ -50,6 +50,19 @@ namespace ETicaretPlatformu.InfraStructure.Repositories
             return await _table.Where(expression).ToListAsync();
         }
 
+        public async Task<T> GetDefaultIncluding(Expression<Func<T, bool>> expression, params Expression<Func<T, object>>[] includes)
+        {
+            IQueryable<T> query = _table;
+            foreach (var include in includes)
+            {
+                query = query.Include(include);
+            }
+
+            return await query.FirstOrDefaultAsync(expression);
+        }
+
+
+
         public async Task Update(T entity)
         {
             _context.Entry<T>(entity).State = EntityState.Modified;

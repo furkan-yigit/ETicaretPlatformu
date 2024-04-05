@@ -11,12 +11,11 @@ namespace ETicaretPlatformu.Application.Services.CartService
 {
     public interface ICartService
     {
-        Task<CartDto> Create(string userId);
+        Task Create(string userId);
         Task RemoveProductFromCart(string userId, int productId);
-        Task RemoveAllProductFromCart(string userId, int productId);
         Task AddProductToCart(string userId, int productId);
-        Task<CartDto> GetCartById(string cartId);
-        Task<CartDto> GetCartByUserId(string userId);
+        //Task<CartDto?> GetCartById(string cartId);
+        Task<Cart> GetCartByUserId(string userId);
 
     }
 }

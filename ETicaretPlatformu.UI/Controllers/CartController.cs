@@ -3,6 +3,7 @@ using ETicaretPlatformu.Application.AutoMapper;
 using ETicaretPlatformu.Application.Models.DTOs.Cart;
 using ETicaretPlatformu.Application.Services.CartService;
 using ETicaretPlatformu.Application.Services.UserService;
+using ETicaretPlatformu.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -15,8 +16,7 @@ namespace ETicaretPlatformu.UI.Controllers
 
         private readonly ICartService _cartService;
         private readonly IUserService _userService;
-        public string _userId; 
-        
+
         public CartController(ICartService cartService, IUserService userService)
         {
             _cartService = cartService;
@@ -26,45 +26,44 @@ namespace ETicaretPlatformu.UI.Controllers
         public async Task<IActionResult> Index(string userName)
         {
             var user = await _userService.GetByUserName(userName);
-            _userId = user.Id;
-            
-            var cart = await _cartService.GetCartByUserId(_userId);
+            var cart = await _cartService.GetCartByUserId(user.Id);
 
             if (cart == null)
-            {
-                cart = await _cartService.Create(_userId);
-            }
-            return View(cart);
+                await _cartService.Create(user.Id);
+
+            return RedirectToAction("GetCart", new { userId = user.Id });
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddProductToCart(int productId)
+        public async Task<IActionResult> AddProductToCart(string userName, int productId)
         {
-            await _cartService.AddProductToCart(_userId, productId);
-            return View("Index");
+            var user = await _userService.GetByUserName(userName);
+
+            await _cartService.AddProductToCart(user.Id, productId);
+            TempData["Success"] = "Add to cart successful.";
+
+            return RedirectToAction("GetCart", new { userId = user.Id });
         }
 
-        public async Task<IActionResult> RemoveAllProductFromCart(int productId)
+        public async Task<IActionResult> RemoveProductFromCart(string userName, int productId)
         {
-            await _cartService.RemoveAllProductFromCart(_userId, productId);
-            return View("Index");
-        }
+            var user = await _userService.GetByUserName(userName);
 
-        public async Task<IActionResult> RemoveProductFromCart(int productId)
-        {
-            await _cartService.RemoveProductFromCart(_userId, productId);
-            return View("Index");
+            await _cartService.RemoveProductFromCart(user.Id, productId);
+            TempData["Success"] = "Delete from cart successful.";
+
+            return RedirectToAction("GetCart", new { userId = user.Id });
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetCart(string id)
+        public async Task<IActionResult> GetCart(string userId)
         {
-            var cart = await _cartService.GetCartById(id);
+            var cart = await _cartService.GetCartByUserId(userId);
             if (cart == null)
-            {
                 return NotFound();
-            }
-            return View(cart.Products);
+
+            ViewBag.CartLineCount = cart.CartLines.Sum(cl => cl.Quantity); 
+            return View(cart);
         }
     }
 }
