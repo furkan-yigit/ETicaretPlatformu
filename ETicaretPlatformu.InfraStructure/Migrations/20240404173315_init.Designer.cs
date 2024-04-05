@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ETicaretPlatformu.InfraStructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240404123246_init")]
+    [Migration("20240404173315_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -330,8 +330,8 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e7cb61d2-0db6-4be3-b682-6d16d196c76b",
-                            CreateDate = new DateTime(2024, 4, 4, 15, 32, 46, 151, DateTimeKind.Local).AddTicks(6799),
+                            ConcurrencyStamp = "b39c2b3c-8fc7-448d-891f-c6af383a8577",
+                            CreateDate = new DateTime(2024, 4, 4, 20, 33, 15, 263, DateTimeKind.Local).AddTicks(6706),
                             Email = "admin@example.com",
                             EmailConfirmed = true,
                             FirstName = "admin",
@@ -340,10 +340,10 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@EXAMPLE.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEM70RC4cYXksnR/Car52vx6mLrZ9rFG/nwLlo1uOAMx7Bom9fS4u7hTUcmkUcyVjOw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEA7BdcSlmFYOmE9+Rj+gi1YgJiryynPb3+7xgkTo3jMf8h68UBBxHQT6ZbdwObdtYg==",
                             PaymentMethod = 0,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "8cab1dfb-4696-4ca3-b8ee-85a1582e471f",
+                            SecurityStamp = "4cccab08-bf5f-4d97-be60-385462bd3cd4",
                             Status = 1,
                             TwoFactorEnabled = false,
                             UserName = "admin"

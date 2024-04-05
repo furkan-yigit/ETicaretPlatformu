@@ -330,7 +330,7 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreateDate", "DeleteDate", "Email", "EmailConfirmed", "FirstName", "ImagePath", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PaymentMethod", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Status", "TwoFactorEnabled", "UpdateDate", "UserName" },
-                values: new object[] { "1", 0, "e7cb61d2-0db6-4be3-b682-6d16d196c76b", new DateTime(2024, 4, 4, 15, 32, 46, 151, DateTimeKind.Local).AddTicks(6799), null, "admin@example.com", true, "admin", "/images/01-admin.jpg", "admin", false, null, "ADMIN@EXAMPLE.COM", "ADMIN", "AQAAAAEAACcQAAAAEM70RC4cYXksnR/Car52vx6mLrZ9rFG/nwLlo1uOAMx7Bom9fS4u7hTUcmkUcyVjOw==", 0, null, false, "8cab1dfb-4696-4ca3-b8ee-85a1582e471f", 1, false, null, "admin" });
+                values: new object[] { "1", 0, "b39c2b3c-8fc7-448d-891f-c6af383a8577", new DateTime(2024, 4, 4, 20, 33, 15, 263, DateTimeKind.Local).AddTicks(6706), null, "admin@example.com", true, "admin", "/images/01-admin.jpg", "admin", false, null, "ADMIN@EXAMPLE.COM", "ADMIN", "AQAAAAEAACcQAAAAEA7BdcSlmFYOmE9+Rj+gi1YgJiryynPb3+7xgkTo3jMf8h68UBBxHQT6ZbdwObdtYg==", 0, null, false, "4cccab08-bf5f-4d97-be60-385462bd3cd4", 1, false, null, "admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
