@@ -61,10 +61,6 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-<<<<<<< HEAD
-                    b.Property<string>("CartId")
-                        .HasColumnType("nvarchar(450)");
-=======
                     b.Property<int>("CartId")
                         .HasColumnType("int");
 
@@ -73,7 +69,6 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
 
                     b.Property<DateTime?>("DeleteDate")
                         .HasColumnType("datetime2");
->>>>>>> origin/Sila
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
@@ -81,26 +76,19 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-<<<<<<< HEAD
-=======
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
->>>>>>> origin/Sila
                     b.HasKey("Id");
 
                     b.HasIndex("CartId");
 
                     b.HasIndex("ProductId");
 
-<<<<<<< HEAD
-                    b.ToTable("CartLine");
-=======
                     b.ToTable("CartLines");
->>>>>>> origin/Sila
                 });
 
             modelBuilder.Entity("ETicaretPlatformu.Domain.Entities.Category", b =>
@@ -350,13 +338,8 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-<<<<<<< HEAD
-                            ConcurrencyStamp = "e7cb61d2-0db6-4be3-b682-6d16d196c76b",
-                            CreateDate = new DateTime(2024, 4, 4, 15, 32, 46, 151, DateTimeKind.Local).AddTicks(6799),
-=======
-                            ConcurrencyStamp = "0215d83b-9eb3-4d31-a948-088789420618",
-                            CreateDate = new DateTime(2024, 4, 5, 16, 15, 30, 471, DateTimeKind.Local).AddTicks(1795),
->>>>>>> origin/Sila
+                            ConcurrencyStamp = "3689a026-1606-4d4b-9d75-f6a0e99ae2fc",
+                            CreateDate = new DateTime(2024, 4, 6, 20, 57, 10, 696, DateTimeKind.Local).AddTicks(4516),
                             Email = "admin@example.com",
                             EmailConfirmed = true,
                             FirstName = "admin",
@@ -365,17 +348,10 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@EXAMPLE.COM",
                             NormalizedUserName = "ADMIN",
-<<<<<<< HEAD
-                            PasswordHash = "AQAAAAEAACcQAAAAEM70RC4cYXksnR/Car52vx6mLrZ9rFG/nwLlo1uOAMx7Bom9fS4u7hTUcmkUcyVjOw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOK4qzZtteRV7hfQT7IG4OBKGEExr98+W/jgefzLPQ1ASZkRVx2IP0bQCwXSUrcpbQ==",
                             PaymentMethod = 0,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "8cab1dfb-4696-4ca3-b8ee-85a1582e471f",
-=======
-                            PasswordHash = "AQAAAAEAACcQAAAAENGEhQXfnUlDNi2E66cOK42VQTKhOeK3hk1uexnhjm1QqMrq8Lnj2pRNwnQMrbZ2UA==",
-                            PaymentMethod = 0,
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "a6800c2c-690e-47d3-a883-0762c90dc5ab",
->>>>>>> origin/Sila
+                            SecurityStamp = "960a34d8-11e1-426e-9779-f89aba502901",
                             Status = 1,
                             TwoFactorEnabled = false,
                             UserName = "admin"
@@ -551,17 +527,11 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
 
             modelBuilder.Entity("ETicaretPlatformu.Domain.Entities.CartLine", b =>
                 {
-<<<<<<< HEAD
-                    b.HasOne("ETicaretPlatformu.Domain.Entities.Cart", null)
-                        .WithMany("CartLines")
-                        .HasForeignKey("CartId");
-=======
                     b.HasOne("ETicaretPlatformu.Domain.Entities.Cart", "Cart")
                         .WithMany("CartLines")
                         .HasForeignKey("CartId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
->>>>>>> origin/Sila
 
                     b.HasOne("ETicaretPlatformu.Domain.Entities.Product", "Product")
                         .WithMany()
@@ -569,11 +539,8 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-<<<<<<< HEAD
-=======
                     b.Navigation("Cart");
 
->>>>>>> origin/Sila
                     b.Navigation("Product");
                 });
 
@@ -672,11 +639,6 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
             modelBuilder.Entity("ETicaretPlatformu.Domain.Entities.Cart", b =>
                 {
                     b.Navigation("CartLines");
-<<<<<<< HEAD
-
-                    b.Navigation("Products");
-=======
->>>>>>> origin/Sila
                 });
 
             modelBuilder.Entity("ETicaretPlatformu.Domain.Entities.Category", b =>

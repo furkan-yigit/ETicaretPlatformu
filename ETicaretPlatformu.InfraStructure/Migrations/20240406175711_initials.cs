@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ETicaretPlatformu.InfraStructure.Migrations
 {
-    public partial class update3 : Migration
+    public partial class initials : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,7 +14,7 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                 keyColumn: "Id",
                 keyValue: "1",
                 columns: new[] { "ConcurrencyStamp", "CreateDate", "PasswordHash", "SecurityStamp" },
-                values: new object[] { "7336e7e9-5f09-4696-a50a-194a956b3a28", new DateTime(2024, 4, 5, 16, 13, 27, 17, DateTimeKind.Local).AddTicks(7694), "AQAAAAEAACcQAAAAEBOC4iC3feCQlrhejHzE4+hKDvxK9Oh0NhyolwFd57CMtnfKCH0xGBllfrw5juaxzA==", "a0d697ed-ac5b-4ecc-bc9a-21d5627bf5a0" });
+                values: new object[] { "3689a026-1606-4d4b-9d75-f6a0e99ae2fc", new DateTime(2024, 4, 6, 20, 57, 10, 696, DateTimeKind.Local).AddTicks(4516), "AQAAAAEAACcQAAAAEOK4qzZtteRV7hfQT7IG4OBKGEExr98+W/jgefzLPQ1ASZkRVx2IP0bQCwXSUrcpbQ==", "960a34d8-11e1-426e-9779-f89aba502901" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -24,7 +24,7 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                 keyColumn: "Id",
                 keyValue: "1",
                 columns: new[] { "ConcurrencyStamp", "CreateDate", "PasswordHash", "SecurityStamp" },
-                values: new object[] { "3fdbb5b4-272f-4523-a5d9-e3d5eb4572f1", new DateTime(2024, 4, 5, 15, 29, 54, 515, DateTimeKind.Local).AddTicks(644), "AQAAAAEAACcQAAAAEJxN+AiKeGWDsdQ+GASX562tCl10KC3E4UUJ/b9SBrZ3rZMcoGPKACAAhgR3Wy24xQ==", "3bad4184-a3ea-4e8d-8570-ffd12d955340" });
+                values: new object[] { "f6b0bf35-7a62-4f9b-86b7-5421c66c5fdb", new DateTime(2024, 4, 5, 22, 13, 42, 30, DateTimeKind.Local).AddTicks(2021), "AQAAAAEAACcQAAAAEAJZcaFv0uM5Mgw2LUB+yKZ9/hZSmEiaaNnUpC/0+rFVXevIeP1CDGJIqK0Ae7NbMA==", "6be37442-4eca-409c-acee-3245195b76f0" });
         }
     }
 }

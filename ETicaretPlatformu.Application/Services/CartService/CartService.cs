@@ -72,13 +72,15 @@ namespace ETicaretPlatformu.Application.Services.CartService
                             x => x.UserId == userId,
                             c => c.CartLines
                         );
-
-            foreach (var cartLine in cart.CartLines)
+            if (cart != null)
             {
-                cartLine.Product = await _productRepo.GetDefaultIncluding(
-                        p => p.Id == cartLine.ProductId,
-                        p => p.Category
-                    );
+                foreach (var cartLine in cart.CartLines)
+                {
+                    cartLine.Product = await _productRepo.GetDefaultIncluding(
+                            p => p.Id == cartLine.ProductId,
+                            p => p.Category
+                        );
+                }
             }
             return cart;
         }

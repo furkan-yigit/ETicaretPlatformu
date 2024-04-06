@@ -10,8 +10,9 @@ namespace ETicaretPlatformu.Application.Models.DTOs.CatagoryDto
 {
     public class CreateCatogoryDto
     {
-        [Required(ErrorMessage = "Lütfen Bir katagori adı giriniz!")]
-        [MinLength(3, ErrorMessage = "Lütfen en az 3 karakter giriniz!")]
+        [Required(ErrorMessage = "Please enter a category name!")]
+        [MinLength(3, ErrorMessage = "Category name must be at least 3 characters!")]        
+        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Category name must be a character!")]
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime CreateDate => DateTime.Now;
