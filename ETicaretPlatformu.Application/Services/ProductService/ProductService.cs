@@ -217,6 +217,7 @@ namespace ETicaretPlatformu.Application.Services.ProductService
             var productList = await _productRepo.GetFilteredList(
                 select: x => new ProductVM
                 {
+                    Id = x.Id,
                     Name = x.Name,
                     Price = x.Price,
                     ImagePath = x.ImagePath,
@@ -246,6 +247,7 @@ namespace ETicaretPlatformu.Application.Services.ProductService
             var productList = await _productRepo.GetFilteredList(
                 select: x => new ProductVM
                 {
+                    Id = x.Id,
                     Name = x.Name,
                     Price = x.Price,
                     ImagePath = x.ImagePath,
@@ -267,6 +269,7 @@ namespace ETicaretPlatformu.Application.Services.ProductService
                var products = await _productRepo.GetFilteredList(
                select: x => new ProductVM
                {
+                   Id = x.Id,
                    Name = x.Name,
                    Price = x.Price,                   
                    ImagePath = x.ImagePath
@@ -281,6 +284,7 @@ namespace ETicaretPlatformu.Application.Services.ProductService
                 var products = await _productRepo.GetFilteredList(
                 select: x => new ProductVM
                 {
+                    Id = x.Id,
                     Name = x.Name,
                     Price = x.Price,
                     ImagePath = x.ImagePath

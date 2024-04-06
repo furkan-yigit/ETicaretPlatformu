@@ -53,6 +53,7 @@ namespace ETicaretPlatformu.UI.Areas.Admin.Controllers
             else
             {
                 await _productService.Add(model);
+                TempData["Success"] = "Product added successfully.";
                 return RedirectToAction("Index");
             }
         }
@@ -76,12 +77,14 @@ namespace ETicaretPlatformu.UI.Areas.Admin.Controllers
             else
             {
                 await _productService.UpdateProduct(model);
+                TempData["Success"] = "Product updated successfully.";
                 return RedirectToAction("Index");
             }
         }
         public async Task<IActionResult> Delete(int id)
         {
             await _productService.Delete(id);
+            TempData["Success"] = "Product deleted successfully.";
             return RedirectToAction("Index");
         }
 
