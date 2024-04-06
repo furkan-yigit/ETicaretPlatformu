@@ -61,10 +61,22 @@
                                         </div>
 
                                         
+                                        <div class="form-floating mb-3" style="position: relative;">
+
+                                            <input class="form-control readonly-input" readonly />
+
+                                            <label class="control-label">Image</label>
+                                            @if (!string.IsNullOrEmpty(Model.ImagePath))
+                                            {
+                                                <img src="@Model.ImagePath" alt="Current Image" style="max-width: 200px;" />
+                                            }
+                                            <span asp-validation-for="ImagePath" class="text-danger"></span>
+                                        </div>
 
                                         <div class="form-floating mb-3">
-                                            <input asp-for="UploadPath" class="form-control" />
-                                            <label asp-for="UploadPath" class="control-label"></label>
+                                           
+                                            <input asp-for="UploadPath" type="file" class="form-control" />
+                                            <label asp-for="UploadPath" class="control-label">Upload New Image</label>
                                             <span asp-validation-for="UploadPath" class="text-danger"></span>
                                         </div>
 

@@ -4,6 +4,7 @@ using ETicaretPlatformu.Application.Models.VMs.CatagoryVM;
 using ETicaretPlatformu.Application.Models.VMs.ProductVMs;
 using ETicaretPlatformu.Domain.Entities;
 using ETicaretPlatformu.Domain.Repositories;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using SixLabors.ImageSharp;
@@ -33,37 +34,106 @@ namespace ETicaretPlatformu.Application.Services.ProductService
         {
             var product = _mapper.Map<Product>(model);
 
-            if (product.UploadPath != null)
-            {
-                using var image = Image.Load(model.UploadPath.OpenReadStream());
-                image.Mutate(x => x.Resize(600, 560));
-                Guid guid = Guid.NewGuid();
-                image.Save($"wwwroot/images/{guid}.png");
-                product.ImagePath = $"wwwroot/images/{guid}.png";
 
-                await _productRepo.Create(product);
+            if (model.UploadPath != null && model.UploadPath.Length > 0)
+            {
+
+                string fileName = $"{Guid.NewGuid()}{Path.GetExtension(model.UploadPath.FileName)}";
+                string uploadDirectory = Path.Combine("wwwroot", "images");
+                Directory.CreateDirectory(uploadDirectory);
+                string filePath = Path.Combine(uploadDirectory, fileName);
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await model.UploadPath.CopyToAsync(stream);
+                }
+
+                product.ImagePath = $"/{Path.Combine("images", fileName)}";
             }
             else
             {
-                product.ImagePath = $"/images/defaultpost.png";
-                await _productRepo.Create(product);
+                product.ImagePath = model.ImagePath ?? product.ImagePath;
             }
+
+            product.Name = model.Name;
+            product.Description = model.Description;
+            product.Price = model.Price;
+            product.StockQuantity = model.StockQuantity;
+            product.CategoryId = model.CategoryId;
+            product.ImagePath = model.ImagePath;
+
+            await _productRepo.Create(product);
         }
-        public async Task<AddProductDto> AddProduct()
+
+        public async Task<string> SaveFile(IFormFile file)
         {
-            AddProductDto model = new AddProductDto()
+            // Generate a unique file name to prevent overwriting
+            var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+
+            // Define the directory to save the file
+            var directory = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images");
+
+            // Ensure the directory exists
+            if (!Directory.Exists(directory))
             {
-                Categories = await _categoryRepo.GetFilteredList(
-                    select: x => new CatagoryVM
+                Directory.CreateDirectory(directory);
+            }
+
+            // Combine directory and file name to get the full file path
+            var filePath = Path.Combine(directory, fileName);
+
+            // Save the file to the server
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+            }
+
+            // Return the file path
+            return "/images/" + fileName;
+        }
+
+        public async Task UpdateProduct(UpdateProductDto model)
+        {
+
+            var product = await _productRepo.GetDefault(x => x.Id == model.Id);
+
+            if (product is not null)
+            {
+
+                if (product.CategoryId != model.CategoryId)
+                {
+                    product.CategoryId = model.CategoryId;
+                    product.Category = await _categoryRepo.GetDefault(x => x.Id == model.CategoryId);
+                }
+
+
+                if (model.UploadPath != null && model.UploadPath.Length > 0)
+                {
+
+                    string fileName = $"{Guid.NewGuid()}{Path.GetExtension(model.UploadPath.FileName)}";
+                    string uploadDirectory = Path.Combine("wwwroot", "images");
+                    Directory.CreateDirectory(uploadDirectory);
+                    string filePath = Path.Combine(uploadDirectory, fileName);
+                    using (var stream = new FileStream(filePath, FileMode.Create))
                     {
-                        Id = x.Id,
-                        Name = x.Name
-                    },
-                    where: x => x.Status != Domain.Enums.Status.Passive,
-                    orderBy: x => x.OrderBy(x => x.Name)
-                    )
-            };
-            return model;
+                        await model.UploadPath.CopyToAsync(stream);
+                    }
+
+                    product.ImagePath = $"/{Path.Combine("images", fileName)}";
+                }
+                else
+                {
+                    product.ImagePath = model.ImagePath ?? product.ImagePath;
+                }
+
+                product.Name = model.Name;
+                product.Description = model.Description;
+                product.Price = model.Price;
+                product.StockQuantity = model.StockQuantity;
+                product.CategoryId = model.CategoryId;
+                product.ImagePath = model.ImagePath;
+
+                await _productRepo.Update(product);
+            }
         }
 
         public async Task Delete(int id)
@@ -78,57 +148,7 @@ namespace ETicaretPlatformu.Application.Services.ProductService
             }
         }
 
-        public async Task UpdateProduct(UpdateProductDto model)
-        {
 
-            var product = await _productRepo.GetDefault(x => x.Id == model.Id);
-
-            if (product is not null)
-            {
-               
-
-                if (product.CategoryId != model.CategoryId)
-                {
-                    product.CategoryId = model.CategoryId;
-                    product.Category= await _categoryRepo.GetDefault(x => x.Id==model.CategoryId);
-                }
-
-
-                if (model.UploadPath != null && model.UploadPath.Length > 0)
-                {
-                    
-                    string fileName = $"{Guid.NewGuid()}{Path.GetExtension(model.UploadPath.FileName)}";
-
-                    
-                    string uploadDirectory = Path.Combine("wwwroot", "images");
-
-                    
-                    Directory.CreateDirectory(uploadDirectory);
-
-                    
-                    string filePath = Path.Combine(uploadDirectory, fileName);
-                    using (var stream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await model.UploadPath.CopyToAsync(stream);
-                    }
-
-                    
-                    product.ImagePath = $"/{Path.Combine("images", fileName)}";
-                }
-                else
-                {
-                   product.ImagePath = model.ImagePath ?? product.ImagePath;
-                }
-
-                product.Name = model.Name;
-                product.Description = model.Description;
-                product.Price = model.Price;
-                product.StockQuantity = model.StockQuantity;
-                product.CategoryId = model.CategoryId;
-                
-                await _productRepo.Update(product);
-            }           
-        }
 
         public async Task<List<ProductVM>> GetProducts()
         {
@@ -140,7 +160,7 @@ namespace ETicaretPlatformu.Application.Services.ProductService
                     Price = x.Price,
                     StockQuantity = x.StockQuantity,
                     CategoryName = x.Category.Name,
-                    ImagePath=x.ImagePath
+                    ImagePath = x.ImagePath
                 },
                 where: x => x.Status != Domain.Enums.Status.Passive,
                 orderBy: x => x.OrderBy(x => x.Name),
@@ -152,18 +172,18 @@ namespace ETicaretPlatformu.Application.Services.ProductService
 
         public async Task<UpdateProductDto> GetById(int id)
         {
-            var product= await _productRepo.GetFilteredFirstOrDefault(                 
+            var product = await _productRepo.GetFilteredFirstOrDefault(
                      select: x => new ProductVM
                      {
                          Id = x.Id,
                          Name = x.Name,
-                         Description=x.Description,
+                         Description = x.Description,
                          Price = x.Price,
                          StockQuantity = x.StockQuantity,
-                         CategoryId=x.CategoryId,
+                         CategoryId = x.CategoryId,
                          ImagePath = x.ImagePath
                      },
-                where: x => x.Id==id               
+                where: x => x.Id == id
                 );
             var model = _mapper.Map<UpdateProductDto>(product);
 
@@ -180,9 +200,9 @@ namespace ETicaretPlatformu.Application.Services.ProductService
                     Price = x.Price,
                     StockQuantity = x.StockQuantity,
                     CategoryName = x.Category.Name,
-                    ImagePath = x.ImagePath, 
-                    CreateDate = x.CreateDate,                    
-                    Status=x.Status
+                    ImagePath = x.ImagePath,
+                    CreateDate = x.CreateDate,
+                    Status = x.Status
                 },
                 where: x => x.Id == id,
                 orderBy: x => x.OrderBy(x => x.Name),
@@ -190,6 +210,88 @@ namespace ETicaretPlatformu.Application.Services.ProductService
                 );
 
             return product;
+        }
+
+        public async Task<List<ProductVM>> GetByCategory(int categoryId)
+        {
+            var productList = await _productRepo.GetFilteredList(
+                select: x => new ProductVM
+                {
+                    Name = x.Name,
+                    Price = x.Price,
+                    ImagePath = x.ImagePath,
+                },
+                where: x => x.Category.Id == categoryId && x.Status != Domain.Enums.Status.Passive);
+
+
+            return productList;
+        }
+
+        public async Task<List<ProductVM>> FilterByPrice(decimal maxPrice, decimal minPrice = 0)
+        {
+            if (maxPrice == 0)
+            {
+                var urunFiyatlari = await _productRepo.GetFilteredList(
+             select: x => new ProductVM
+             {
+                 Price = x.Price
+             },
+             where: null);
+
+                var enPahaliUrun = urunFiyatlari.OrderByDescending(x => x.Price).FirstOrDefault();
+
+                maxPrice = enPahaliUrun.Price;
+            }
+
+            var productList = await _productRepo.GetFilteredList(
+                select: x => new ProductVM
+                {
+                    Name = x.Name,
+                    Price = x.Price,
+                    ImagePath = x.ImagePath,
+                },
+                where: x => x.Price >= minPrice && x.Price <= maxPrice && x.Status!=Domain.Enums.Status.Passive);
+
+            return productList;
+        }
+
+        public async Task<List<ProductVM>> SearchByName(string term="")
+        {
+            term = string.IsNullOrEmpty(term) ? "" : term.ToLower();
+
+            
+
+            if (string.IsNullOrEmpty(term))
+            {
+                
+               var products = await _productRepo.GetFilteredList(
+               select: x => new ProductVM
+               {
+                   Name = x.Name,
+                   Price = x.Price,                   
+                   ImagePath = x.ImagePath
+               },
+               where: x => x.Status != Domain.Enums.Status.Passive             
+               );
+
+                return products;
+            }
+            else
+            {
+                var products = await _productRepo.GetFilteredList(
+                select: x => new ProductVM
+                {
+                    Name = x.Name,
+                    Price = x.Price,
+                    ImagePath = x.ImagePath
+                },
+                where: x => x.Status != Domain.Enums.Status.Passive && x.Name.ToLower().StartsWith(term)
+                );
+
+                return products;
+            }
+
+             
         }
     }
 }

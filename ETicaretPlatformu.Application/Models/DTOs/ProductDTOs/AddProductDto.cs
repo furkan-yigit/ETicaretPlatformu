@@ -1,4 +1,5 @@
-﻿using ETicaretPlatformu.Application.Models.VMs.CatagoryVM;
+﻿using ETicaretPlatformu.Application.Extensions;
+using ETicaretPlatformu.Application.Models.VMs.CatagoryVM;
 using ETicaretPlatformu.Application.Models.VMs.ProductVMs;
 using ETicaretPlatformu.Domain.Entities;
 using ETicaretPlatformu.Domain.Enums;
@@ -14,26 +15,27 @@ using System.Threading.Tasks;
 namespace ETicaretPlatformu.Application.Models.DTOs.ProductDTOs
 {
     public class AddProductDto
-    {
-        [Required(ErrorMessage = "Lütfen ürün ismi giriniz")]
+         
+    {      
+
+        //[Required(ErrorMessage = "Lütfen ürün ismi giriniz")]
         public string Name { get; set; }
 
         public string Description { get; set; }
 
-        [Required(ErrorMessage = "Lütfen ürün fiyatı giriniz")]
+        //[Required(ErrorMessage = "Lütfen ürün fiyatı giriniz")]
         public decimal Price { get; set; }
 
-        [Required(ErrorMessage = "Lütfen stok miktarı giriniz")]
+        //[Required(ErrorMessage = "Lütfen stok miktarı giriniz")]
         public int StockQuantity { get; set; }
 
-        [Required(ErrorMessage = "Lütfen kategori seçiniz")]
+        //[Required(ErrorMessage = "Lütfen kategori seçiniz")]
         public int CategoryId { get; set; }
 
-        public List<CatagoryVM>? Categories { get; set; }
-
+        //public List<CatagoryVM>? Categories { get; set; }
+        [PictureFileExtensionAttiribute]
         public string? ImagePath { get; set; }
-
-        [NotMapped]
+        
         public IFormFile? UploadPath { get; set; }
 
         public DateTime CreateDate=>DateTime.Now;

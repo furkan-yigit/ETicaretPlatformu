@@ -36,21 +36,32 @@ namespace ETicaretPlatformu.UI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(AddProductDto model)
         {
-            if (ModelState.IsValid)
+            if (model.UploadPath is not null)
             {
-                await _productService.Add(model);
-                return RedirectToAction("Index");
+                model.ImagePath = await _productService.SaveFile(model.UploadPath);
+
+            }
+            
+
+            if (!ModelState.IsValid)
+            {
+                
+                ViewBag.TumKategoriler = await _categoryService.GetCatagories();
+                return View(model);
+                
             }
             else
             {
-                return View(model);
+                await _productService.Add(model);
+                return RedirectToAction("Index");
             }
         }
 
         public async Task<IActionResult> Update(int id)
         {
             ViewBag.SeciliKategori = await _categoryService.GetById(id);
-            ViewBag.TumKategoriler = await _categoryService.GetCatagories();            
+            ViewBag.TumKategoriler = await _categoryService.GetCatagories();
+            
             return View(await _productService.GetById(id));
         }
 
@@ -60,9 +71,7 @@ namespace ETicaretPlatformu.UI.Areas.Admin.Controllers
             if (!ModelState.IsValid)
             {
                 ViewBag.TumKategoriler = await _categoryService.GetCatagories();
-
-                return View(model);
-                
+                return View(model);                
             }
             else
             {
