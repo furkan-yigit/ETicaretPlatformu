@@ -1,11 +1,12 @@
 ﻿@using ETicaretPlatformu.Application.Models.DTOs.OrderDto
 @using ETicaretPlatformu.Application.Services.UserService
 @using ETicaretPlatformu.Domain.Entities
+@using Microsoft.AspNetCore.Identity
 @model CreateOrderDto
 
 @{
     ViewData["Title"] = "Create";
-
+    UserManager<User> manager = ViewBag.Manager;
 }
 
 <!-- Buraya öyle bir kod yazmalıyım ki productlara göre order detail oluşturmalı, kafam basmadı :D-->
@@ -28,16 +29,17 @@
 
                                         <div class="form-floating mb-3">
                                            
-                                            <select asp-for="User" class="form-control">
+                                            <select asp-for="UserId" class="form-control">
                                                 <option>Kullanıcı seçiniz</option>
-                                                @foreach (var item in ViewBag.Users)
+                                                @foreach (UserDto item in ViewBag.Users)
                                                 {
-                                                    <option value="@item.UserName">@item.UserName</option>
+                                                    User user = await manager.FindByNameAsync(@item.UserName);
+                                                    <option value=@user.Id>@item.UserName</option>
                                                         }
  
                                             </select>
-                                            <label asp-for="User" class="control-label"></label>
-                                                <span asp-validation-for="User" class="text-danger"></span>
+                                            <label asp-for="UserId" class="control-label"></label>
+                                            <span asp-validation-for="UserId" class="text-danger"></span>
                                             </div>
 
                                             <div class="d-flex justify-content-between mt-4 mb-0">
