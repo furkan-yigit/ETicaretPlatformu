@@ -141,9 +141,8 @@ namespace ETicaretPlatformu.UI.Controllers
                     TempData["Success"] = "Login successful.";
                     return RedirectToAction("Index", "Home");
                 }
-                ModelState.AddModelError("", "Invalid login credentials.");
             }
-            TempData["Error"] = "Invalid login credentials.";
+            ModelState.AddModelError("", "Invalid login credentials.");
             return View(loginDto);
         }
 
@@ -177,13 +176,12 @@ namespace ETicaretPlatformu.UI.Controllers
             try
             {
                 await _userService.UpdateUser(update);
-                TempData["Success"] = "Profile updated successfully.";
+                TempData["Success"] = "Profile updated successfully.";         
                 return RedirectToAction("Index", "Home");
             }
             catch (Exception ex)
             {
                 ModelState.AddModelError("", "Error: " + ex.Message);
-                TempData["Error"] = "Failed to update profile.";
                 return View(update);
             }
         }

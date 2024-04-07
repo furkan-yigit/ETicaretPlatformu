@@ -14,29 +14,29 @@ namespace ETicaretPlatformu.Application.Models.DTOs.UserDtos
     {
         public string Id { get; set; }
 
-        [Required(ErrorMessage = "Kullanici adinizi giriniz")]
-        [Display(Name = "Kullanici Adi")]
+        [Required(ErrorMessage = "Enter your username")]
+        [Display(Name = "Username")]
         public string UserName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
-        [Required(ErrorMessage = "Sifrenizi giriniz")]
-        [Display(Name = "Sifre")]
+        [Required(ErrorMessage = "Enter your password")]
+        [Display(Name = "Password")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Required(ErrorMessage = "Sifre tekrari girisi zorunludur")]
-        [Display(Name = "Kullanici Sifresi Tekrar")]
+        [Required(ErrorMessage = "Password confirmation is required")]
+        [Display(Name = "Confirm Password")]
         [DataType(DataType.Password)]
-        [Compare(nameof(Password), ErrorMessage = "Sifreler birbirine esit olmalidir")]
+        [Compare(nameof(Password), ErrorMessage = "Passwords must match")]
         public string ConfirmPassword { get; set; }
 
-        [Required(ErrorMessage = "email adresi girilmesi zorunludur")]
-        [Display(Name = "E-Posta")]
+        [Required(ErrorMessage = "Email address is required")]
+        [Display(Name = "E-Mail")]
         [DataType(DataType.EmailAddress)]
         public string? Email { get; set; }
 
-        [Display(Name = "Resim Dosyasi")]
+        [Display(Name = "Image File")]
         public string? ImagePath { get; set; }
 
 
