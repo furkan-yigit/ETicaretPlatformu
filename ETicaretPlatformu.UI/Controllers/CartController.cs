@@ -41,7 +41,7 @@ namespace ETicaretPlatformu.UI.Controllers
             try
             {
                 await _cartService.AddProductToCart(user.Id, productId);
-                TempData["Success"] = "Add to cart successful.";
+                TempData["Success"] = "Add to cart successful.";                
             }
             catch (Exception)
             {
