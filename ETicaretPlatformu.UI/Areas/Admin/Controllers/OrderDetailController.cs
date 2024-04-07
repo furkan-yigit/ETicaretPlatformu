@@ -49,9 +49,18 @@ namespace ETicaretPlatformu.UI.Areas.Admin.Controllers
             ViewBag.products = await _productService.GetProducts();
             if (ModelState.IsValid)
             {
-                await _orderDetailService.Create(model);
+                bool isDetailExist =await _orderDetailService.DoesDetailExist(model.OrderId, model.ProductId);
 
-               UpdateOrderDto dto= await _orderService.GetById(model.OrderId);
+                if (isDetailExist)
+                {
+                    await _orderDetailService.Create(model);
+                }
+                else
+                {
+               _orderDetailService.ChangeQuantity(await _orderDetailService.GetDetailId(model.OrderId, model.ProductId),model.Quantity);
+                  //  await _orderDetailService.Update();
+                }
+
 
                 return RedirectToAction("Index", "Order", new { area = "Admin" });
             }

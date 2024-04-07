@@ -14,7 +14,12 @@ namespace ETicaretPlatformu.Application.Services.OrderDetailService
         Task Create(CreateOrderDetailDto model);
         Task<OrderVm> GetOrderVm(int id);
         Task<List<OrderDetail>> GetOrderDetailsByOrderId(int orderId);
+
+        Task<bool> DoesDetailExist(int orderId, int productId);
+        Task<int> GetDetailId(int orderId, int productId);
         Task Update(UpdateOrderDetailDto model);
+
+        Task ChangeQuantity(int detailId, int quantity);
         Task Delete(int orderDetailsId);
     }
 }

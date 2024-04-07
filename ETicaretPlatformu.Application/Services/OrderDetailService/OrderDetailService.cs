@@ -67,5 +67,37 @@ namespace ETicaretPlatformu.Application.Services.OrderDetailService
             OrderVm model=_mapper.Map<OrderVm>(order);
             return model;
         }
+
+        public async Task<bool> DoesDetailExist(int orderId,int productId)
+        {
+            var orderdetail =await _orderDetailRepo.GetFilteredFirstOrDefault
+                (select:x=>_mapper.Map<UpdateOrderDetailDto>(x),
+                where:x=>x.OrderId==orderId&& x.ProductId==productId
+                );
+
+            return orderdetail==null?true:false;
+        }
+        public async Task<int> GetDetailId(int orderId, int productId)
+        {
+
+            var orderdetail = await _orderDetailRepo.GetFilteredFirstOrDefault
+                (select: x => _mapper.Map<UpdateOrderDetailDto>(x),
+                where: x => x.OrderId == orderId && x.ProductId == productId
+                );
+
+            return orderdetail.Id;
+        }
+
+        public async Task ChangeQuantity(int detailId, int quantity)
+        {
+            var order = await _orderDetailRepo.GetFilteredFirstOrDefault(
+                select:x=>_mapper.Map<OrderDetail>(x),
+                where:x=>x.Id==detailId
+                );
+
+            order.Quantity = quantity;
+            order.Status = Status.Modified;
+            await _orderDetailRepo.Update(order);
+        }
     }
 }

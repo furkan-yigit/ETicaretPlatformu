@@ -60,6 +60,7 @@ namespace ETicaretPlatformu.Application.AutoMapper
             //orderdetail
             CreateMap<OrderDetail, OrderDetailVm>().ReverseMap();
             CreateMap<OrderDetail, CreateOrderDetailDto>().ReverseMap();
+            CreateMap<OrderDetail, UpdateOrderDetailDto > ().ReverseMap();
            // CreateMap<OrderDetail, UpdateOrderDto>().ReverseMap();
         }
     }

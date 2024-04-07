@@ -47,7 +47,7 @@
                             <td>
                                 @foreach(OrderDetailVm detail in item.OrderDetails)
                                 {
-                                    <p>  @detail.Product.Name </p>
+                                    <p> <span> @detail.Product.Name</span>  x <span>@detail.Quantity</span> </p>
 
                                 }
                             </td>
