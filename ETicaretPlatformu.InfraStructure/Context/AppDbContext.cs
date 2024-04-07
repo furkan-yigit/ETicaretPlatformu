@@ -88,6 +88,53 @@ namespace ETicaretPlatformu.InfraStructure.Context
                     });
             #endregion
 
+            #region Category Seed Data
+            var categories = new List<Category>
+            {
+                new Category
+                {
+                    Id = 1,
+                    Name = "Elektronik",
+                    Description = "Elektronik Ürünler",
+                    CreateDate = DateTime.Now,
+                    Status = Domain.Enums.Status.Active
+                },
+                new Category
+                {
+                    Id = 2,
+                    Name = "Giyim",
+                    Description = "Giyim Ürünleri",
+                    CreateDate = DateTime.Now,
+                    Status = Domain.Enums.Status.Active
+                },
+                new Category
+                {
+                    Id = 3,
+                    Name = "Ev & Yaşam",
+                    Description = "Ev ve Yaşam Ürünleri",
+                    CreateDate = DateTime.Now,
+                    Status = Domain.Enums.Status.Active
+                },
+                new Category
+                {
+                    Id = 4,
+                    Name = "Book",
+                    Description = "Kitaplar",
+                    CreateDate = DateTime.Now,
+                    Status = Domain.Enums.Status.Active
+                },
+                new Category
+                {
+                    Id = 5,
+                    Name = "Spor & Outdoor",
+                    Description = "Spor ve Outdoor Ürünleri",
+                    CreateDate = DateTime.Now,
+                    Status = Domain.Enums.Status.Active
+                }
+            };
+            builder.Entity<Category>().HasData(categories);
+            #endregion
+
 
             builder.ApplyConfiguration(new CartLineConfig());
             builder.ApplyConfiguration(new CartConfig());
