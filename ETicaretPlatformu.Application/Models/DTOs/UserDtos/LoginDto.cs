@@ -9,12 +9,12 @@ namespace ETicaretPlatformu.Application.Models.DTOs.UserDtos
 {
     public class LoginDto
     {
-        [Required(ErrorMessage = "Kullanici adinizi giriniz")]
-        [Display(Name = "Kullanici Adi")]
+        [Required(ErrorMessage = "Enter your username")]
+        [Display(Name = "Username")]
         public string? UserName { get; set; }
 
-        [Required(ErrorMessage = "Sifrenizi giriniz")]
-        [Display(Name = "Sifre")]
+        [Required(ErrorMessage = "Enter your password")]
+        [Display(Name = "Password")]
         [DataType(DataType.Password)]
         public string? Password { get; set; }
     }

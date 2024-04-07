@@ -320,22 +320,54 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "Admin", "00000000-0000-0000-0000-000000000000", "Admin", "ADMIN" });
-
-            migrationBuilder.InsertData(
-                table: "AspNetRoles",
-                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "Member", "00000000-0000-0000-0000-000000000000", "Member", "MEMBER" });
+                values: new object[,]
+                {
+                    { "Admin", "00000000-0000-0000-0000-000000000000", "Admin", "ADMIN" },
+                    { "Member", "00000000-0000-0000-0000-000000000000", "Member", "MEMBER" }
+                });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreateDate", "DeleteDate", "Email", "EmailConfirmed", "FirstName", "ImagePath", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PaymentMethod", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Status", "TwoFactorEnabled", "UpdateDate", "UserName" },
+<<<<<<<< HEAD:ETicaretPlatformu.InfraStructure/Migrations/20240407105226_init.cs
                 values: new object[] { "1", 0, "10f5c709-79d9-4791-b678-f6c3c88c1ccc", new DateTime(2024, 4, 7, 13, 52, 26, 1, DateTimeKind.Local).AddTicks(2855), null, "admin@example.com", true, "admin", "/images/01-admin.jpg", "admin", false, null, "ADMIN@EXAMPLE.COM", "ADMIN", "AQAAAAEAACcQAAAAEEhhHOSAw3RAgymSYuuFAXOz8t/Ibonf+va0H+SEmwnpp3d8/yKjpqvJ2TeRGLDWZA==", 0, null, false, "396a2fdf-89e3-4ac9-b6f9-71a58d1f6731", 1, false, null, "admin" });
+========
+                values: new object[] { "1", 0, "b112b35a-314d-4d23-9e1b-34342a8e784e", new DateTime(2024, 4, 7, 9, 59, 8, 211, DateTimeKind.Local).AddTicks(4765), null, "admin@example.com", true, "admin", "/images/01-admin.jpg", "admin", false, null, "ADMIN@EXAMPLE.COM", "ADMIN", "AQAAAAEAACcQAAAAEGqb0O5VLzamIlHdLxWidXMxP+BzY9bbB1u0531U4lf71b6Z8Tt9XseoM9U9uyjE0w==", 0, null, false, "769bf59e-4e87-4b8d-8dfb-9e443658cc31", 1, false, null, "admin" });
+
+            migrationBuilder.InsertData(
+                table: "Categories",
+                columns: new[] { "Id", "CreateDate", "DeleteDate", "Description", "Name", "Status", "UpdateDate" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2024, 4, 7, 9, 59, 8, 221, DateTimeKind.Local).AddTicks(2284), null, "Elektronik Ürünler", "Elektronik", 1, null },
+                    { 2, new DateTime(2024, 4, 7, 9, 59, 8, 221, DateTimeKind.Local).AddTicks(2299), null, "Giyim Ürünleri", "Giyim", 1, null },
+                    { 3, new DateTime(2024, 4, 7, 9, 59, 8, 221, DateTimeKind.Local).AddTicks(2300), null, "Ev ve Yaşam Ürünleri", "Ev & Yaşam", 1, null },
+                    { 4, new DateTime(2024, 4, 7, 9, 59, 8, 221, DateTimeKind.Local).AddTicks(2302), null, "Kitaplar", "Kitap", 1, null },
+                    { 5, new DateTime(2024, 4, 7, 9, 59, 8, 221, DateTimeKind.Local).AddTicks(2303), null, "Spor ve Outdoor Ürünleri", "Spor & Outdoor", 1, null }
+                });
+>>>>>>>> origin/master:ETicaretPlatformu.InfraStructure/Migrations/20240407065908_init.cs
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
                 values: new object[] { "Admin", "1" });
+
+            migrationBuilder.InsertData(
+                table: "Products",
+                columns: new[] { "Id", "CategoryId", "CreateDate", "DeleteDate", "Description", "ImagePath", "Name", "Price", "Status", "StockQuantity", "UpdateDate" },
+                values: new object[,]
+                {
+                    { 1, 1, new DateTime(2024, 4, 7, 9, 59, 8, 221, DateTimeKind.Local).AddTicks(2353), null, "Next Generation Smart Phone", "/images/ProductImages/smartPhone.jpg", "Smart Phone", 2000m, 1, 100, null },
+                    { 2, 1, new DateTime(2024, 4, 7, 9, 59, 8, 221, DateTimeKind.Local).AddTicks(2359), null, "Wireless Headphones", "/images/ProductImages/HeadPhones.jpg", "Headphones", 100m, 1, 200, null },
+                    { 3, 2, new DateTime(2024, 4, 7, 9, 59, 8, 221, DateTimeKind.Local).AddTicks(2361), null, "New Season Women's Dress", "/images/ProductImages/Dress.jpg", "Dress", 150m, 1, 150, null },
+                    { 4, 2, new DateTime(2024, 4, 7, 9, 59, 8, 221, DateTimeKind.Local).AddTicks(2363), null, "Slim Fit Men's Shirt", "/images/ProductImages/Shirt.jpg", "Shirt", 80m, 1, 120, null },
+                    { 5, 3, new DateTime(2024, 4, 7, 9, 59, 8, 221, DateTimeKind.Local).AddTicks(2365), null, "5-Function Kitchen Robot", "/images/ProductImages/KitchenRobot.jpg", "Kitchen Robot", 300m, 1, 80, null },
+                    { 6, 3, new DateTime(2024, 4, 7, 9, 59, 8, 221, DateTimeKind.Local).AddTicks(2367), null, "Flowering Houseplant", "/images/ProductImages/HousePlant.jpg", "Houseplant", 50m, 1, 300, null },
+                    { 7, 4, new DateTime(2024, 4, 7, 9, 59, 8, 221, DateTimeKind.Local).AddTicks(2369), null, "Latest Science Fiction Novel", "/images/ProductImages/ScienceFictionNovel.jpg", "Fiction Novel", 20m, 1, 500, null },
+                    { 8, 4, new DateTime(2024, 4, 7, 9, 59, 8, 221, DateTimeKind.Local).AddTicks(2371), null, "Ottoman Empire History Book", "/images/ProductImages/HistoryBook.jpg", "History Book", 30m, 1, 400, null },
+                    { 9, 5, new DateTime(2024, 4, 7, 9, 59, 8, 221, DateTimeKind.Local).AddTicks(2372), null, "Yoga Exercise Mat", "/images/ProductImages/YogaMat.jpg", "Yoga Mat", 25m, 1, 200, null },
+                    { 10, 5, new DateTime(2024, 4, 7, 9, 59, 8, 221, DateTimeKind.Local).AddTicks(2375), null, "2-Person Camping Tent", "/images/ProductImages/CampingTent.jpg", "Camping Tent", 150m, 1, 100, null }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

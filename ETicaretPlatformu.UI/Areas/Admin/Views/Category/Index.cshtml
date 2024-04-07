@@ -52,7 +52,7 @@
             <table id="datatablesSimple" class="table table-striped">
                 <thead>
                     <tr>
-                        <th scope="col">ID</th>
+                        @* <th scope="col">ID</th> *@
                         <th scope="col">Name</th>
                         <th scope="col">Description</th>
                         <th scope="col">Actions</th>
@@ -62,7 +62,7 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                            @* <td>@Html.DisplayFor(modelItem => item.Id)</td> *@
                             <td>@Html.DisplayFor(modelItem => item.Name)</td>
                             <td>@Html.DisplayFor(modelItem => item.Description)</td>
                             <td>

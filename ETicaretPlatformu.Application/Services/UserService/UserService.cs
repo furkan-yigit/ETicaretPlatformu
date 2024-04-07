@@ -52,14 +52,15 @@ namespace ETicaretPlatformu.Application.Services.UserService
         public async Task<SignInResult> Login(LoginDto model)
         {
             var user = await _userRepo.GetDefault(x => x.UserName.Equals(model.UserName));
-            if (user.Status != Status.Passive)
+            if (user==null ||user.Status==Status.Passive)
             {
-                var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, false, false);
-                return result;                
+                return SignInResult.Failed;
+                            
             }
             else
             {
-                return SignInResult.Failed;
+                var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, false, false);
+                return result;
             }
             
         }
@@ -113,8 +114,8 @@ namespace ETicaretPlatformu.Application.Services.UserService
                 using var image = Image.Load(model.UploadPath.OpenReadStream());
                 image.Mutate(x => x.Resize(600, 560));
                 Guid guid = Guid.NewGuid();
-                image.Save($"wwwroot/images/{guid}.jpg");
-                user.ImagePath = $"/images/{guid}.jpg";
+                image.Save($"wwwroot/images/UsersImages/{guid}.jpg");
+                user.ImagePath = $"/images/UsersImages/{guid}.jpg";
 
                 await _userRepo.Update(user);
             }

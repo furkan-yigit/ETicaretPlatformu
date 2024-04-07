@@ -23,7 +23,7 @@
     </header>
 
     <section class="py-5">
-        <div class="container px-4 px-lg-5 mt-5">
+        <div class="container px-4 px-lg-5 mt-3">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-2">
                     <form asp-action="Index" method="get">
@@ -66,21 +66,27 @@
                 </div>
             </div>
 
-            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center mt-5">
                 @foreach (var product in Model)
                 {
-                    <div class="col mb-5">
+                    <div class="col mb-4">
                         <div class="card h-100">
-                            <img class="card-img-top" src="@product.ImagePath" alt="Current Image" style="width: 260px; height: 150px;" />
+                            <img class="card-img-top" src="@product.ImagePath" alt="Current Image" style="object-fit: cover; height: 250px;" />
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <h5 class="fw-bolder">@product.Name</h5>
-                                    $@product.Price
+                                    <p class="card-text">$@product.Price</p>
                                 </div>
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
+                                <div class="text-center">
+                                    <form asp-controller="Cart" asp-action="AddProductToCart" method="post">
+                                        <input type="hidden" name="userName" value="@User.Identity.Name" />
+                                        <input type="hidden" name="productId" value="@product.Id" />
+                                        <button type="submit" class="btn btn-outline-dark mt-auto">Add to Cart</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
