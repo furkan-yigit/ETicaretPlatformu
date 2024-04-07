@@ -338,8 +338,8 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1dc1bd39-48fd-42c2-998f-29746bf0374c",
-                            CreateDate = new DateTime(2024, 4, 5, 21, 36, 38, 946, DateTimeKind.Local).AddTicks(2888),
+                            ConcurrencyStamp = "10f5c709-79d9-4791-b678-f6c3c88c1ccc",
+                            CreateDate = new DateTime(2024, 4, 7, 13, 52, 26, 1, DateTimeKind.Local).AddTicks(2855),
                             Email = "admin@example.com",
                             EmailConfirmed = true,
                             FirstName = "admin",
@@ -348,10 +348,10 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@EXAMPLE.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHMuM+0ela8oDC3wn5s6B4VxeUdF4iCJz02cCtXlgUFFEqBip688ErhhaLRKr//HgA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEhhHOSAw3RAgymSYuuFAXOz8t/Ibonf+va0H+SEmwnpp3d8/yKjpqvJ2TeRGLDWZA==",
                             PaymentMethod = 0,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b13ce7b9-d4d7-4039-a500-ffcda9af44fc",
+                            SecurityStamp = "396a2fdf-89e3-4ac9-b6f9-71a58d1f6731",
                             Status = 1,
                             TwoFactorEnabled = false,
                             UserName = "admin"

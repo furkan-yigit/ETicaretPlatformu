@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ETicaretPlatformu.InfraStructure.Migrations
 {
-    public partial class initial : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -330,7 +330,7 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreateDate", "DeleteDate", "Email", "EmailConfirmed", "FirstName", "ImagePath", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PaymentMethod", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Status", "TwoFactorEnabled", "UpdateDate", "UserName" },
-                values: new object[] { "1", 0, "1dc1bd39-48fd-42c2-998f-29746bf0374c", new DateTime(2024, 4, 5, 21, 36, 38, 946, DateTimeKind.Local).AddTicks(2888), null, "admin@example.com", true, "admin", "/images/01-admin.jpg", "admin", false, null, "ADMIN@EXAMPLE.COM", "ADMIN", "AQAAAAEAACcQAAAAEHMuM+0ela8oDC3wn5s6B4VxeUdF4iCJz02cCtXlgUFFEqBip688ErhhaLRKr//HgA==", 0, null, false, "b13ce7b9-d4d7-4039-a500-ffcda9af44fc", 1, false, null, "admin" });
+                values: new object[] { "1", 0, "10f5c709-79d9-4791-b678-f6c3c88c1ccc", new DateTime(2024, 4, 7, 13, 52, 26, 1, DateTimeKind.Local).AddTicks(2855), null, "admin@example.com", true, "admin", "/images/01-admin.jpg", "admin", false, null, "ADMIN@EXAMPLE.COM", "ADMIN", "AQAAAAEAACcQAAAAEEhhHOSAw3RAgymSYuuFAXOz8t/Ibonf+va0H+SEmwnpp3d8/yKjpqvJ2TeRGLDWZA==", 0, null, false, "396a2fdf-89e3-4ac9-b6f9-71a58d1f6731", 1, false, null, "admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
