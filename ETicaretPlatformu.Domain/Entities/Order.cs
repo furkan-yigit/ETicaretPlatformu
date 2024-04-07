@@ -14,7 +14,7 @@ namespace ETicaretPlatformu.Domain.Entities
         public User User { get; set; }
         public ICollection<OrderDetail> OrderDetails { get; set; }
 
-        public DateTime CreateDate { get; set; }
+        public DateTime CreateDate { get; set; } = DateTime.Now;
         public DateTime? UpdateDate { get; set; }
         public DateTime? DeleteDate { get; set; }
         public Status Status { get; set; }

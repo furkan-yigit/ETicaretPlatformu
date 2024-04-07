@@ -1,7 +1,11 @@
 ﻿@using ETicaretPlatformu.Application.Models.DTOs.OrderDto
+@using ETicaretPlatformu.Domain.Entities
+@using Microsoft.AspNetCore.Identity
 @model UpdateOrderDto
 @{
     ViewData["Title"] = "Update";
+
+    UserManager<User> manager = ViewBag.Manager;
 }
 
 <h1>Update</h1>
@@ -20,20 +24,22 @@
 
 
                                         <input type="hidden" asp-for="Id" />
-                                        <label asp-for="User" class="control-label"></label>
-                                        <div class="form-floating mb-3">
-                                           
-                                            <select asp-for="User" class="form-control">
-                                                <option>Kullanıcı seçiniz</option>
-                                                @foreach (var item in ViewBag.Users)
-                                                {
-                                                    <option value="@item.UserName">@item.UserName</option>
-                                                }
-                                                <span asp-validation-for="User" class="text-danger"></span>
-                                            </select>
-                                        </div>
+                                        <select asp-for="UserId" class="form-control">
+                                            <option>Kullanıcı seçiniz</option>
+                                            @foreach (UserDto item in ViewBag.Users)
+                                            {
+                                                User selectedUser = await manager.FindByNameAsync(@item.UserName);
+                                                <option value=@selectedUser.Id>@item.UserName</option>
+                                            }
 
+                                        </select>
+                                        <label asp-for="UserId" class="control-label"></label>
+                                        <span asp-validation-for="UserId" class="text-danger"></span>
+                                        @{
+                                            User user = await manager.FindByIdAsync(@Model.UserId);
+                                        }
 
+                                        <input type="hidden" asp-for="User" asp-value=@user />
                                         <div class="d-flex justify-content-between mt-4 mb-0">
                                             <div>
                                                 <a asp-area="Admin" asp-action="Index" class="btn btn-secondary">Back to List</a>

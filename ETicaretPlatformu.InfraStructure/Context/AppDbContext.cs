@@ -18,7 +18,7 @@ namespace ETicaretPlatformu.InfraStructure.Context
         {
 
         }
-        public AppDbContext(DbContextOptions<AppDbContext> options) : 
+        public AppDbContext(DbContextOptions<AppDbContext> options) :
             base(options)
         {
 
@@ -33,10 +33,14 @@ namespace ETicaretPlatformu.InfraStructure.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+           // optionsBuilder.UseSqlServer("Server=DESKTOP-NNPAIJ5;Database=01-Eticaret;Uid=sa;Pwd=789");
+           // optionsBuilder.UseSqlServer("Server=DESKTOP-JI3UVS4;Database=OnioneTicaretprojectapp;Uid=sa;Pwd=123");            
+            //optionsBuilder.UseSqlServer("Server=DESKTOP-G2S16HQ;Database=OnionETicaretProjectApp;Uid=sa;Pwd=123");
             //optionsBuilder.UseSqlServer("Server=DESKTOP-NNPAIJ5;Database=01-Eticaret;Uid=sa;Pwd=789");
             //optionsbuilder.usesqlserver("server=desktop-jı3uvs4;database=onioneticaretprojectapp;uid=sa;pwd=123");            
-            //optionsBuilder.UseSqlServer("Server=DESKTOP-G2S16HQ;Database=OnionETicaretProjectApp;Uid=sa;Pwd=123");
-            optionsBuilder.UseSqlServer("Server=DESKTOP-FJ8OJV2;Database=ETicaretApp3;Uid=sa;Pwd=123");
+          //  optionsBuilder.UseSqlServer("Server=DESKTOP-G2S16HQ;Database=OnionETicaretProjectApp;Uid=sa;Pwd=123");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-2H8QNDE;Database=OnionETicaretProjectApp;Uid=sa;Pwd=123");
+            //optionsBuilder.UseSqlServer("Server=DESKTOP-FJ8OJV2;Database=ETicaretApp;Uid=sa;Pwd=789");
             //optionsBuilder.UseSqlServer("Server=DESKTOP-LLGUTIH;Database=ETicaretApp;Uid=sa;Pwd=123");
 
         }
@@ -88,7 +92,6 @@ namespace ETicaretPlatformu.InfraStructure.Context
                     });
             #endregion
 
-
             #region Category Seed Data
             var categories = new List<Category>
             {
@@ -119,7 +122,7 @@ namespace ETicaretPlatformu.InfraStructure.Context
                 new Category
                 {
                     Id = 4,
-                    Name = "Book",
+                    Name = "Kitap",
                     Description = "Kitaplar",
                     CreateDate = DateTime.Now,
                     Status = Domain.Enums.Status.Active
@@ -263,7 +266,6 @@ namespace ETicaretPlatformu.InfraStructure.Context
             };
             builder.Entity<Product>().HasData(products);
             #endregion
-
 
 
 
