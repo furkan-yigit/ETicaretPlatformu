@@ -1,0 +1,68 @@
+﻿@using ETicaretPlatformu.Application.Models.DTOs.Order_Details
+@using ETicaretPlatformu.Application.Models.VMs.ProductVMs
+@using ETicaretPlatformu.Domain.Entities
+@model CreateOrderDetailDto
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<body class="bg-primary">
+    <div>
+        <div>
+            <main>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-9">
+                            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                <div class="card-header"><h3 class="text-center font-weight-light my-4" style="color: #1488e1;">Create</h3></div>
+                                <div class="card-body">
+                                    <form asp-action="Create" method="post">
+
+
+
+
+                                        <div class="form-floating mb-3">
+
+                                            <select asp-for="ProductId" class="form-control">
+                                                <option>Ürün seçiniz</option>
+                                                @foreach (ProductVM item in ViewBag.products)
+                                                {
+                                                    <option value=@item.Id>@item.Name </option>
+                                                }
+
+                                            </select>
+                                            <label asp-for="ProductId" class="control-label"></label>
+                                            <span asp-validation-for="ProductId" class="text-danger"></span>
+                                        </div>
+
+                                        <div class="form-floating mb-3">
+                                        <input class="form-control" type="number" asp-for="Quantity" value="1"/>
+                                            <label asp-for="Quantity" class="control-label"></label>
+                                            <span asp-validation-for="Quantity" class="text-danger"></span>
+                                        </div>
+                                       
+                                        <input type="hidden" name="OrderId" value="@ViewBag.order.Id" />
+
+                                        <div class="d-flex justify-content-between mt-4 mb-0">
+                                            <div>
+                                                <a asp-area="Admin" asp-action="Index" class="btn btn-secondary">Back to List</a>
+                                            </div>
+                                            <input type="submit" value="Create" class="btn btn-primary" />
+
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="card-footer text-center py-3">
+                                    <div class="small"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+</body>
+

@@ -5,7 +5,9 @@ using ETicaretPlatformu.Application.Services.OrderDetailService;
 using ETicaretPlatformu.Application.Services.OrderService;
 using ETicaretPlatformu.Application.Services.ProductService;
 using ETicaretPlatformu.Application.Services.UserService;
+using ETicaretPlatformu.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ETicaretPlatformu.UI.Areas.Admin.Controllers
@@ -17,12 +19,14 @@ namespace ETicaretPlatformu.UI.Areas.Admin.Controllers
         private readonly IOrderService _orderService;
         private readonly IOrderDetailService _orderDetailService;
         private readonly IUserService _userService;
+        private readonly UserManager<User> _userManager;
 
-        public OrderController(IOrderService orderService,IOrderDetailService orderDetailService,IUserService userService)
+        public OrderController(IOrderService orderService,IOrderDetailService orderDetailService,IUserService userService,UserManager<User> userManager)
         {
             _orderService = orderService;
             _orderDetailService = orderDetailService;
             _userService = userService;
+            _userManager = userManager;
         }
         public async Task<IActionResult>  Index()
         {
@@ -33,13 +37,15 @@ namespace ETicaretPlatformu.UI.Areas.Admin.Controllers
         public async Task<IActionResult> Create()
         {
             ViewBag.Users = await _userService.GetUsers();
-            
+            ViewBag.manager = _userManager;
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> Create(CreateOrderDto model)
         {
+            ViewBag.Users = await _userService.GetUsers();
+            ViewBag.Manager = _userManager;
             if (ModelState.IsValid)
             {
                 await _orderService.Create(model);
@@ -52,17 +58,19 @@ namespace ETicaretPlatformu.UI.Areas.Admin.Controllers
             }
         }
 
-        public async Task<IActionResult> Update()
+        public async Task<IActionResult> Update(int id)
         {
             ViewBag.Users = await _userService.GetUsers();
-
-            return View();
+            ViewBag.Manager = _userManager;
+            return View(await _orderService.GetById(id));
         }
 
         [HttpPost]
         public async Task<IActionResult> Update(UpdateOrderDto model)
         {
-            if (ModelState.IsValid)
+            ViewBag.Users = await _userService.GetUsers();
+            ViewBag.Manager = _userManager;
+            if (!ModelState.IsValid)
             {
                 await _orderService.Update(model);
 

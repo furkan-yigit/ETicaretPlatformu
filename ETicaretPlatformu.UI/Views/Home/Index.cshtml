@@ -67,7 +67,8 @@
             </div>
 
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center mt-5">
-                @foreach (var product in Model)
+                @Html.Partial("_ProductList", Model)
+                @* @foreach (var product in Model)
                 {
                     <div class="col mb-4">
                         <div class="card h-100">
@@ -90,7 +91,7 @@
                             </div>
                         </div>
                     </div>
-                }
+                } *@
             </div> <!-- Close the row for cards -->
         </div> <!-- Close the container -->
     </section> <!-- Close the section -->

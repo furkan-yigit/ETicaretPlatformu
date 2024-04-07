@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ETicaretPlatformu.InfraStructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240406193543_init")]
-    partial class init
+    [Migration("20240407140811_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -124,6 +124,48 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreateDate = new DateTime(2024, 4, 7, 17, 8, 10, 902, DateTimeKind.Local).AddTicks(6830),
+                            Description = "Elektronik Ürünler",
+                            Name = "Elektronik",
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreateDate = new DateTime(2024, 4, 7, 17, 8, 10, 902, DateTimeKind.Local).AddTicks(6884),
+                            Description = "Giyim Ürünleri",
+                            Name = "Giyim",
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreateDate = new DateTime(2024, 4, 7, 17, 8, 10, 902, DateTimeKind.Local).AddTicks(6891),
+                            Description = "Ev ve Yaşam Ürünleri",
+                            Name = "Ev & Yaşam",
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreateDate = new DateTime(2024, 4, 7, 17, 8, 10, 902, DateTimeKind.Local).AddTicks(6892),
+                            Description = "Kitaplar",
+                            Name = "Kitap",
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreateDate = new DateTime(2024, 4, 7, 17, 8, 10, 902, DateTimeKind.Local).AddTicks(6894),
+                            Description = "Spor ve Outdoor Ürünleri",
+                            Name = "Spor & Outdoor",
+                            Status = 1
+                        });
                 });
 
             modelBuilder.Entity("ETicaretPlatformu.Domain.Entities.Order", b =>
@@ -243,6 +285,128 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CategoryId = 1,
+                            CreateDate = new DateTime(2024, 4, 7, 17, 8, 10, 902, DateTimeKind.Local).AddTicks(7064),
+                            Description = "Next Generation Smart Phone",
+                            ImagePath = "/images/ProductImages/smartPhone.jpg",
+                            Name = "Smart Phone",
+                            Price = 2000m,
+                            Status = 1,
+                            StockQuantity = 100
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CategoryId = 1,
+                            CreateDate = new DateTime(2024, 4, 7, 17, 8, 10, 902, DateTimeKind.Local).AddTicks(7075),
+                            Description = "Wireless Headphones",
+                            ImagePath = "/images/ProductImages/HeadPhones.jpg",
+                            Name = "Headphones",
+                            Price = 100m,
+                            Status = 1,
+                            StockQuantity = 200
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CategoryId = 2,
+                            CreateDate = new DateTime(2024, 4, 7, 17, 8, 10, 902, DateTimeKind.Local).AddTicks(7077),
+                            Description = "New Season Women's Dress",
+                            ImagePath = "/images/ProductImages/Dress.jpg",
+                            Name = "Dress",
+                            Price = 150m,
+                            Status = 1,
+                            StockQuantity = 150
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CategoryId = 2,
+                            CreateDate = new DateTime(2024, 4, 7, 17, 8, 10, 902, DateTimeKind.Local).AddTicks(7078),
+                            Description = "Slim Fit Men's Shirt",
+                            ImagePath = "/images/ProductImages/Shirt.jpg",
+                            Name = "Shirt",
+                            Price = 80m,
+                            Status = 1,
+                            StockQuantity = 120
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CategoryId = 3,
+                            CreateDate = new DateTime(2024, 4, 7, 17, 8, 10, 902, DateTimeKind.Local).AddTicks(7085),
+                            Description = "5-Function Kitchen Robot",
+                            ImagePath = "/images/ProductImages/KitchenRobot.jpg",
+                            Name = "Kitchen Robot",
+                            Price = 300m,
+                            Status = 1,
+                            StockQuantity = 80
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CategoryId = 3,
+                            CreateDate = new DateTime(2024, 4, 7, 17, 8, 10, 902, DateTimeKind.Local).AddTicks(7088),
+                            Description = "Flowering Houseplant",
+                            ImagePath = "/images/ProductImages/HousePlant.jpg",
+                            Name = "Houseplant",
+                            Price = 50m,
+                            Status = 1,
+                            StockQuantity = 300
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CategoryId = 4,
+                            CreateDate = new DateTime(2024, 4, 7, 17, 8, 10, 902, DateTimeKind.Local).AddTicks(7089),
+                            Description = "Latest Science Fiction Novel",
+                            ImagePath = "/images/ProductImages/ScienceFictionNovel.jpg",
+                            Name = "Fiction Novel",
+                            Price = 20m,
+                            Status = 1,
+                            StockQuantity = 500
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CategoryId = 4,
+                            CreateDate = new DateTime(2024, 4, 7, 17, 8, 10, 902, DateTimeKind.Local).AddTicks(7092),
+                            Description = "Ottoman Empire History Book",
+                            ImagePath = "/images/ProductImages/HistoryBook.jpg",
+                            Name = "History Book",
+                            Price = 30m,
+                            Status = 1,
+                            StockQuantity = 400
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CategoryId = 5,
+                            CreateDate = new DateTime(2024, 4, 7, 17, 8, 10, 902, DateTimeKind.Local).AddTicks(7093),
+                            Description = "Yoga Exercise Mat",
+                            ImagePath = "/images/ProductImages/YogaMat.jpg",
+                            Name = "Yoga Mat",
+                            Price = 25m,
+                            Status = 1,
+                            StockQuantity = 200
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CategoryId = 5,
+                            CreateDate = new DateTime(2024, 4, 7, 17, 8, 10, 902, DateTimeKind.Local).AddTicks(7096),
+                            Description = "2-Person Camping Tent",
+                            ImagePath = "/images/ProductImages/CampingTent.jpg",
+                            Name = "Camping Tent",
+                            Price = 150m,
+                            Status = 1,
+                            StockQuantity = 100
+                        });
                 });
 
             modelBuilder.Entity("ETicaretPlatformu.Domain.Entities.User", b =>
@@ -340,8 +504,8 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "814a1009-da5d-40d6-88c5-561432df3081",
-                            CreateDate = new DateTime(2024, 4, 6, 22, 35, 42, 925, DateTimeKind.Local).AddTicks(9169),
+                            ConcurrencyStamp = "0e5bc529-2d02-4093-88f8-17c68e6ca296",
+                            CreateDate = new DateTime(2024, 4, 7, 17, 8, 10, 892, DateTimeKind.Local).AddTicks(5562),
                             Email = "admin@example.com",
                             EmailConfirmed = true,
                             FirstName = "admin",
@@ -350,10 +514,10 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@EXAMPLE.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAwszHHYnoRcrM+oO/1ct5kOb+EOE6+B9U6Wb+foLh2Oh6x0q/22+lFaItM0OLwOfQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKgeXZGjJAKAKnXgsWWOV30mHpNzhLKHSrt5WoOdTco3FPg4FSj37Bfh9X3Zg3vU5A==",
                             PaymentMethod = 0,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b0e004b5-4268-40ef-acc3-22d7fbdbb4b4",
+                            SecurityStamp = "bcd5d574-d044-431c-bddb-246519723212",
                             Status = 1,
                             TwoFactorEnabled = false,
                             UserName = "admin"
