@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 using ETicaretPlatformu.Application.Models.VMs.ProductVMs;
 using ETicaretPlatformu.Application.Models.VMs.Order;
 using ETicaretPlatformu.Application.Models.DTOs.OrderDto;
+using ETicaretPlatformu.Application.Models.DTOs.Order_Details;
 
 namespace ETicaretPlatformu.Application.AutoMapper
 {
@@ -58,6 +59,7 @@ namespace ETicaretPlatformu.Application.AutoMapper
             CreateMap<Order, UpdateOrderDto>().ReverseMap();
             //orderdetail
             CreateMap<OrderDetail, OrderDetailVm>().ReverseMap();
+            CreateMap<OrderDetail, CreateOrderDetailDto>().ReverseMap();
            // CreateMap<OrderDetail, UpdateOrderDto>().ReverseMap();
         }
     }

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ETicaretPlatformu.InfraStructure.Migrations
 {
-    public partial class init : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -320,22 +320,50 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "Admin", "00000000-0000-0000-0000-000000000000", "Admin", "ADMIN" });
-
-            migrationBuilder.InsertData(
-                table: "AspNetRoles",
-                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "Member", "00000000-0000-0000-0000-000000000000", "Member", "MEMBER" });
+                values: new object[,]
+                {
+                    { "Admin", "00000000-0000-0000-0000-000000000000", "Admin", "ADMIN" },
+                    { "Member", "00000000-0000-0000-0000-000000000000", "Member", "MEMBER" }
+                });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreateDate", "DeleteDate", "Email", "EmailConfirmed", "FirstName", "ImagePath", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PaymentMethod", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Status", "TwoFactorEnabled", "UpdateDate", "UserName" },
-                values: new object[] { "1", 0, "814a1009-da5d-40d6-88c5-561432df3081", new DateTime(2024, 4, 6, 22, 35, 42, 925, DateTimeKind.Local).AddTicks(9169), null, "admin@example.com", true, "admin", "/images/01-admin.jpg", "admin", false, null, "ADMIN@EXAMPLE.COM", "ADMIN", "AQAAAAEAACcQAAAAEAwszHHYnoRcrM+oO/1ct5kOb+EOE6+B9U6Wb+foLh2Oh6x0q/22+lFaItM0OLwOfQ==", 0, null, false, "b0e004b5-4268-40ef-acc3-22d7fbdbb4b4", 1, false, null, "admin" });
+                values: new object[] { "1", 0, "709523b5-35bf-48df-8b9c-9a595dd7759e", new DateTime(2024, 4, 7, 12, 0, 47, 164, DateTimeKind.Local).AddTicks(4353), null, "admin@example.com", true, "admin", "/images/01-admin.jpg", "admin", false, null, "ADMIN@EXAMPLE.COM", "ADMIN", "AQAAAAEAACcQAAAAEPk3d6QrC62BIZ7X2fk8d+B1Y2UvdFxS6VLors2mHlll1ITHBvAsm0Ytt1XOAYj4Uw==", 0, null, false, "0dc0e291-bf88-48ab-a02c-49e5aa878552", 1, false, null, "admin" });
+
+            migrationBuilder.InsertData(
+                table: "Categories",
+                columns: new[] { "Id", "CreateDate", "DeleteDate", "Description", "Name", "Status", "UpdateDate" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2024, 4, 7, 12, 0, 47, 170, DateTimeKind.Local).AddTicks(9638), null, "Elektronik Ürünler", "Elektronik", 1, null },
+                    { 2, new DateTime(2024, 4, 7, 12, 0, 47, 170, DateTimeKind.Local).AddTicks(9642), null, "Giyim Ürünleri", "Giyim", 1, null },
+                    { 3, new DateTime(2024, 4, 7, 12, 0, 47, 170, DateTimeKind.Local).AddTicks(9643), null, "Ev ve Yaşam Ürünleri", "Ev & Yaşam", 1, null },
+                    { 4, new DateTime(2024, 4, 7, 12, 0, 47, 170, DateTimeKind.Local).AddTicks(9644), null, "Kitaplar", "Kitap", 1, null },
+                    { 5, new DateTime(2024, 4, 7, 12, 0, 47, 170, DateTimeKind.Local).AddTicks(9645), null, "Spor ve Outdoor Ürünleri", "Spor & Outdoor", 1, null }
+                });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
                 values: new object[] { "Admin", "1" });
+
+            migrationBuilder.InsertData(
+                table: "Products",
+                columns: new[] { "Id", "CategoryId", "CreateDate", "DeleteDate", "Description", "ImagePath", "Name", "Price", "Status", "StockQuantity", "UpdateDate" },
+                values: new object[,]
+                {
+                    { 1, 1, new DateTime(2024, 4, 7, 12, 0, 47, 170, DateTimeKind.Local).AddTicks(9672), null, "Next Generation Smart Phone", "/images/ProductImages/smartPhone.jpg", "Smart Phone", 2000m, 1, 100, null },
+                    { 2, 1, new DateTime(2024, 4, 7, 12, 0, 47, 170, DateTimeKind.Local).AddTicks(9675), null, "Wireless Headphones", "/images/ProductImages/HeadPhones.jpg", "Headphones", 100m, 1, 200, null },
+                    { 3, 2, new DateTime(2024, 4, 7, 12, 0, 47, 170, DateTimeKind.Local).AddTicks(9677), null, "New Season Women's Dress", "/images/ProductImages/Dress.jpg", "Dress", 150m, 1, 150, null },
+                    { 4, 2, new DateTime(2024, 4, 7, 12, 0, 47, 170, DateTimeKind.Local).AddTicks(9680), null, "Slim Fit Men's Shirt", "/images/ProductImages/Shirt.jpg", "Shirt", 80m, 1, 120, null },
+                    { 5, 3, new DateTime(2024, 4, 7, 12, 0, 47, 170, DateTimeKind.Local).AddTicks(9681), null, "5-Function Kitchen Robot", "/images/ProductImages/KitchenRobot.jpg", "Kitchen Robot", 300m, 1, 80, null },
+                    { 6, 3, new DateTime(2024, 4, 7, 12, 0, 47, 170, DateTimeKind.Local).AddTicks(9683), null, "Flowering Houseplant", "/images/ProductImages/HousePlant.jpg", "Houseplant", 50m, 1, 300, null },
+                    { 7, 4, new DateTime(2024, 4, 7, 12, 0, 47, 170, DateTimeKind.Local).AddTicks(9684), null, "Latest Science Fiction Novel", "/images/ProductImages/ScienceFictionNovel.jpg", "Fiction Novel", 20m, 1, 500, null },
+                    { 8, 4, new DateTime(2024, 4, 7, 12, 0, 47, 170, DateTimeKind.Local).AddTicks(9685), null, "Ottoman Empire History Book", "/images/ProductImages/HistoryBook.jpg", "History Book", 30m, 1, 400, null },
+                    { 9, 5, new DateTime(2024, 4, 7, 12, 0, 47, 170, DateTimeKind.Local).AddTicks(9686), null, "Yoga Exercise Mat", "/images/ProductImages/YogaMat.jpg", "Yoga Mat", 25m, 1, 200, null },
+                    { 10, 5, new DateTime(2024, 4, 7, 12, 0, 47, 170, DateTimeKind.Local).AddTicks(9688), null, "2-Person Camping Tent", "/images/ProductImages/CampingTent.jpg", "Camping Tent", 150m, 1, 100, null }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

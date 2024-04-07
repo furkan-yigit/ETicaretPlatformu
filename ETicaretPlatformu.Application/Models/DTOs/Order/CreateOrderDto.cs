@@ -11,7 +11,7 @@ namespace ETicaretPlatformu.Application.Models.DTOs.OrderDto
     public class CreateOrderDto
     {
      
-        public string? UserId { get; set; }
+        public string UserId { get; set; }
         public ICollection<OrderDetail>? OrderDetails { get; set; }
     }
 }
