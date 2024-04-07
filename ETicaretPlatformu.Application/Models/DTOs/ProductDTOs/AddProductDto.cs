@@ -19,12 +19,12 @@ namespace ETicaretPlatformu.Application.Models.DTOs.ProductDTOs
         [Required(ErrorMessage = "Please enter a product name!")]
         public string Name { get; set; }
 
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
-        [Required(ErrorMessage = "Please enter a price")]
+        [Required(ErrorMessage = "Please enter a price!")]
         public decimal Price { get; set; }
 
-        [Required(ErrorMessage = "Please enter a stock quantity")]
+        [Required(ErrorMessage = "Please enter a stock quantity!")]
         //0 DAN BÜYÜK OLMALI
         [Range(0, int.MaxValue, ErrorMessage = "Stock quantity must be greater than 0!")]        
         public int StockQuantity { get; set; }
@@ -32,7 +32,6 @@ namespace ETicaretPlatformu.Application.Models.DTOs.ProductDTOs
         [Required(ErrorMessage = "Please select a category")]
         public int CategoryId { get; set; }
 
-        //public List<CatagoryVM>? Categories { get; set; }
         [PictureFileExtensionAttiribute]
         public string? ImagePath { get; set; }
         
