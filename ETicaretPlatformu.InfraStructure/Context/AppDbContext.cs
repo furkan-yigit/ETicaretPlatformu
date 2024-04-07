@@ -18,7 +18,7 @@ namespace ETicaretPlatformu.InfraStructure.Context
         {
 
         }
-        public AppDbContext(DbContextOptions<AppDbContext> options) : 
+        public AppDbContext(DbContextOptions<AppDbContext> options) :
             base(options)
         {
 
@@ -33,6 +33,9 @@ namespace ETicaretPlatformu.InfraStructure.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+           // optionsBuilder.UseSqlServer("Server=DESKTOP-NNPAIJ5;Database=01-Eticaret;Uid=sa;Pwd=789");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-JI3UVS4;Database=OnioneTicaretprojectapp;Uid=sa;Pwd=123");            
+            //optionsBuilder.UseSqlServer("Server=DESKTOP-G2S16HQ;Database=OnionETicaretProjectApp;Uid=sa;Pwd=123");
             //optionsBuilder.UseSqlServer("Server=DESKTOP-NNPAIJ5;Database=01-Eticaret;Uid=sa;Pwd=789");
             //optionsbuilder.usesqlserver("server=desktop-jı3uvs4;database=onioneticaretprojectapp;uid=sa;pwd=123");            
           //  optionsBuilder.UseSqlServer("Server=DESKTOP-G2S16HQ;Database=OnionETicaretProjectApp;Uid=sa;Pwd=123");
@@ -88,6 +91,183 @@ namespace ETicaretPlatformu.InfraStructure.Context
                         UserId = adminUser.Id
                     });
             #endregion
+
+            #region Category Seed Data
+            var categories = new List<Category>
+            {
+                new Category
+                {
+                    Id = 1,
+                    Name = "Elektronik",
+                    Description = "Elektronik Ürünler",
+                    CreateDate = DateTime.Now,
+                    Status = Domain.Enums.Status.Active
+                },
+                new Category
+                {
+                    Id = 2,
+                    Name = "Giyim",
+                    Description = "Giyim Ürünleri",
+                    CreateDate = DateTime.Now,
+                    Status = Domain.Enums.Status.Active
+                },
+                new Category
+                {
+                    Id = 3,
+                    Name = "Ev & Yaşam",
+                    Description = "Ev ve Yaşam Ürünleri",
+                    CreateDate = DateTime.Now,
+                    Status = Domain.Enums.Status.Active
+                },
+                new Category
+                {
+                    Id = 4,
+                    Name = "Kitap",
+                    Description = "Kitaplar",
+                    CreateDate = DateTime.Now,
+                    Status = Domain.Enums.Status.Active
+                },
+                new Category
+                {
+                    Id = 5,
+                    Name = "Spor & Outdoor",
+                    Description = "Spor ve Outdoor Ürünleri",
+                    CreateDate = DateTime.Now,
+                    Status = Domain.Enums.Status.Active
+                }
+            };
+            builder.Entity<Category>().HasData(categories);
+            #endregion
+
+            #region Product Seed Data
+            var products = new List<Product>
+            {
+                new Product
+                {
+                    Id = 1,
+                    Name = "Smart Phone",
+                    Description = "Next Generation Smart Phone",
+                    Price = 2000,
+                    StockQuantity = 100,
+                    CategoryId = 1,
+                    CreateDate = DateTime.Now,
+                    Status = Domain.Enums.Status.Active,
+                    ImagePath = "/images/ProductImages/smartPhone.jpg"
+                },
+                new Product
+                {
+                    Id = 2,
+                    Name = "Headphones",
+                    Description = "Wireless Headphones",
+                    Price = 100,
+                    StockQuantity = 200,
+                    CategoryId = 1,
+                    CreateDate = DateTime.Now,
+                    Status = Domain.Enums.Status.Active,
+                    ImagePath = "/images/ProductImages/HeadPhones.jpg"
+                },
+                new Product
+                {
+                    Id = 3,
+                    Name = "Dress",
+                    Description = "New Season Women's Dress",
+                    Price = 150,
+                    StockQuantity = 150,
+                    CategoryId = 2,
+                    CreateDate = DateTime.Now,
+                    Status = Domain.Enums.Status.Active,
+                    ImagePath = "/images/ProductImages/Dress.jpg"
+                },
+                new Product
+                {
+                    Id = 4,
+                    Name = "Shirt",
+                    Description = "Slim Fit Men's Shirt",
+                    Price = 80,
+                    StockQuantity = 120,
+                    CategoryId = 2,
+                    CreateDate = DateTime.Now,
+                    Status = Domain.Enums.Status.Active,
+                    ImagePath = "/images/ProductImages/Shirt.jpg"
+                },
+                new Product
+                {
+                    Id = 5,
+                    Name = "Kitchen Robot",
+                    Description = "5-Function Kitchen Robot",
+                    Price = 300,
+                    StockQuantity = 80,
+                    CategoryId = 3,
+                    CreateDate = DateTime.Now,
+                    Status = Domain.Enums.Status.Active,
+                    ImagePath = "/images/ProductImages/KitchenRobot.jpg"
+                },
+                new Product
+                {
+                    Id = 6,
+                    Name = "Houseplant",
+                    Description = "Flowering Houseplant",
+                    Price = 50,
+                    StockQuantity = 300,
+                    CategoryId = 3,
+                    CreateDate = DateTime.Now,
+                    Status = Domain.Enums.Status.Active,
+                    ImagePath = "/images/ProductImages/HousePlant.jpg"
+                },
+                new Product
+                {
+                    Id = 7,
+                    Name = "Fiction Novel",
+                    Description = "Latest Science Fiction Novel",
+                    Price = 20,
+                    StockQuantity = 500,
+                    CategoryId = 4,
+                    CreateDate = DateTime.Now,
+                    Status = Domain.Enums.Status.Active,
+                    ImagePath = "/images/ProductImages/ScienceFictionNovel.jpg"
+                },
+                new Product
+                {
+                    Id = 8,
+                    Name = "History Book",
+                    Description = "Ottoman Empire History Book",
+                    Price = 30,
+                    StockQuantity = 400,
+                    CategoryId = 4,
+                    CreateDate = DateTime.Now,
+                    Status = Domain.Enums.Status.Active,
+                    ImagePath = "/images/ProductImages/HistoryBook.jpg"
+                },
+                new Product
+                {
+                    Id = 9,
+                    Name = "Yoga Mat",
+                    Description = "Yoga Exercise Mat",
+                    Price = 25,
+                    StockQuantity = 200,
+                    CategoryId = 5,
+                    CreateDate = DateTime.Now,
+                    Status = Domain.Enums.Status.Active,
+                    ImagePath = "/images/ProductImages/YogaMat.jpg"
+                },
+                new Product
+                {
+                    Id = 10,
+                    Name = "Camping Tent",
+                    Description = "2-Person Camping Tent",
+                    Price = 150,
+                    StockQuantity = 100,
+                    CategoryId = 5,
+                    CreateDate = DateTime.Now,
+                    Status = Domain.Enums.Status.Active,
+                    ImagePath = "/images/ProductImages/CampingTent.jpg"
+
+                }
+            };
+            builder.Entity<Product>().HasData(products);
+            #endregion
+
+
 
 
             builder.ApplyConfiguration(new CartLineConfig());

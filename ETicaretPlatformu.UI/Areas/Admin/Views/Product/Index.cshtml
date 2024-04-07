@@ -38,7 +38,7 @@
                         <th>
                            Image
                         </th>
-                        <th></th>
+                        <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -69,9 +69,9 @@
                                 <img src="@item.ImagePath" alt="@item.Name" width="50" height="50" />
                             </td>
                             <td>
-                                @Html.ActionLink("Güncelle", "Update", new {  id=item.Id  }) |
-                                @Html.ActionLink("Detay", "Detail", new {  id=item.Id }) |
-                                @Html.ActionLink("Sil", "Delete", new {  id=item.Id })
+                                <a asp-action="Update" asp-route-id="@item.Id" class="btn btn-primary">Güncelle</a> |
+                                <a asp-action="Detail" asp-route-id="@item.Id" class="btn btn-success">Detay</a> |
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Sil</a>
                             </td>
                         </tr>
                     }

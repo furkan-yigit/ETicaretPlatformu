@@ -4,9 +4,11 @@ using ETicaretPlatformu.Application.IoC;
 using ETicaretPlatformu.Application.Services.CartService;
 using ETicaretPlatformu.Application.Services.OrderDetailService;
 using ETicaretPlatformu.Application.Services.OrderService;
+using ETicaretPlatformu.Application.Services.CategoryService;
 using ETicaretPlatformu.Domain.Entities;
 using ETicaretPlatformu.InfraStructure.Context;
 using Microsoft.AspNetCore.Identity;
+using ETicaretPlatformu.Application.Services.UserService;
 
 namespace ETicaretPlatformu.UI
 {
@@ -30,6 +32,7 @@ namespace ETicaretPlatformu.UI
                 o.SignIn.RequireConfirmedAccount = false;
 
                 o.User.RequireUniqueEmail = true;
+                
 
                 o.Password.RequireUppercase = false;
                 o.Password.RequiredLength = 3;
@@ -45,8 +48,10 @@ namespace ETicaretPlatformu.UI
             });
 
             builder.Services.AddScoped<ICartService, CartService>();
-            builder.Services.AddScoped<IOrderService, OrderService>();
             builder.Services.AddScoped<IOrderDetailService, OrderDetailService>();
+            builder.Services.AddScoped<IOrderService, OrderService>();
+            builder.Services.AddScoped<ICategoryService, CategoryService>();
+            builder.Services.AddScoped<IUserService, UserService>();
 
 
 

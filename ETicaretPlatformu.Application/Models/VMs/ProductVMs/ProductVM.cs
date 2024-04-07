@@ -22,5 +22,7 @@ namespace ETicaretPlatformu.Application.Models.VMs.ProductVMs
         public string? ImagePath { get; set; }
         [NotMapped]
         public IFormFile? UploadPath { get; set; }
+
+        public Status Status { get; set; }
     }
 }
