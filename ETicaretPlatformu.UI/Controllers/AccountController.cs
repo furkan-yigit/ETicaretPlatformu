@@ -141,7 +141,6 @@ namespace ETicaretPlatformu.UI.Controllers
                     TempData["Success"] = "Login successful.";
                     return RedirectToAction("Index", "Home");
                 }
-                ModelState.AddModelError("", "Invalid login credentials.");
             }
             ModelState.AddModelError("", "Invalid login credentials.");
             return View(loginDto);

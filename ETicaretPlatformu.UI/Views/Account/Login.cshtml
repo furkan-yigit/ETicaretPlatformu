@@ -17,7 +17,7 @@
     <link href="~/sb-admin-2/css/styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-4K2QLKc0nfhj9bS/LcZ5E28FLQvrn+DmeETEdXKZTrQoVTufIATFYbU+ovnX9KtZfjfS+hRX3GjEudcM2N44aA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="~/css/Login.css" rel="stylesheet" />
-    
+
 </head>
 <body>
     <div class="login-container">
@@ -29,22 +29,25 @@
                 <div class="form-floating">
                     <input asp-for="UserName" class="form-control" id="userName" placeholder=" " />
                     <label for="userName"><i class="fas fa-user" style="color: #74C0FC;"></i> User Name</label>
-                    
+
                 </div>
                 <div class="form-floating">
                     <input asp-for="Password" type="password" class="form-control" id="password" placeholder=" " />
                     <label for="password"><i class="fas fa-lock" style="color: #74C0FC;"></i> Password</label>
-                    
+
                 </div>
-                <div class="alert alert-danger" role="alert">
-                    @foreach (var modelState in ViewData.ModelState.Values)
-                    {
-                        foreach (var error in modelState.Errors)
+                @if (!ViewData.ModelState.IsValid)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        @foreach (var modelState in ViewData.ModelState.Values)
                         {
-                            <div>@error.ErrorMessage</div>
+                            foreach (var error in modelState.Errors)
+                            {
+                                <div>@error.ErrorMessage</div>
+                            }
                         }
-                    }
-                </div>
+                    </div>
+                }
                 <button type="submit" class="login-btn">Login</button>
             </form>
             <div class="card-footer text-center py-3">
