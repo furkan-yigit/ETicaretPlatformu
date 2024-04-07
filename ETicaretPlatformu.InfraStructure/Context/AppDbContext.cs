@@ -118,7 +118,7 @@ namespace ETicaretPlatformu.InfraStructure.Context
                 new Category
                 {
                     Id = 4,
-                    Name = "Kitap",
+                    Name = "Book",
                     Description = "Kitaplar",
                     CreateDate = DateTime.Now,
                     Status = Domain.Enums.Status.Active
