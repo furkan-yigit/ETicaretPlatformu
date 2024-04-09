@@ -1,11 +1,12 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Siparişler";
 }
+<link href="~/css/order.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
 
-<h1>Siparişlerim</h1>
 
-@if (TempData["user"]== null)
+
+@if (ViewData["user"] == null)
 {
     <h4>Giriş yapmadığınız için siparişlerinizi gösteremiyoruz</h4>
 }
@@ -13,15 +14,140 @@ else
 {
     List<OrderVm> orderlist = ViewBag.orders;
 
-    if (orderlist.Count==0)
+    if (orderlist.Count == 0)
     {
         <h4>Henüz bir siparişiniz yok!</h4>
     }
     else
-        foreach (OrderVm order in orderlist)
     {
-        
+        <div class="main-content">
+            <div class="container mt-7">
+                <!-- Table -->
+                <h1>Siparişlerim</h1>
+                <div class="row">
+
+                    <div class="col">
+                        <div class="card shadow">
+
+                            <div class="table-responsive">
+                                <table class="table align-items-center table-flush">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col"></th> <!--resimler-->
+                                            <th scope="col">Sipariş No</th>
+                                            <th scope="col">Verildiği Tarih</th>
+                                            <th scope="col">Toplam Ürün</th>
+                                            <th scope="col">Toplam Fiyat</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (OrderVm order in orderlist)
+                                        {
+
+                                            <tr>
+
+                                                <th scope="row">
+
+                                                    <div class="avatar-group">
+
+                                                        @if (order.OrderDetails.Count < 2)
+                                                        {
+                                                            foreach (OrderDetailVm vm in order.OrderDetails)
+                                                            {
+                                                                <a href="#" class=" avatar avatar-sm">
+                                                                    <img src="@vm.Product.ImagePath" class="img rounded-circle" >
+                                                                </a>
+                                                            }
+
+
+                                                        }
+                                                        else
+                                                        {
+
+                                                            for(int i = 0; i < 3; i++)
+                                                            {
+                                                           
+                                                                <a href="#" class=" avatar avatar-sm">
+                                                                    <img src="@order.OrderDetails[i].Product.ImagePath" class="img rounded-circle">
+                                                                </a>
+                                                            }
+
+                                                        }
+
+
+
+                                                    </div>
+                                                </th>
+
+
+
+                                                <td>
+
+                                                    <div class="media align-items-center">
+
+                                                        <div class="media-body">
+                                                            <span class="mb-0 text-sm">@order.Id</span>
+                                                        </div>
+                                                    </div>
+
+                                                </td>
+
+                                                <td>
+                                                    @order.CreateDate
+                                                </td>
+                                                <td>
+                                                    @{
+                                                        int sumQuantity = 0;
+                                                    }
+                                                    @foreach (OrderDetailVm vm in order.OrderDetails)
+                                                    {
+                                                        sumQuantity += vm.Quantity;
+                                                    }
+                                                    <span>@sumQuantity </span>
+
+                                                </td>
+                                                <td>
+                                                    @{
+                                                        decimal sumPrice = 0;
+                                                    }
+                                                    @foreach (OrderDetailVm vm in order.OrderDetails)
+                                                    {
+                                                        sumPrice += vm.Quantity * vm.Product.Price;
+                                                    }
+                                                    <span> $@sumPrice </span>
+                                                </td>
+
+                                                <td class="text-right">
+                                                    <div class="dropdown">
+                                                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            <i class="fas fa-ellipsis-v"></i>
+                                                        </a>
+                                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                            <a class="dropdown-item" href="#">Action</a>
+                                                            <a class="dropdown-item" href="#">Another action</a>
+                                                            <a class="dropdown-item" href="#">Something else here</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                        }
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     }
+
 
 }
 
