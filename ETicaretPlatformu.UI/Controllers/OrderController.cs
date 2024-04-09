@@ -79,5 +79,11 @@ namespace ETicaretPlatformu.UI.Controllers
             ViewBag.orders = orders;
             return View();
         }
+
+        public async Task<IActionResult> Details(int id)
+        {
+            var Order=await _orderService.GetById(id);
+            return View(Order);
+        }
     }
 }
