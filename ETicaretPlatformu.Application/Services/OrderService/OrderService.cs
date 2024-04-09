@@ -57,7 +57,7 @@ namespace ETicaretPlatformu.Application.Services.OrderService
             var order = await _orderRepo.GetFilteredFirstOrDefault
                  (select: x => _mapper.Map<UpdateOrderDto>(x),
             where: x => x.Id == id && x.Status != Status.Passive,
-            include: x => x.Include(x => x.OrderDetails).Include(x => x.User)
+            include: x => x.Include(x => x.OrderDetails).ThenInclude(x=>x.Product).Include(x => x.User)
             );
 
 
