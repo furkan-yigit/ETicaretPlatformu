@@ -124,12 +124,7 @@
         <div class="offcanvas-body " style="background-color: #f8f9fa;">
             
             <ul class="list-unstyled text-center" style="font-size: 1.2rem;">
-                <li style ="margin-bottom: 10px;"><a href="#" class="text-decoration-none text-dark">Elektronik</a></li>
-                <li style="margin-bottom: 10px;"><a href="#" class="text-decoration-none text-dark">Bilgisayarlar</a></li>
-                <li style="margin-bottom: 10px;"><a href="#" class="text-decoration-none text-dark">Ev Aletleri</a></li>
-                <li style="margin-bottom: 10px;"><a href="#" class="text-decoration-none text-dark">Telefonlar</a></li>
-                <li style="margin-bottom: 10px;"><a href="#" class="text-decoration-none text-dark">Giyim</a></li>
-                
+                @await Component.InvokeAsync("CategoryMenu")
             </ul>
         </div>
     </div>
