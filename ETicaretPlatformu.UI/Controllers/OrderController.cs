@@ -63,14 +63,10 @@ namespace ETicaretPlatformu.UI.Controllers
                     await _detailService.Create(detail);
                 }
 
-                foreach (var c in cart.CartLines)
-                {
-                    c.Quantity = 1;
-                    await _cartService.RemoveProductFromCart(userId, c.ProductId);
-                }
+              _cartService.DeleteCart(cart);
 
             }
-            return RedirectToAction("Index", "Home", new { area = "" });
+            return RedirectToAction("Index", "Order", new { area = "" });
         }
         [Route("Siparislerim")]
         public async Task<IActionResult> Index()

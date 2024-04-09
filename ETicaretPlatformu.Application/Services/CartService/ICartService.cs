@@ -15,6 +15,7 @@ namespace ETicaretPlatformu.Application.Services.CartService
         Task RemoveProductFromCart(string userId, int productId);
         Task AddProductToCart(string userId, int productId);
         //Task<CartDto?> GetCartById(string cartId);
+        Task DeleteCart(Cart cart);
         Task<Cart> GetCartByUserId(string userId);
 
     }
