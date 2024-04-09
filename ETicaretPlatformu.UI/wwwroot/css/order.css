@@ -1,6 +1,7 @@
 ﻿.square {
- 
-    object-fit: cover
+    width: 1px;
+    height: 1px;
+    
 }
 
 
