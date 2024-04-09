@@ -64,8 +64,8 @@ namespace ETicaretPlatformu.Application.Services.CategoryService
                     Name = x.Name,
                     Description = x.Description
                 },
-                                              where: x => x.Status != Status.Passive,
-                                              orderBy: x => x.OrderBy(x => x.Name)
+                 where: x => x.Status != Status.Passive,
+                 orderBy: x => x.OrderBy(x => x.Name)
                                                              );
             return categories;
 
