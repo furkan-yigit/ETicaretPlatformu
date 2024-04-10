@@ -22,9 +22,43 @@
     <link rel="icon" type="image/x-icon" href="~/Shop-Home-Page/assets/favicon.ico" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
+
+<script>
+    
+        $(document).ready(function () {
+            // Call updateCartBadge when the page loads
+            updateCartBadge();
+
+            // Listen for the 'productAddedToCart' event and update the cart badge
+            $(document).on('productAddedToCart', function () {
+                updateCartBadge();
+            });
+        });
+
+    // Function to update the cart badge using AJAX
+    function updateCartBadge() {
+        var userName = '@User.Identity.Name'; // Get the current user's name
+        $.ajax({
+            url: '@Url.Action("GetCartItemCount", "Cart")',
+            method: 'GET',
+            data: { userName: userName }, // Pass the user name to the controller action
+            success: function (count) {
+                console.log("Badge güncellendi");
+                $('.cart-badge').text(count); // Update the text of the cart badge
+            },
+            error: function (xhr, status, error) {
+                console.error('An error occurred while fetching the cart item count:', error);
+            }
+        });
+    }
+</script>
+
+
+
+</script>
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -87,7 +121,7 @@
                             <i class="bi-cart-fill me-1"></i>
                             Cart
 
-                            @{
+@*                             @{
                                 var cartItemCount = 0; 
                                 if (!string.IsNullOrEmpty(User.Identity.Name))
                                 {
@@ -101,11 +135,13 @@
                                         }
                                     }
                                 }
-                            }
+                            } *@
 
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">@cartItemCount</span>
+                            @* <span class="badge bg-dark text-white ms-1 rounded-pill">@cartItemCount</span> *@
+                            <span class="badge bg-dark text-white ms-1 rounded-pill cart-badge"></span>
                         </button>
                     </form>
+
                 </div>
             </div>
         </nav>

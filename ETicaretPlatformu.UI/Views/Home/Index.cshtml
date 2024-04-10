@@ -10,6 +10,8 @@
     <link href="~/sb-admin-2/css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
     function removeFilter() {
         document.getElementById("category").value = 0;
@@ -20,7 +22,24 @@
         document.getElementById("maxPrice").value = "";
         document.forms[1].submit();
     }
+
+    $(document).ready(function () {
+        $(document).on('click', '.addToCartBtn', function () {
+            var userName = $('#userName').val();
+            var productId = $(this).closest('form').find('.productId').val();
+
+            $.ajax({
+                url: '@Url.Action("AddProductToCart", "Cart")',
+                method: 'POST',
+                data: { userName: userName, productId: productId },
+                success: function (response) {
+                    $(document).trigger('productAddedToCart');
+                }
+            });
+        });
+    });
 </script>
+
 <body>
 
 
@@ -93,11 +112,18 @@
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div class="text-center">
-                                    <form asp-controller="Cart" asp-action="AddProductToCart" method="post">
-                                        <input type="hidden" name="userName" value="@User.Identity.Name" />
-                                        <input type="hidden" name="productId" value="@product.Id" />
-                                        <button type="submit" class="btn btn-outline-dark mt-auto">Add to Cart</button>
+                                @*     <form asp-controller="Cart" asp-action="AddProductToCart" method="post">
+                                <input type="hidden" name="userName" value="@User.Identity.Name" />
+                                <input type="hidden" name="productId" value="@product.Id" />
+                                <button type="submit" class="btn btn-outline-dark mt-auto">Add to Cart</button>
+                                </form> *@
+
+                                    <form id="addToCartForm">
+                                        <input type="hidden" id="userName" value="@User.Identity.Name" />
+                                        <input type="hidden" class="productId" value="@product.Id" />
+                                        <button type="button" class="btn btn-outline-dark mt-auto addToCartBtn">Add to Cart</button>
                                     </form>
+
                                 </div>
                             </div>
                         </div>
@@ -107,7 +133,7 @@
         </div> <!-- Close the container -->
     </section> <!-- Close the section -->
 
-    
+
 
 </body>
 
