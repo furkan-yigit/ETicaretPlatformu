@@ -35,7 +35,7 @@ namespace ETicaretPlatformu.UI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddProductToCart(string userName, int productId)
+        public async Task<IActionResult> AddProductToCart(string userName, int productId, string returnURL)
         {
             var user = await _userService.GetByUserName(userName);
             try
@@ -49,6 +49,8 @@ namespace ETicaretPlatformu.UI.Controllers
             }
 
             return RedirectToAction("GetCart", new { userId = user.Id });
+            //return Redirect(returnURL);
+            //return Ok("kayıt başarılı");
         }
 
         public async Task<IActionResult> RemoveProductFromCart(string userName, int productId)
