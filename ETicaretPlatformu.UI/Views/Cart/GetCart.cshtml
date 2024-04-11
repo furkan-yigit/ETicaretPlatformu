@@ -14,9 +14,9 @@
 
         <table class="table table-striped">
             <tr>
-                <th>Book</th>
+                <th>Product Name</th>
                 <th>Image</th>
-                <th>Genre</th>
+                <th>Category</th>
                 <th>Unit Price(INR)</th>
                 <th>Total Price</th>
                 <th>Action</th>
@@ -32,17 +32,13 @@
                         }
                         else
                             {
-                                <img src="wwwroot/images/@item.Product." style="width:80px;height:100px" />
+                                <img src=@item.Product.ImagePath style="width:80px;height:100px" />
                             }
                     </td>
                     <td>@item.Product.Category.Name</td>
                     <td>@item.Product.Price X @item.Quantity</td>
                     <td>@(item.Product.Price * item.Quantity)</td>
-                    <td>
-                        @*<form asp-controller="Cart" asp-action="AddProductToCart" asp-route-productId="@item.ProductId" asp-route-userName="@User.Identity.Name" method="post">
-                                <a class="btn btn-info">+</a>
-                            </form>*@
-
+                    <td class="d-flex">
                         <form asp-controller="Cart" asp-action="AddProductToCart" asp-route-userName="@User.Identity.Name" method="post">
                             <input type="hidden" name="productId" value="@item.ProductId" />
                             <button type="submit" class="btn btn-info">+</button>
@@ -62,7 +58,7 @@
         </div>
 
         <div class="my-2">
-            <a class="btn btn-primary" asp-area="" method="post" asp-controller="Order" asp-action="Checkout" asp-route-userId="@Model.UserId">Checkout</a>
+            <a class="btn btn-primary" href="/Cart/Checkout">Checkout</a>
         </div>
 
     }

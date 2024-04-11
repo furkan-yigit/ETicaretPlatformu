@@ -128,6 +128,7 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         {
                             Id = 1,
 <<<<<<< HEAD
+<<<<<<< HEAD
                             CreateDate = new DateTime(2024, 4, 9, 20, 32, 7, 743, DateTimeKind.Local).AddTicks(410),
 =======
                             CreateDate = new DateTime(2024, 4, 7, 16, 26, 35, 559, DateTimeKind.Local).AddTicks(1323),
@@ -185,6 +186,12 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                             Description = "Spor ve Outdoor Ürünleri",
                             Name = "Spor & Outdoor",
                             Status = 1
+=======
+                            CreateDate = new DateTime(2024, 4, 7, 15, 25, 6, 948, DateTimeKind.Local).AddTicks(1870),
+                            Description = "Elektronik Ürünler",
+                            Name = "Elektronik",
+                            Status = 1
+>>>>>>> origin/Sila
                         });
                 });
 
@@ -315,16 +322,21 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                             Id = 1,
                             CategoryId = 1,
 <<<<<<< HEAD
+<<<<<<< HEAD
                             CreateDate = new DateTime(2024, 4, 9, 20, 32, 7, 743, DateTimeKind.Local).AddTicks(551),
 =======
                             CreateDate = new DateTime(2024, 4, 7, 16, 26, 35, 559, DateTimeKind.Local).AddTicks(1523),
 >>>>>>> origin/ece
+=======
+                            CreateDate = new DateTime(2024, 4, 7, 15, 25, 6, 948, DateTimeKind.Local).AddTicks(1920),
+>>>>>>> origin/Sila
                             Description = "Next Generation Smart Phone",
                             ImagePath = "/images/ProductImages/smartPhone.jpg",
                             Name = "Smart Phone",
                             Price = 2000m,
                             Status = 1,
                             StockQuantity = 100
+<<<<<<< HEAD
                         },
                         new
                         {
@@ -469,6 +481,8 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                             Price = 150m,
                             Status = 1,
                             StockQuantity = 100
+=======
+>>>>>>> origin/Sila
                         });
                 });
 
@@ -568,12 +582,17 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                             Id = "1",
                             AccessFailedCount = 0,
 <<<<<<< HEAD
+<<<<<<< HEAD
                             ConcurrencyStamp = "bc7987aa-c391-4a83-bb13-7abf852fcff0",
                             CreateDate = new DateTime(2024, 4, 9, 20, 32, 7, 725, DateTimeKind.Local).AddTicks(9239),
 =======
                             ConcurrencyStamp = "7efa8dec-9faa-4122-8331-8cec40533f47",
                             CreateDate = new DateTime(2024, 4, 7, 16, 26, 35, 550, DateTimeKind.Local).AddTicks(8282),
 >>>>>>> origin/ece
+=======
+                            ConcurrencyStamp = "31deef46-2f8b-4c7e-9b41-eb2683915eee",
+                            CreateDate = new DateTime(2024, 4, 7, 15, 25, 6, 940, DateTimeKind.Local).AddTicks(7850),
+>>>>>>> origin/Sila
                             Email = "admin@example.com",
                             EmailConfirmed = true,
                             FirstName = "admin",
@@ -582,6 +601,7 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@EXAMPLE.COM",
                             NormalizedUserName = "ADMIN",
+<<<<<<< HEAD
 <<<<<<< HEAD
                             PasswordHash = "AQAAAAEAACcQAAAAEPTNuV1ZhCFinP64cKIlwScAd1uYtSdpQHREzfdmzJjJC2b42N234vKqYi6mdJ+2qQ==",
                             PaymentMethod = 0,
@@ -593,6 +613,12 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "a2f954cb-b0e0-47f2-880f-bd2d38eaafb7",
 >>>>>>> origin/ece
+=======
+                            PasswordHash = "AQAAAAEAACcQAAAAEBd+bPqVFRItPRtaOyiW5DRxim6bcqxYsQsieyjIOVIMk3wLhvWdT7XzM5Wu3dW+aA==",
+                            PaymentMethod = 0,
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "0d12309f-31ab-4c9f-921e-568f36d24f65",
+>>>>>>> origin/Sila
                             Status = 1,
                             TwoFactorEnabled = false,
                             UserName = "admin"

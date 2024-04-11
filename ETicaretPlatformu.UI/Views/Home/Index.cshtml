@@ -113,18 +113,11 @@
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div class="text-center">
-                                @*     <form asp-controller="Cart" asp-action="AddProductToCart" method="post">
-                                <input type="hidden" name="userName" value="@User.Identity.Name" />
-                                <input type="hidden" name="productId" value="@product.Id" />
-                                <button type="submit" class="btn btn-outline-dark mt-auto">Add to Cart</button>
-                                </form> *@
-
-                                    <form id="addToCartForm">
-                                        <input type="hidden" id="userName" value="@User.Identity.Name" />
-                                        <input type="hidden" class="productId" value="@product.Id" />
-                                        <button type="button" class="btn btn-outline-dark mt-auto addToCartBtn">Add to Cart</button>
+                                    <form asp-controller="Cart" asp-action="AddProductToCart" method="post" asp-route-returnURL ="@Context.Request.Query["returnURL"]">
+                                        <input type="hidden" name="userName" value="@User.Identity.Name" />
+                                        <input type="hidden" name="productId" value="@product.Id" />
+                                        <button type="submit" class="btn btn-outline-dark mt-auto">Add to Cart</button>
                                     </form>
-
                                 </div>
                             </div>
                         </div>
@@ -133,8 +126,5 @@
             </div> <!-- Close the row for cards -->
         </div> <!-- Close the container -->
     </section> <!-- Close the section -->
-
-
-
 </body>
 
