@@ -13,7 +13,7 @@ namespace ETicaretPlatformu.Domain.Entities
         public string UserId { get; set; }
         public User User { get; set; }
         public ICollection<OrderDetail> OrderDetails { get; set; }
-
+        public OrderStatus OrderStatus { get; set; } = OrderStatus.Pending;
         public DateTime CreateDate { get; set; } = DateTime.Now;
         public DateTime? UpdateDate { get; set; }
         public DateTime? DeleteDate { get; set; }

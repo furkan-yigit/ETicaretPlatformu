@@ -30,7 +30,7 @@
                                         <div class="form-floating mb-3">
                                            
                                             <select asp-for="UserId" class="form-control">
-                                                <option>Kullanıcı seçiniz</option>
+                                                <option>Select User</option>
                                                 @foreach (UserDto item in ViewBag.Users)
                                                 {
                                                     User user = await manager.FindByNameAsync(@item.UserName);
@@ -38,7 +38,7 @@
                                                         }
  
                                             </select>
-                                            <label asp-for="UserId" class="control-label"></label>
+                                            <label asp-for="UserId" class="control-label">User</label>
                                             <span asp-validation-for="UserId" class="text-danger"></span>
                                             </div>
 

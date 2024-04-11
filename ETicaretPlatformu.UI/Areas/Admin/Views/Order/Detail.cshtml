@@ -1,4 +1,5 @@
 ﻿@using ETicaretPlatformu.Application.Models.DTOs.OrderDto
+@using ETicaretPlatformu.Domain.Entities
 @model UpdateOrderDto
 @{
     ViewData["Title"] = "Detail";
@@ -25,18 +26,43 @@
                                 <div class="card-body">
 
                                     <div class="detail-item">
-                                        <span class="label">ID:</span>
+                                        <span class="label  fw-bold">ID:</span>
                                         <span class="value">@Model.Id</span>
                                     </div>
 
-                                    <div class="detail-item">
-                                        <span class="label">User:</span>
+                                    <div class="detail-item ">
+                                        <span class="label  fw-bold">User:</span>
                                         <span class="value">@Model.User.UserName</span>
                                     </div>
+
+
+                                    <div class="detail-item avatar-group">
+                                        <span class="label fw-bold">Products:</span>
+                                        <br />
+                                        @{
+                                            decimal totalPrice = 0;
+                                        }
+                                        @foreach (OrderDetail detail in Model.OrderDetails)
+                                        {
+                                            decimal price = detail.Product.Price * detail.Quantity; 
+                                            totalPrice += price;
+                                            <span class="value">
+                                                <img src="@detail.Product.ImagePath" class="img rounded-circle " style="width:24px" />
+                                                @detail.Product.Name x @detail.Quantity $@price.ToString("F1")
+                                            </span>
+                                        }
+                                    </div>
+
+
+                                    <div class="detail-item">
+                                        <span class="label fw-bold">Total price:</span>
+                                        <span class="value">$@totalPrice</span>
+                                    </div>
+
                                 </div>
                                 <div class="card-footer text-center py-3">
-                                    <a class="btn btn-success" asp-area="Admin" asp-controller="Order" asp-action="Update" asp-route-value=@Model.Id>Güncelle</a>
-                                    <a class="btn btn-primary" asp-area="Admin" asp-controller="Order" asp-action="Index">Listeye Dön</a>  
+                                    <a class="btn btn-success" asp-area="Admin" asp-controller="Order" asp-action="Update" asp-route-id=@Model.Id>Save</a>
+                                    <a class="btn btn-primary" asp-area="Admin" asp-controller="Order" asp-action="Index">Back to list</a>
                                 </div>
                             </div>
                         </div>

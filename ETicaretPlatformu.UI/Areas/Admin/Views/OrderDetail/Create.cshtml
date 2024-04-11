@@ -25,14 +25,14 @@
                                         <div class="form-floating mb-3">
 
                                             <select asp-for="ProductId" class="form-control">
-                                                <option>Ürün seçiniz</option>
+                                                <option>Select Product</option>
                                                 @foreach (ProductVM item in ViewBag.products)
                                                 {
                                                     <option value=@item.Id>@item.Name </option>
                                                 }
 
                                             </select>
-                                            <label asp-for="ProductId" class="control-label"></label>
+                                            <label asp-for="ProductId" class="control-label"> Product</label>
                                             <span asp-validation-for="ProductId" class="text-danger"></span>
                                         </div>
 
@@ -46,7 +46,7 @@
 
                                         <div class="d-flex justify-content-between mt-4 mb-0">
                                             <div>
-                                                <a asp-area="Admin" asp-action="Index" class="btn btn-secondary">Back to List</a>
+                                                <a asp-area="Admin" asp-controller="Order" asp-action="Index" class="btn btn-secondary">Back to List</a>
                                             </div>
                                             <input type="submit" value="Create" class="btn btn-primary" />
 

@@ -1,5 +1,6 @@
 ﻿@using ETicaretPlatformu.Application.Models.DTOs.OrderDto
 @using ETicaretPlatformu.Domain.Entities
+@using ETicaretPlatformu.Domain.Enums
 @using Microsoft.AspNetCore.Identity
 @model UpdateOrderDto
 @{
@@ -24,20 +25,37 @@
 
 
                                         <input type="hidden" asp-for="Id" />
-                                        <select asp-for="UserId" class="form-control">
-                                            <option>Kullanıcı seçiniz</option>
-                                            @foreach (UserDto item in ViewBag.Users)
-                                            {
-                                                User selectedUser = await manager.FindByNameAsync(@item.UserName);
-                                                <option value=@selectedUser.Id>@item.UserName</option>
-                                            }
 
-                                        </select>
-                                        <label asp-for="UserId" class="control-label"></label>
-                                        <span asp-validation-for="UserId" class="text-danger"></span>
+                                        <div class="form-floating">
+                                            <select asp-for="UserId" class="form-control">
+                                                <option>Select User</option>
+                                                @foreach (UserDto item in ViewBag.Users)
+                                                {
+                                                    User selectedUser = await manager.FindByNameAsync(@item.UserName);
+                                                    <option value=@selectedUser.Id>@item.UserName</option>
+                                                }
+
+                                            </select>
+                                            <label asp-for="UserId" class="control-label">User</label>
+                                            <span asp-validation-for="UserId" class="text-danger"></span>
+                                        </div>
+                                    
                                         @{
                                             User user = await manager.FindByIdAsync(@Model.UserId);
                                         }
+
+                                        <div class="form-floating mt-3">
+                                            <select asp-for="OrderStatus" class="form-control">
+                                            
+                                                @foreach (OrderStatus item in Enum.GetValues(typeof(OrderStatus)))
+                                                {
+                                                    <option value=@item>@item.ToString()</option>
+                                                }
+
+                                            </select>
+                                            <label asp-for="OrderStatus" class="control-label">Order Status</label>
+                                            <span asp-validation-for="OrderStatus" class="text-danger"></span>
+                                        </div>
 
                                         <input type="hidden" asp-for="User" asp-value=@user />
                                         <div class="d-flex justify-content-between mt-4 mb-0">

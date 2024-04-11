@@ -72,7 +72,9 @@ namespace ETicaretPlatformu.Application.Services.OrderService
                  (
                 select: x => _mapper.Map<OrderVm>(x),
             where: x => x.Status != Status.Passive,
-            include:x=>x.Include(x => x.User).Include(x=> x.OrderDetails).ThenInclude(x=>x.Product) );
+            include:x=>x.Include(x => x.User).Include(x=> x.OrderDetails).ThenInclude(x=>x.Product),
+            orderBy:x=>x.OrderBy(x=>x.OrderStatus)
+            );
 
             
 
