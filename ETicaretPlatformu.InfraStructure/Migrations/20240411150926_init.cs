@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ETicaretPlatformu.InfraStructure.Migrations
 {
-    public partial class initial : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -233,7 +233,7 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     StockQuantity = table.Column<int>(type: "int", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
@@ -329,31 +329,12 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreateDate", "DeleteDate", "Email", "EmailConfirmed", "FirstName", "ImagePath", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PaymentMethod", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Status", "TwoFactorEnabled", "UpdateDate", "UserName" },
-<<<<<<<< HEAD:ETicaretPlatformu.InfraStructure/Migrations/20240407111142_initial.cs
-                values: new object[] { "1", 0, "8c65f9e0-feb9-438e-8f0c-c59bfecda5a3", new DateTime(2024, 4, 7, 14, 11, 41, 570, DateTimeKind.Local).AddTicks(223), null, "admin@example.com", true, "admin", "/images/01-admin.jpg", "admin", false, null, "ADMIN@EXAMPLE.COM", "ADMIN", "AQAAAAEAACcQAAAAEKivSCGKXXDTexC3BliTcPP2rDlMiFotI2OHLtqkFiMT2q2TtqOO0xGrBHYYZaCd9A==", 0, null, false, "59ac1bbb-18c2-423f-87f0-0a9996828aa8", 1, false, null, "admin" });
-========
-                values: new object[] { "1", 0, "f7e8ada4-5be1-46c0-b5b3-e4b9af4e9100", new DateTime(2024, 4, 7, 0, 37, 18, 690, DateTimeKind.Local).AddTicks(4018), null, "admin@example.com", true, "admin", "/images/01-admin.jpg", "admin", false, null, "ADMIN@EXAMPLE.COM", "ADMIN", "AQAAAAEAACcQAAAAEDQ/NmxE2UYyCfXOJSqRI3h4MQGvutLOuNl41Ki1Iiex9DT8LYrnYd2hEi6s3Fi6xA==", 0, null, false, "6e5cc54b-4d82-4346-9d82-8e6e361e1d91", 1, false, null, "admin" });
->>>>>>>> origin/Sila:ETicaretPlatformu.InfraStructure/Migrations/20240406213719_initial.cs
+                values: new object[] { "1", 0, "9c8d9966-472c-4be4-ad61-124d589f8040", new DateTime(2024, 4, 11, 18, 9, 26, 96, DateTimeKind.Local).AddTicks(3036), null, "admin@example.com", true, "admin", "/images/01-admin.jpg", "admin", false, null, "ADMIN@EXAMPLE.COM", "ADMIN", "AQAAAAEAACcQAAAAEHqK1JjnWyIRCGOU6SRWqns+NALNRS0PiNJAMh1iZ2VQy5DRvUqPDRhNBcvtNXrXMw==", 0, null, false, "4f0046c6-202f-4a7a-ab34-36c828af5fe9", 1, false, null, "admin" });
 
             migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "Id", "CreateDate", "DeleteDate", "Description", "Name", "Status", "UpdateDate" },
-                values: new object[,]
-                {
-<<<<<<<< HEAD:ETicaretPlatformu.InfraStructure/Migrations/20240407111142_initial.cs
-                    { 1, new DateTime(2024, 4, 7, 14, 11, 41, 579, DateTimeKind.Local).AddTicks(214), null, "Elektronik Ürünler", "Elektronik", 1, null },
-                    { 2, new DateTime(2024, 4, 7, 14, 11, 41, 579, DateTimeKind.Local).AddTicks(228), null, "Giyim Ürünleri", "Giyim", 1, null },
-                    { 3, new DateTime(2024, 4, 7, 14, 11, 41, 579, DateTimeKind.Local).AddTicks(229), null, "Ev ve Yaşam Ürünleri", "Ev & Yaşam", 1, null },
-                    { 4, new DateTime(2024, 4, 7, 14, 11, 41, 579, DateTimeKind.Local).AddTicks(230), null, "Kitaplar", "Book", 1, null },
-                    { 5, new DateTime(2024, 4, 7, 14, 11, 41, 579, DateTimeKind.Local).AddTicks(232), null, "Spor ve Outdoor Ürünleri", "Spor & Outdoor", 1, null }
-========
-                    { 1, new DateTime(2024, 4, 7, 0, 37, 18, 697, DateTimeKind.Local).AddTicks(2839), null, "Elektronik Ürünler", "Elektronik", 1, null },
-                    { 2, new DateTime(2024, 4, 7, 0, 37, 18, 697, DateTimeKind.Local).AddTicks(2846), null, "Giyim Ürünleri", "Giyim", 1, null },
-                    { 3, new DateTime(2024, 4, 7, 0, 37, 18, 697, DateTimeKind.Local).AddTicks(2847), null, "Ev ve Yaşam Ürünleri", "Ev & Yaşam", 1, null },
-                    { 4, new DateTime(2024, 4, 7, 0, 37, 18, 697, DateTimeKind.Local).AddTicks(2848), null, "Kitaplar", "Kitap", 1, null },
-                    { 5, new DateTime(2024, 4, 7, 0, 37, 18, 697, DateTimeKind.Local).AddTicks(2849), null, "Spor ve Outdoor Ürünleri", "Spor & Outdoor", 1, null }
->>>>>>>> origin/Sila:ETicaretPlatformu.InfraStructure/Migrations/20240406213719_initial.cs
-                });
+                values: new object[] { 1, new DateTime(2024, 4, 11, 18, 9, 26, 97, DateTimeKind.Local).AddTicks(5595), null, "Elektronik Ürünler", "Elektronik", 1, null });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
@@ -363,19 +344,7 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
             migrationBuilder.InsertData(
                 table: "Products",
                 columns: new[] { "Id", "CategoryId", "CreateDate", "DeleteDate", "Description", "ImagePath", "Name", "Price", "Status", "StockQuantity", "UpdateDate" },
-                values: new object[,]
-                {
-                    { 1, 1, new DateTime(2024, 4, 7, 0, 37, 18, 697, DateTimeKind.Local).AddTicks(2879), null, "Next Generation Smart Phone", "/images/ProductImages/smartPhone.jpg", "Smart Phone", 2000m, 1, 100, null },
-                    { 2, 1, new DateTime(2024, 4, 7, 0, 37, 18, 697, DateTimeKind.Local).AddTicks(2883), null, "Wireless Headphones", "/images/ProductImages/HeadPhones.jpg", "Headphones", 100m, 1, 200, null },
-                    { 3, 2, new DateTime(2024, 4, 7, 0, 37, 18, 697, DateTimeKind.Local).AddTicks(2884), null, "New Season Women's Dress", "/images/ProductImages/Dress.jpg", "Dress", 150m, 1, 150, null },
-                    { 4, 2, new DateTime(2024, 4, 7, 0, 37, 18, 697, DateTimeKind.Local).AddTicks(2886), null, "Slim Fit Men's Shirt", "/images/ProductImages/Shirt.jpg", "Shirt", 80m, 1, 120, null },
-                    { 5, 3, new DateTime(2024, 4, 7, 0, 37, 18, 697, DateTimeKind.Local).AddTicks(2887), null, "5-Function Kitchen Robot", "/images/ProductImages/KitchenRobot.jpg", "Kitchen Robot", 300m, 1, 80, null },
-                    { 6, 3, new DateTime(2024, 4, 7, 0, 37, 18, 697, DateTimeKind.Local).AddTicks(2889), null, "Flowering Houseplant", "/images/ProductImages/HousePlant.jpg", "Houseplant", 50m, 1, 300, null },
-                    { 7, 4, new DateTime(2024, 4, 7, 0, 37, 18, 697, DateTimeKind.Local).AddTicks(2890), null, "Latest Science Fiction Novel", "/images/ProductImages/ScienceFictionNovel.jpg", "Fiction Novel", 20m, 1, 500, null },
-                    { 8, 4, new DateTime(2024, 4, 7, 0, 37, 18, 697, DateTimeKind.Local).AddTicks(2892), null, "Ottoman Empire History Book", "/images/ProductImages/HistoryBook.jpg", "History Book", 30m, 1, 400, null },
-                    { 9, 5, new DateTime(2024, 4, 7, 0, 37, 18, 697, DateTimeKind.Local).AddTicks(2893), null, "Yoga Exercise Mat", "/images/ProductImages/YogaMat.jpg", "Yoga Mat", 25m, 1, 200, null },
-                    { 10, 5, new DateTime(2024, 4, 7, 0, 37, 18, 697, DateTimeKind.Local).AddTicks(2895), null, "2-Person Camping Tent", "/images/ProductImages/CampingTent.jpg", "Camping Tent", 150m, 1, 100, null }
-                });
+                values: new object[] { 1, 1, new DateTime(2024, 4, 11, 18, 9, 26, 97, DateTimeKind.Local).AddTicks(5613), null, "Next Generation Smart Phone", "/images/ProductImages/smartPhone.jpg", "Smart Phone", 2000m, 1, 100, null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
