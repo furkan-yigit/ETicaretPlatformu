@@ -1,0 +1,10 @@
+﻿@model List<ETicaretPlatformu.Application.Models.VMs.CatagoryVM.CatagoryVM>
+
+<ul class="list-unstyled text-center" style="font-size: 1.2rem;">
+    @foreach (var category in Model)
+    {
+        <li style="margin-bottom: 10px;">
+            <a href="#" class="text-decoration-none text-dark">@category.Name</a>
+        </li>
+    }
+</ul>
