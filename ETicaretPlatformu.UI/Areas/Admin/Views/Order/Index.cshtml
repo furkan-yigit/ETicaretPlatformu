@@ -12,15 +12,14 @@
     <div>
         <a asp-action="Create" asp-area="Admin" asp-controller="Order" class="btn btn-success">Create New Order</a>
     </div>
-    <br />
-    <div class="row"></div>
+    <div class="row">
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
             Order Table
         </div>
         <div class="card-body">
-            <table id="datatablesSimple">
+                <table id="datatablesSimple">
                 <thead>
                     <tr>
                         <th>
@@ -41,31 +40,25 @@
                         <th></th>
                     </tr>
                 </thead>
+
                 <tbody>
 
                     @foreach (var item in Model)
                     {
                         <tr>
-
                             <td>
                                 @Html.DisplayFor(model => item.Id)
                             </td>
                             @{
                                 decimal totalPrice = 0;
                             }
-                            @if (item.OrderDetails.Count == 0)
-                            {
-                                <td></td>
-                            }
+                           
                             <td>
-                            @foreach (OrderDetailVm detail in item.OrderDetails)
-                            {
-                              
+                                @foreach (OrderDetailVm detail in item.OrderDetails)
+                                {
                                     <p> <span> @detail.Product.Name</span>  x <span>@detail.Quantity</span> </p>
-                              
-                                totalPrice += detail.Product.Price * detail.Quantity;
-
-                            }
+                                    totalPrice += detail.Product.Price * detail.Quantity;
+                                }
                             </td>
 
                             <td>
@@ -76,7 +69,7 @@
                                 @Html.DisplayFor(model => item.User.UserName)
                             </td>
 
-                            <td class="">
+                            <td >
                                 @{
                                     string stat = item.OrderStatus.ToString();
                                     switch (item.OrderStatus)
@@ -95,9 +88,7 @@
                                             <span class="bg-success fw-bold text-white px-5 py-2 mx-0 badge fs-6">@stat</span>
                                             break;
                                     }
-
                                 }
-
                             </td>
 
                             <td>
@@ -115,5 +106,6 @@
                 </tbody>
             </table>
         </div>
+    </div>
     </div>
 </div>

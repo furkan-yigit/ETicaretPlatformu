@@ -57,6 +57,32 @@
                                             <span asp-validation-for="OrderStatus" class="text-danger"></span>
                                         </div>
 
+                                        @for (int i = 0; i < Model.OrderDetails.Count; i++)
+                                        {
+                                            <div class="form-floating mt-3">
+
+                                                <span>
+                                                    @Model.OrderDetails[i].Product.Name
+                                                </span>
+
+                                                <input class="form-control" type="number" asp-for="OrderDetails[i].Quantity" value="OrderDetails[i].Quantity">
+                                                </input>
+                                                <label asp-for="OrderDetails[i].Quantity" class="control-label">Quantity</label>
+                                                <span asp-validation-for="OrderDetails[i].Quantity" class="text-danger"></span>
+                                            </div>
+                                        }
+
+                                        @foreach (var detail in Model.OrderDetails)
+                                        {
+                                          
+                                        }
+
+
+
+                                        <a asp-action="Create" asp-area="Admin" asp-controller="OrderDetail" asp-route-orderId=@Model.Id class="btn btn-success">Add/Change product</a>
+
+
+
                                         <input type="hidden" asp-for="User" asp-value=@user />
                                         <div class="d-flex justify-content-between mt-4 mb-0">
                                             <div>
@@ -66,6 +92,8 @@
 
                                         </div>
                                     </form>
+
+                                  
                                 </div>
                                 <div class="card-footer text-center py-3">
                                     <div class="small"></div>

@@ -15,7 +15,7 @@ namespace ETicaretPlatformu.Application.Models.DTOs.OrderDto
         public string UserId { get; set; }
         public OrderStatus OrderStatus { get; set; }
         public DateTime CreateDate { get; set; }
-        public ICollection<OrderDetail> OrderDetails { get; set; }
+        public List<OrderDetail> OrderDetails { get; set; }
 
     }
 }
