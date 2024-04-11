@@ -1,5 +1,4 @@
 ﻿@using ETicaretPlatformu.Application.Models.VMs.Order
-@using System.Drawing
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -10,9 +9,9 @@
 
 <div class="container-fluid px-4 mt-3">
     <div>
-        <a asp-action="Create" asp-area="Admin" asp-controller="Order" class="btn btn-success">Create New Order</a>
+        <a asp-action="Create" asp-area="Admin" asp-controller="Order" class="btn btn-success my-4">Create New Order</a>
     </div>
-    <div class="row">
+    <div >
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
@@ -92,8 +91,6 @@
                             </td>
 
                             <td>
-                                <a asp-action="Create" asp-area="Admin" asp-controller="OrderDetail" asp-route-orderId=@item.Id class="btn btn-success">Add/Change product</a>
-
                                 <a asp-action="Update" asp-area="Admin" asp-controller="Order" asp-route-id=@item.Id class="btn btn-primary">Update Order</a>
 
                                 <a asp-action="Detail" asp-area="Admin" asp-controller="Order" asp-route-id=@item.Id class="btn btn-warning"> Details </a>

@@ -89,7 +89,7 @@ namespace ETicaretPlatformu.UI.Controllers
         public async Task<IActionResult> Details(int id)
         {
             var user = await _userManager.GetUserAsync(User);
-            var Order = await _orderService.GetById(id);
+            var Order = await _orderService.GetVmById(id);
 
             if (Order.User == user)
             {

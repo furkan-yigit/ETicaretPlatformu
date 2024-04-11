@@ -2,7 +2,7 @@
 @using ETicaretPlatformu.Domain.Entities
 @using ETicaretPlatformu.Domain.Enums
 <link href="~/css/orderDetail.css" rel="stylesheet">
-@model UpdateOrderDto
+@model OrderVm
 @{
     ViewData["Title"] = "Details";
 }
@@ -52,7 +52,7 @@
                                 @{
                                     decimal sumPrice = 0;
                                 }
-                                @foreach (OrderDetail vm in Model.OrderDetails)
+                                @foreach (OrderDetailVm vm in Model.OrderDetails)
                                 {
                                     <tr>
                                         <td>
