@@ -5,6 +5,14 @@
     ViewData["Title"] = "Create";
 }
 
+<head>
+    <!-- jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+
+    <!-- jQuery Validation library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js" crossorigin="anonymous"></script>
+</head>
 
 
 <body class="bg-primary">
@@ -30,7 +38,7 @@
                                         <div class="form-floating mb-3">
                                             <input asp-for="Description" class="form-control" />
                                             <label asp-for="Description" class="control-label"></label>
-                                            <span asp-validation-for="Description" class="text-danger"></span>
+                                            
                                         </div>
 
                                         <div class="form-floating mb-3">
@@ -49,8 +57,8 @@
 
                                         <div class="form-floating mb-3">
                                             
-                                            <select asp-for="CategoryId" class="form-control">
-                                                <option>Kategori seçiniz</option>
+                                            <select asp-for="CategoryId" name="CategoryId"  class="form-control">
+                                                <option value="">Kategori seçiniz</option>
                                                 @foreach (CatagoryVM item in ViewBag.Kategoriler)
                                                 {
                                                     <option value="@item.Id">@item.Name</option>
@@ -105,10 +113,6 @@
                 </text>
             }
         </script>
-   @*  <script src="/sb-admin-2/js/scripts.js"></script> *@
 
-    <!-- Visual Studio Browser Link -->
-    @* <script type="text/javascript" src="/_vs/browserLink" async="async" id="__browserLink_initializationData" data-requestId="ef763705b4fb4e1e80c939d295980225" data-requestMappingFromServer="false" data-connectUrl="http://localhost:65104/dd4c240f816d49f3858ae429cf67fc54/browserLink"></script>
-    <!-- End Browser Link -->
-    <script src="/_framework/aspnetcore-browser-refresh.js"></script> *@
+      
 </body>

@@ -1,64 +1,57 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿@model IEnumerable<ETicaretPlatformu.Application.Models.VMs.ProductVMs.ProductVM>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop in Style</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <style>
-        /* Custom styles go here */
-        .product-card {
-            border: 1px solid #dee2e6;
-            border-radius: 15px;
-            transition: all 0.3s ease;
-            margin-bottom: 30px;
-        }
-
-            .product-card:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            }
-
-            .product-card img {
-                border-top-left-radius: 15px;
-                border-top-right-radius: 15px;
-                height: 250px;
-                object-fit: cover;
-            }
-
-            .product-card .card-body {
-                padding: 1.5rem;
-            }
-
-            .product-card h5 {
-                font-size: 1.25rem;
-                font-weight: bold;
-                color: #343a40;
-            }
-
-            .product-card p {
-                font-size: 1rem;
-                color: #6c757d;
-            }
-
-            .product-card .card-footer {
-                background-color: transparent;
-                border-top: none;
-            }
-    </style>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Dashboard - SB Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="~/sb-admin-2/css/styles.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    function removeFilter() {
+        document.getElementById("category").value = 0;
+        document.forms[1].submit();
+    }
+    function removePriceFilter() {
+        document.getElementById("minPrice").value = "";
+        document.getElementById("maxPrice").value = "";
+        document.forms[1].submit();
+    }
+
+    $(document).ready(function () {
+        $(document).on('click', '.addToCartBtn', function () {
+            var userName = $('#userName').val();
+            var productId = $(this).closest('form').find('.productId').val();
+
+            $.ajax({
+                url: '@Url.Action("AddProductToCart", "Cart")',
+                method: 'POST',
+                data: { userName: userName, productId: productId },
+                success: function (response) {
+                    $(document).trigger('productAddedToCart');
+                }
+            });
+        });
+    });
+</script>
+
 <body>
+
 
     <header class="bg-dark py-5">
         <div class="container px-4 px-lg-5 my-5">
             <div class="text-center text-white">
-                <h1 class="display-4 fw-bolder">Shop in Style</h1>
+                <h1 class="display-4 fw-bolder">Shop in style</h1>
                 <p class="lead fw-normal text-white-50 mb-0">With this shop homepage template</p>
             </div>
         </div>
     </header>
+
 
     <section class="py-5">
         <div class="container px-4 px-lg-5 mt-3">
@@ -105,11 +98,12 @@
             </div>
 
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center mt-5">
-                @foreach (var product in Model)
+                @Html.Partial("_ProductList", Model)
+                @* @foreach (var product in Model)
                 {
                     <div class="col mb-4">
-                        <div class="card product-card h-100">
-                            <img class="card-img-top" src="@product.ImagePath" alt="Product Image" />
+                        <div class="card h-100">
+                            <img class="card-img-top" src="@product.ImagePath" alt="Current Image" style="object-fit: cover; height: 250px;" />
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <h5 class="fw-bolder">@product.Name</h5>
@@ -119,7 +113,7 @@
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div class="text-center">
-                                    <form asp-controller="Cart" asp-action="AddProductToCart" method="post">
+                                    <form asp-controller="Cart" asp-action="AddProductToCart" method="post" asp-route-returnURL ="@Context.Request.Query["returnURL"]">
                                         <input type="hidden" name="userName" value="@User.Identity.Name" />
                                         <input type="hidden" name="productId" value="@product.Id" />
                                         <button type="submit" class="btn btn-outline-dark mt-auto">Add to Cart</button>
@@ -128,7 +122,7 @@
                             </div>
                         </div>
                     </div>
-                }
+                } *@
             </div> <!-- Close the row for cards -->
         </div> <!-- Close the container -->
     </section> <!-- Close the section -->

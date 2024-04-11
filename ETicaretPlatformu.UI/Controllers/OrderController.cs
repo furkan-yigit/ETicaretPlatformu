@@ -22,7 +22,7 @@ namespace ETicaretPlatformu.UI.Controllers
         UserManager<User> _userManager;
         private readonly ICartService _cartService;
 
-        public OrderController(IUserService userService,IOrderDetailService detailService, IOrderService orderService, UserManager<User> userManager, ICartService cartService)
+        public OrderController(IUserService userService, IOrderDetailService detailService, IOrderService orderService, UserManager<User> userManager, ICartService cartService)
 
         {
             _userService = userService;
@@ -36,10 +36,13 @@ namespace ETicaretPlatformu.UI.Controllers
         {
             Cart cart = await _cartService.GetCartByUserId(userId);
             var ord = await _orderService.GetOrders();
-           
+
             if (cart != null)
             {
-                int createdOrderID = ord.Max(x => x.Id) + 1;
+                int createdOrderID = 1;
+                if (ord.Count >= 1)
+                    createdOrderID = ord.Max(x => x.Id) + 1;
+
                 List<OrderDetail> orderDetails = await _detailService.GetOrderDetailsByOrderId(createdOrderID);
 
                 var order = new CreateOrderDto()
@@ -47,7 +50,7 @@ namespace ETicaretPlatformu.UI.Controllers
                     UserId = userId,
                 };
 
-              await  _orderService.Create(order);
+                await _orderService.Create(order);
 
                 foreach (var c in cart.CartLines)
                 {
@@ -57,28 +60,30 @@ namespace ETicaretPlatformu.UI.Controllers
                         Quantity = c.Quantity,
                         OrderId = createdOrderID
                     };
-                  await _detailService.Create(detail);
+                    await _detailService.Create(detail);
                 }
 
-                foreach (var c in cart.CartLines)
-                {
-                    c.Quantity = 1;
-                    _cartService.RemoveProductFromCart(userId,c.ProductId);
-                }
+              _cartService.DeleteCart(cart);
 
             }
-            return RedirectToAction("Index", "Home", new {area=""});
+            return RedirectToAction("Index", "Order", new { area = "" });
         }
         [Route("Siparislerim")]
         public async Task<IActionResult> Index()
         {
             var user = await _userManager.GetUserAsync(User);
-            List<OrderVm> orders=new List<OrderVm>();
+            List<OrderVm> orders = new List<OrderVm>();
             if (user != null)
                 orders = await _orderService.GetOrdersForUser(user.Id);
-            TempData["user"] = user;
+            ViewData["user"] = user;
             ViewBag.orders = orders;
             return View();
+        }
+
+        public async Task<IActionResult> Details(int id)
+        {
+            var Order=await _orderService.GetById(id);
+            return View(Order);
         }
     }
 }

@@ -19,19 +19,17 @@ namespace ETicaretPlatformu.Application.Models.DTOs.ProductDTOs
         public int Id { get; set; }
         [Required(ErrorMessage = "Please enter a product name!")]
         public string Name { get; set; }
-        public string Description { get; set; }
+        public string? Description { get; set; }
         [Required(ErrorMessage = "Please enter a price")]
         [Range(0, int.MaxValue, ErrorMessage = "Product price must be greater than 0!")]        
         public decimal Price { get; set; }
+
         [Required(ErrorMessage = "Please enter a stock quantity")]
         [Range(0, int.MaxValue, ErrorMessage = "Stock quantity must be greater than 0!")]
         public int StockQuantity { get; set; }
+
         [Required(ErrorMessage = "Please select a category")]
-        
         public int CategoryId { get; set; }
-
-        //public List<CatagoryVM> Categories { get; set; }
-
         public string? ImagePath { get; set; }
         
         [PictureFileExtensionAttiribute]
