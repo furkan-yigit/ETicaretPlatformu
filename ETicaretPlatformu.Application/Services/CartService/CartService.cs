@@ -97,6 +97,14 @@ namespace ETicaretPlatformu.Application.Services.CartService
             }
         }
 
+        public async Task DeleteCart(Cart cart)
+        {
+            foreach (var cartLine in cart.CartLines)
+            {
+                await _cartLineRepo.Delete(cartLine);
+            }
+            await _cartRepo.Update(cart);
+        }
 
         public async Task RemoveProductFromCart(string userId, int productId)
         {
