@@ -64,8 +64,7 @@ namespace ETicaretPlatformu.Application.Services.OrderService
             return order;
         }
 
-        Func<IQueryable<OrderVm>, IIncludableQueryable<OrderVm, object>> includeExpression = query => query.Include(entity => entity.User);
-
+        
 
         public async Task<List<OrderVm>> GetOrders()
         {
@@ -73,8 +72,9 @@ namespace ETicaretPlatformu.Application.Services.OrderService
                  (
                 select: x => _mapper.Map<OrderVm>(x),
             where: x => x.Status != Status.Passive,
-            include:x=>x.Include(x=> x.OrderDetails).Include(x => x.User)
-            );
+            include:x=>x.Include(x => x.User).Include(x=> x.OrderDetails).ThenInclude(x=>x.Product) );
+
+            
 
 
             return order;

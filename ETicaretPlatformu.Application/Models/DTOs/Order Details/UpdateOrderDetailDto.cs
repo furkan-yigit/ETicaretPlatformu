@@ -10,9 +10,7 @@ namespace ETicaretPlatformu.Application.Models.DTOs.Order_Details
     public class UpdateOrderDetailDto
     {
         public int Id { get; set; }
-        Order Order { get; set; }
         public int OrderId { get; set; }
-        Product Product { get; set; }
         public int ProductId { get; set; }
 
         public int Quantity { get; set; }
