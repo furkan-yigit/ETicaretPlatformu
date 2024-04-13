@@ -1,18 +1,80 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
+
+/*layout navbar icin*/
+
+.hero-btn {
+    display: inline-block;
+    text-decoration: none;
+    background: #127fc7;
+    color: black;
+    border: 1px  #fff;
+    padding: 5px 15px;
+    font-size: 15px;
+    background: transparent;
+    position: relative;
+    cursor: pointer;
+
+}
+    .hero-btn:hover {
+        background: #127fc7;
+        color: black;
+        box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
+        font-weight: bold;
+    }
+
+.categories-css {
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+    border: 1px  #fff;
+    padding: 15px 150px;
+    font-size: 15px;
+    background: transparent;
+    position: relative;
+    cursor: pointer;
+}
+    .categories-css:hover {
+        background: #127fc7;
+        color: white;
+        transition: 0.5s;
+        border-radius: 50%;
+
+    }
+
+.navbar-item:hover {
+    box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+}
+
+.my-navbar-brand {
+    border-radius: 50%;
+    padding: 10px 15px;
+    background: transparent;
+    transition: background-color 0.3s initial 0.5s;
+    color: #000;
+    text-decoration: none; 
+    font-size: 17px;
+}
+    .my-navbar-brand:hover {
+        background-color: #cfe2ff;
+        color: #000 !important;
+    }
+
+/*layout navbar icin*/

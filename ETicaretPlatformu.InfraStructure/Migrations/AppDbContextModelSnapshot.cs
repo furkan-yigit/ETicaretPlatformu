@@ -127,7 +127,11 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         new
                         {
                             Id = 1,
+<<<<<<< HEAD
                             CreateDate = new DateTime(2024, 4, 12, 13, 42, 21, 345, DateTimeKind.Local).AddTicks(8959),
+=======
+                            CreateDate = new DateTime(2024, 4, 11, 17, 36, 29, 216, DateTimeKind.Local).AddTicks(7109),
+>>>>>>> origin/master
                             Description = "Elektronik Ürünler",
                             Name = "Elektronik",
                             Status = 1
@@ -224,7 +228,6 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImagePath")
@@ -257,7 +260,11 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         {
                             Id = 1,
                             CategoryId = 1,
+<<<<<<< HEAD
                             CreateDate = new DateTime(2024, 4, 12, 13, 42, 21, 345, DateTimeKind.Local).AddTicks(8987),
+=======
+                            CreateDate = new DateTime(2024, 4, 11, 17, 36, 29, 216, DateTimeKind.Local).AddTicks(7165),
+>>>>>>> origin/master
                             Description = "Next Generation Smart Phone",
                             ImagePath = "/images/ProductImages/smartPhone.jpg",
                             Name = "Smart Phone",
@@ -362,8 +369,13 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
+<<<<<<< HEAD
                             ConcurrencyStamp = "84afba55-246f-4a03-9bc7-37931af5c198",
                             CreateDate = new DateTime(2024, 4, 12, 13, 42, 21, 339, DateTimeKind.Local).AddTicks(229),
+=======
+                            ConcurrencyStamp = "e6fe6233-2235-49d5-8dba-836c32853c3a",
+                            CreateDate = new DateTime(2024, 4, 11, 17, 36, 29, 201, DateTimeKind.Local).AddTicks(8044),
+>>>>>>> origin/master
                             Email = "admin@example.com",
                             EmailConfirmed = true,
                             FirstName = "admin",
@@ -372,10 +384,17 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@EXAMPLE.COM",
                             NormalizedUserName = "ADMIN",
+<<<<<<< HEAD
                             PasswordHash = "AQAAAAEAACcQAAAAEKvwiWkomnA9M6JZIPr0y+d8WQTAttyiUnoYUDWIm+XVa5SOhMz7uaa4xYD01ZlyTQ==",
                             PaymentMethod = 0,
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "9da9f077-5619-49ff-82e8-b4abc70bf33c",
+=======
+                            PasswordHash = "AQAAAAEAACcQAAAAEHztt8T7V47zcUbN4DsnMN5uWAy6mHUdk4FOT8JLGGo97s7YgP+8cyEgvI+DwRhg6g==",
+                            PaymentMethod = 0,
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "350a0112-a962-4fd4-a3b7-fd1c6da9c012",
+>>>>>>> origin/master
                             Status = 1,
                             TwoFactorEnabled = false,
                             UserName = "admin"

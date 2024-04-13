@@ -34,26 +34,6 @@ namespace ETicaretPlatformu.Application.Services.ProductService
         {
             var product = _mapper.Map<Product>(model);
 
-
-            if (model.UploadPath != null && model.UploadPath.Length > 0)
-            {
-
-                string fileName = $"{Guid.NewGuid()}{Path.GetExtension(model.UploadPath.FileName)}";
-                string uploadDirectory = Path.Combine("wwwroot", "images");
-                Directory.CreateDirectory(uploadDirectory);
-                string filePath = Path.Combine(uploadDirectory, fileName);
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    await model.UploadPath.CopyToAsync(stream);
-                }
-
-                product.ImagePath = $"/{Path.Combine("images", fileName)}";
-            }
-            else
-            {
-                product.ImagePath = model.ImagePath ?? product.ImagePath;
-            }
-
             product.Name = model.Name;
             product.Description = model.Description;
             product.Price = model.Price;
@@ -66,28 +46,20 @@ namespace ETicaretPlatformu.Application.Services.ProductService
 
         public async Task<string> SaveFile(IFormFile file)
         {
-            // Generate a unique file name to prevent overwriting
             var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-
-            // Define the directory to save the file
             var directory = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images");
 
-            // Ensure the directory exists
             if (!Directory.Exists(directory))
             {
                 Directory.CreateDirectory(directory);
             }
 
-            // Combine directory and file name to get the full file path
             var filePath = Path.Combine(directory, fileName);
-
-            // Save the file to the server
             using (var stream = new FileStream(filePath, FileMode.Create))
             {
                 await file.CopyToAsync(stream);
             }
 
-            // Return the file path
             return "/images/" + fileName;
         }
 
