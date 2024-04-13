@@ -63,7 +63,7 @@ namespace ETicaretPlatformu.UI.Controllers
                     await _detailService.Create(detail);
                 }
 
-              _cartService.DeleteCart(cart);
+              await _cartService.DeleteCart(cart);
 
             }
             return RedirectToAction("Index", "Order", new { area = "" });

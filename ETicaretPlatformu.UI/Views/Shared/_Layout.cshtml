@@ -5,8 +5,8 @@
     var errorMessage = TempData["Error"] as string;
 }
 @{//***Kullanici adi 5 harften uzunsa ilk 5 harfini kullan***
-    var userName = User.Identity.Name;
-    var displayedName = userName.Length > 5 ? userName.Substring(0, 5) + ".." : userName;
+    @*var userName = User.Identity.Name;
+    var displayedName = userName.Length > 5 ? userName.Substring(0, 5) + ".." : userName;*@
 }
 
 @inject ETicaretPlatformu.Application.Services.CartService.ICartService _cartService
@@ -78,7 +78,7 @@
                         {
                             <div class="dropdown">
                                 <a class="btn  dropdown-toggle navbar-item" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fas fa-user fa-fw text-primary"></i> @displayedName
+                                    @*<i class="fas fa-user fa-fw text-primary"></i> @displayedName*@
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="userDropdown">
                                     @if (User.IsInRole("Admin"))

@@ -12,13 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ETicaretPlatformu.InfraStructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-<<<<<<<< HEAD:ETicaretPlatformu.InfraStructure/Migrations/20240412104221_initial.Designer.cs
-    [Migration("20240412104221_initial")]
+    [Migration("20240413211655_initial")]
     partial class initial
-========
-    [Migration("20240411143630_init")]
-    partial class init
->>>>>>>> origin/master:ETicaretPlatformu.InfraStructure/Migrations/20240411143630_init.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -134,11 +129,7 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         new
                         {
                             Id = 1,
-<<<<<<<< HEAD:ETicaretPlatformu.InfraStructure/Migrations/20240412104221_initial.Designer.cs
-                            CreateDate = new DateTime(2024, 4, 12, 13, 42, 21, 345, DateTimeKind.Local).AddTicks(8959),
-========
-                            CreateDate = new DateTime(2024, 4, 11, 17, 36, 29, 216, DateTimeKind.Local).AddTicks(7109),
->>>>>>>> origin/master:ETicaretPlatformu.InfraStructure/Migrations/20240411143630_init.Designer.cs
+                            CreateDate = new DateTime(2024, 4, 14, 0, 16, 55, 9, DateTimeKind.Local).AddTicks(2139),
                             Description = "Elektronik Ürünler",
                             Name = "Elektronik",
                             Status = 1
@@ -267,11 +258,7 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         {
                             Id = 1,
                             CategoryId = 1,
-<<<<<<<< HEAD:ETicaretPlatformu.InfraStructure/Migrations/20240412104221_initial.Designer.cs
-                            CreateDate = new DateTime(2024, 4, 12, 13, 42, 21, 345, DateTimeKind.Local).AddTicks(8987),
-========
-                            CreateDate = new DateTime(2024, 4, 11, 17, 36, 29, 216, DateTimeKind.Local).AddTicks(7165),
->>>>>>>> origin/master:ETicaretPlatformu.InfraStructure/Migrations/20240411143630_init.Designer.cs
+                            CreateDate = new DateTime(2024, 4, 14, 0, 16, 55, 9, DateTimeKind.Local).AddTicks(2164),
                             Description = "Next Generation Smart Phone",
                             ImagePath = "/images/ProductImages/smartPhone.jpg",
                             Name = "Smart Phone",
@@ -376,13 +363,8 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-<<<<<<<< HEAD:ETicaretPlatformu.InfraStructure/Migrations/20240412104221_initial.Designer.cs
-                            ConcurrencyStamp = "84afba55-246f-4a03-9bc7-37931af5c198",
-                            CreateDate = new DateTime(2024, 4, 12, 13, 42, 21, 339, DateTimeKind.Local).AddTicks(229),
-========
-                            ConcurrencyStamp = "e6fe6233-2235-49d5-8dba-836c32853c3a",
-                            CreateDate = new DateTime(2024, 4, 11, 17, 36, 29, 201, DateTimeKind.Local).AddTicks(8044),
->>>>>>>> origin/master:ETicaretPlatformu.InfraStructure/Migrations/20240411143630_init.Designer.cs
+                            ConcurrencyStamp = "220b47e3-741b-4fc9-8f16-c4f2d0b67375",
+                            CreateDate = new DateTime(2024, 4, 14, 0, 16, 55, 2, DateTimeKind.Local).AddTicks(3517),
                             Email = "admin@example.com",
                             EmailConfirmed = true,
                             FirstName = "admin",
@@ -391,17 +373,10 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@EXAMPLE.COM",
                             NormalizedUserName = "ADMIN",
-<<<<<<<< HEAD:ETicaretPlatformu.InfraStructure/Migrations/20240412104221_initial.Designer.cs
-                            PasswordHash = "AQAAAAEAACcQAAAAEKvwiWkomnA9M6JZIPr0y+d8WQTAttyiUnoYUDWIm+XVa5SOhMz7uaa4xYD01ZlyTQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEM8mTg7iQtP1vny7mrAv7Vp1WnKdgAV2mnorq6ElQWJ/bY7py2c3i/OhYt3UnDFQbg==",
                             PaymentMethod = 0,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "9da9f077-5619-49ff-82e8-b4abc70bf33c",
-========
-                            PasswordHash = "AQAAAAEAACcQAAAAEHztt8T7V47zcUbN4DsnMN5uWAy6mHUdk4FOT8JLGGo97s7YgP+8cyEgvI+DwRhg6g==",
-                            PaymentMethod = 0,
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "350a0112-a962-4fd4-a3b7-fd1c6da9c012",
->>>>>>>> origin/master:ETicaretPlatformu.InfraStructure/Migrations/20240411143630_init.Designer.cs
+                            SecurityStamp = "8536b795-1996-4ec4-9a5e-565a26c2e33e",
                             Status = 1,
                             TwoFactorEnabled = false,
                             UserName = "admin"

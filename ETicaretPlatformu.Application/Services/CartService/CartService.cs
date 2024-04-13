@@ -116,7 +116,7 @@ namespace ETicaretPlatformu.Application.Services.CartService
             {
                 await _cartLineRepo.Delete(cartLine);
             }
-            await _cartRepo.Update(cart);
+             await _cartRepo.Update(cart);
         }
 
         public async Task RemoveProductFromCart(string userId, int productId)

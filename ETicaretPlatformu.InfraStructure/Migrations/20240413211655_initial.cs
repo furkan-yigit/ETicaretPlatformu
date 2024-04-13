@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ETicaretPlatformu.InfraStructure.Migrations
 {
-    public partial class init : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -329,20 +329,12 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreateDate", "DeleteDate", "Email", "EmailConfirmed", "FirstName", "ImagePath", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PaymentMethod", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Status", "TwoFactorEnabled", "UpdateDate", "UserName" },
-<<<<<<<< HEAD:ETicaretPlatformu.InfraStructure/Migrations/20240412104221_initial.cs
-                values: new object[] { "1", 0, "84afba55-246f-4a03-9bc7-37931af5c198", new DateTime(2024, 4, 12, 13, 42, 21, 339, DateTimeKind.Local).AddTicks(229), null, "admin@example.com", true, "admin", "/images/01-admin.jpg", "admin", false, null, "ADMIN@EXAMPLE.COM", "ADMIN", "AQAAAAEAACcQAAAAEKvwiWkomnA9M6JZIPr0y+d8WQTAttyiUnoYUDWIm+XVa5SOhMz7uaa4xYD01ZlyTQ==", 0, null, false, "9da9f077-5619-49ff-82e8-b4abc70bf33c", 1, false, null, "admin" });
-========
-                values: new object[] { "1", 0, "e6fe6233-2235-49d5-8dba-836c32853c3a", new DateTime(2024, 4, 11, 17, 36, 29, 201, DateTimeKind.Local).AddTicks(8044), null, "admin@example.com", true, "admin", "/images/01-admin.jpg", "admin", false, null, "ADMIN@EXAMPLE.COM", "ADMIN", "AQAAAAEAACcQAAAAEHztt8T7V47zcUbN4DsnMN5uWAy6mHUdk4FOT8JLGGo97s7YgP+8cyEgvI+DwRhg6g==", 0, null, false, "350a0112-a962-4fd4-a3b7-fd1c6da9c012", 1, false, null, "admin" });
->>>>>>>> origin/master:ETicaretPlatformu.InfraStructure/Migrations/20240411143630_init.cs
+                values: new object[] { "1", 0, "220b47e3-741b-4fc9-8f16-c4f2d0b67375", new DateTime(2024, 4, 14, 0, 16, 55, 2, DateTimeKind.Local).AddTicks(3517), null, "admin@example.com", true, "admin", "/images/01-admin.jpg", "admin", false, null, "ADMIN@EXAMPLE.COM", "ADMIN", "AQAAAAEAACcQAAAAEM8mTg7iQtP1vny7mrAv7Vp1WnKdgAV2mnorq6ElQWJ/bY7py2c3i/OhYt3UnDFQbg==", 0, null, false, "8536b795-1996-4ec4-9a5e-565a26c2e33e", 1, false, null, "admin" });
 
             migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "Id", "CreateDate", "DeleteDate", "Description", "Name", "Status", "UpdateDate" },
-<<<<<<<< HEAD:ETicaretPlatformu.InfraStructure/Migrations/20240412104221_initial.cs
-                values: new object[] { 1, new DateTime(2024, 4, 12, 13, 42, 21, 345, DateTimeKind.Local).AddTicks(8959), null, "Elektronik Ürünler", "Elektronik", 1, null });
-========
-                values: new object[] { 1, new DateTime(2024, 4, 11, 17, 36, 29, 216, DateTimeKind.Local).AddTicks(7109), null, "Elektronik Ürünler", "Elektronik", 1, null });
->>>>>>>> origin/master:ETicaretPlatformu.InfraStructure/Migrations/20240411143630_init.cs
+                values: new object[] { 1, new DateTime(2024, 4, 14, 0, 16, 55, 9, DateTimeKind.Local).AddTicks(2139), null, "Elektronik Ürünler", "Elektronik", 1, null });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
@@ -352,11 +344,7 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
             migrationBuilder.InsertData(
                 table: "Products",
                 columns: new[] { "Id", "CategoryId", "CreateDate", "DeleteDate", "Description", "ImagePath", "Name", "Price", "Status", "StockQuantity", "UpdateDate" },
-<<<<<<<< HEAD:ETicaretPlatformu.InfraStructure/Migrations/20240412104221_initial.cs
-                values: new object[] { 1, 1, new DateTime(2024, 4, 12, 13, 42, 21, 345, DateTimeKind.Local).AddTicks(8987), null, "Next Generation Smart Phone", "/images/ProductImages/smartPhone.jpg", "Smart Phone", 2000m, 1, 100, null });
-========
-                values: new object[] { 1, 1, new DateTime(2024, 4, 11, 17, 36, 29, 216, DateTimeKind.Local).AddTicks(7165), null, "Next Generation Smart Phone", "/images/ProductImages/smartPhone.jpg", "Smart Phone", 2000m, 1, 100, null });
->>>>>>>> origin/master:ETicaretPlatformu.InfraStructure/Migrations/20240411143630_init.cs
+                values: new object[] { 1, 1, new DateTime(2024, 4, 14, 0, 16, 55, 9, DateTimeKind.Local).AddTicks(2164), null, "Next Generation Smart Phone", "/images/ProductImages/smartPhone.jpg", "Smart Phone", 2000m, 1, 100, null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
