@@ -22,3 +22,8 @@ function showNotification(type, message) {
         }, 1000);
     }, 5000);
 }
+
+function toggleUserDropdown() {     //***Layout user dropdown icin***
+    var userDropdownMenu = document.getElementById("userDropdownMenu");
+    userDropdownMenu.classList.toggle("show");
+}

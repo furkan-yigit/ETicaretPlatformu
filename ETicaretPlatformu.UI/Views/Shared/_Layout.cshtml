@@ -4,6 +4,10 @@
 @{
     var errorMessage = TempData["Error"] as string;
 }
+@{//***Kullanici adi 5 harften uzunsa ilk 5 harfini kullan***
+    var userName = User.Identity.Name;
+    var displayedName = userName.Length > 5 ? userName.Substring(0, 5) + ".." : userName;
+}
 
 @inject ETicaretPlatformu.Application.Services.CartService.ICartService _cartService
 @inject ETicaretPlatformu.Application.Services.UserService.IUserService _userService
@@ -25,18 +29,17 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
-
 <script>
-    
-        $(document).ready(function () {
-            // Call updateCartBadge when the page loads
-            updateCartBadge();
 
-            // Listen for the 'productAddedToCart' event and update the cart badge
-            $(document).on('productAddedToCart', function () {
-                updateCartBadge();
-            });
+    $(document).ready(function () {
+        // Call updateCartBadge when the page loads
+        updateCartBadge();
+
+        // Listen for the 'productAddedToCart' event and update the cart badge
+        $(document).on('productAddedToCart', function () {
+            updateCartBadge();
         });
+    });
 
     // Function to update the cart badge using AJAX
     function updateCartBadge() {
@@ -55,97 +58,90 @@
         });
     }
 </script>
-
-
-
-</script>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-md navbar-light bg-light">
             <div class="container px-4 px-lg-5 d-lg-flex justify-content-between align-items-center ">
                 <div class="d-flex flex-row align-items-center">
-                    <a class="navbar-brand text-primary" asp-area="" asp-controller="Home" asp-action="Index">
-                        <i class="fa-brands fa-shopify fa-xl" style="color: #74C0FC;"></i> E-Commerce
+                    <a class="my-navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                        <i class="fa-brands fa-shopify fa-xl" style="color: #74C0FC;"></i> YESF
                     </a>
-                    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar">
+                    <button class="btn hero-btn " type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar">
                         <i class="bi-list">Categories</i>
                     </button>
                 </div>
-                <div class="d-lg-flex align-items-center ms-auto">
 
-                    <div class="d-flex flex-row align-items-center">
-                        <div>
-                            @if (User.Identity.IsAuthenticated)
-                            {
-                                <ul class="navbar-nav">
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle text-dark" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="fas fa-user fa-fw text-primary"></i> @User.Identity.Name
-                                        </a>
-                                        <ul class="dropdown-menu " aria-labelledby="navbarDropdown">
-                                            @if (User.IsInRole("Admin"))
-                                            {
-                                                <li><a class="dropdown-item" asp-area="Admin" asp-controller="Home" asp-action="Index">Admin Panel</a></li>
-                                                <li><a class="dropdown-item" asp-controller="Account" asp-action="Edit" asp-route-userName="@User.Identity.Name">Edit</a></li>
-                                                <li><hr class="dropdown-divider" /></li>
-                                                <li><a class="dropdown-item" asp-controller="Account" asp-action="Logout">Logout</a></li>
-                                            }
-                                            else
-                                            {
-                                                <li><a class="dropdown-item" asp-controller="Order" asp-action="Index">My Orders</a></li>
-                                                <li><hr class="dropdown-divider" /></li>
-                                                <li><a class="dropdown-item" asp-controller="Account" asp-action="Logout">Logout</a></li>
-                                            }
 
-                                        </ul>
-                                    </li>
+                <div class="d-flex flex-row align-items-center">
+                    <div>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <div class="dropdown">
+                                <a class="btn  dropdown-toggle navbar-item" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-user fa-fw text-primary"></i> @displayedName
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        <li><a class="dropdown-item" asp-area="Admin" asp-controller="Home" asp-action="Index">Admin Panel</a></li>
+                                        <li><a class="dropdown-item" asp-controller="Account" asp-action="Edit" asp-route-userName="@User.Identity.Name">Edit</a></li>
+                                        <li><hr class="dropdown-divider" /></li>
+                                        <li><a class="dropdown-item" asp-controller="Account" asp-action="Logout">Logout</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a class="dropdown-item" asp-controller="Order" asp-action="Index">My Orders</a></li>
+                                        <li><hr class="dropdown-divider" /></li>
+                                        <li><a class="dropdown-item" asp-controller="Account" asp-action="Logout">Logout</a></li>
+                                    }
                                 </ul>
-                            }
-                            else
-                            {
-                                <ul class="navbar-nav">
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle text-dark" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="fas fa-user fa-fw text-dark"></i>
-                                        </a>
-                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <li><a class="dropdown-item" asp-controller="Account" asp-action="Login">Login</a></li>
-                                            <li><hr class="dropdown-divider" /></li>
-                                            <li><a class="dropdown-item" asp-controller="Account" asp-action="Register">Register</a></li>
-                                            <li><a class="dropdown-item" asp-controller="Account" asp-action="AdminRegister">Admin Register</a></li>
-                                        </ul>
-                                    </li>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="dropdown">
+                                <a class="btn  dropdown-toggle navbar-item" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-user fa-fw text-dark"></i>
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                                    <li><a class="dropdown-item" asp-controller="Account" asp-action="Login">Login</a></li>
+                                    <li><hr class="dropdown-divider" /></li>
+                                    <li><a class="dropdown-item" asp-controller="Account" asp-action="Register">Register</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Account" asp-action="AdminRegister">Admin Register</a></li>
                                 </ul>
-                            }
-                        </div>
-                        <div>
-                            <form class="d-flex ms-lg-4" asp-controller="Cart" asp-action="Index" asp-route-userName="@User.Identity.Name">
-                                <button class="btn btn-outline-dark" type="submit">
-                                    <i class="bi-cart-fill me-1"></i>
-                                    Cart
+                            </div>                            
+                        }
+                    </div>
+                    <div>
+                        <form class="d-flex ms-lg-4" asp-controller="Cart" asp-action="Index" asp-route-userName="@User.Identity.Name">
+                            <button class="btn navbar-item  ml-auto" type="submit">
+                                <i class="bi-cart-fill me-1"></i>
+                                Cart
 
-@*                             @{
-                                var cartItemCount = 0; 
+                                @*                             @{
+                                var cartItemCount = 0;
                                 if (!string.IsNullOrEmpty(User.Identity.Name))
                                 {
-                                    var user = await _userService.GetByUserName(User.Identity.Name);
-                                    if (user != null)
-                                    {
-                                        var cart = await _cartService.GetCartByUserId(user.Id);
-                                        if (cart != null && cart.CartLines != null)
-                                        {
-                                            cartItemCount = cart.CartLines.Sum(cl => cl.Quantity);
-                                        }
-                                    }
+                                var user = await _userService.GetByUserName(User.Identity.Name);
+                                if (user != null)
+                                {
+                                var cart = await _cartService.GetCartByUserId(user.Id);
+                                if (cart != null && cart.CartLines != null)
+                                {
+                                cartItemCount = cart.CartLines.Sum(cl => cl.Quantity);
                                 }
-                            } *@
+                                }
+                                }
+                                } *@
 
-                            @* <span class="badge bg-dark text-white ms-1 rounded-pill">@cartItemCount</span> *@
-                            <span class="badge bg-dark text-white ms-1 rounded-pill cart-badge"></span>
-                        </button>
-                    </form>
+                                @* <span class="badge bg-dark text-white ms-1 rounded-pill">@cartItemCount</span> *@
+                                <span class="badge bg-dark text-white ms-1 rounded-pill cart-badge"></span>
+                            </button>
+                        </form>
 
+                    </div>
                 </div>
+
             </div>
         </nav>
     </header>
@@ -155,9 +151,9 @@
             <button type="button" class="btn-close text-white" data-bs-dismiss="offcanvas" aria-label="Kapat"></button>
         </div>
         <div class="offcanvas-body " style="background-color: #f8f9fa;">
-            
+
             <ul class="list-unstyled text-center" style="font-size: 1.2rem;">
-                @await Component.InvokeAsync("CategoryMenu")
+                @await Component.InvokeAsync("CategoryMenu") @* ViewComponent *@
             </ul>
         </div>
     </div>
@@ -179,12 +175,10 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="~/Shop-Home-Page/js/scripts.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script>
+
+    <script>//Sayfaya gonderilen hata mesajlari icin
         var successMessage = '@(successMessage != null ? successMessage : "")';
         if (successMessage.trim() !== "") {
             showNotification('success', successMessage);
@@ -194,6 +188,14 @@
         if (errorMessage.trim() !== "") {
             showNotification('error', errorMessage);
         }
+    </script>
+
+    <script>//user dropdown menu acilirken navbar bozmamasi icin
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("navbarDropdown").addEventListener("click", function () {
+                toggleUserDropdown();
+            });
+        });
     </script>
     @await RenderSectionAsync("Scripts", required: false)
 
