@@ -63,7 +63,7 @@ namespace ETicaretPlatformu.UI.Controllers
                 foreach (var c in cart.CartLines)
                 {
                     c.Quantity = 1;
-                    _cartService.RemoveProductFromCart(userId,c.ProductId);
+                    await _cartService.RemoveProductFromCart(userId,c.ProductId);
                 }
 
             }

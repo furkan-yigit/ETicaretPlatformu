@@ -1,4 +1,3 @@
-﻿using AutoMapper;
 using ETicaretPlatformu.Application.AutoMapper;
 using ETicaretPlatformu.Application.Models.DTOs.Cart;
 using ETicaretPlatformu.Application.Services.CartService;
@@ -35,7 +34,7 @@ namespace ETicaretPlatformu.UI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddProductToCart(string userName, int productId, string returnURL)
+        public async Task<IActionResult> AddProductToCart(string userName, int productId)
         {
             var user = await _userService.GetByUserName(userName);
             try

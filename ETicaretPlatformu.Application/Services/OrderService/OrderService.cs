@@ -49,7 +49,7 @@ namespace ETicaretPlatformu.Application.Services.OrderService
                 detail.DeleteDate = DateTime.Now;
                 detail.Status = Status.Passive;
             }
-            _orderRepo.Update(order);
+            await _orderRepo.Update(order);
         }
 
         public async Task<UpdateOrderDto> GetById(int id)
