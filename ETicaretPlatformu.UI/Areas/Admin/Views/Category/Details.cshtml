@@ -4,75 +4,77 @@
     ViewData["Title"] = "Details";
 }
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
 <style>
-.details-container {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 20px;
-    margin: 20px auto;
-    max-width: 600px;
-}
+    .details-container {
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 20px auto;
+        max-width: 600px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+    }
 
-.details-header h2 {
-    margin-top: 0;
-    font-size: 24px;
-    color: #333;
-}
+    .details-header h2 {
+        margin-top: 0;
+        font-size: 24px;
+        color: #333;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 10px;
+    }
 
-.details-content {
-    margin-top: 20px;
-}
+    .detail-item {
+        margin-bottom: 15px;
+    }
 
-.detail-section {
-    margin-bottom: 20px;
-}
+    .label {
+        font-weight: bold;
+        color: #555;
+    }
 
-.detail-item {
-    margin-bottom: 10px;
-}
+    .value {
+        margin-left: 10px;
+    }
 
-.label {
-    font-weight: bold;
-}
+    .details-footer {
+        margin-top: 20px;
+        text-align: right;
+    }
 
-.value {
-    margin-left: 10px;
-}
+    .btn {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+        font-weight: bold;
+        display: inline-block;
+        margin-left: 10px;
+    }
 
-.details-footer {
-    margin-top: 20px;
-    text-align: right;
-}
+    .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+    }
 
-.btn {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-}
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
 
-.btn-primary {
-    background-color: #007bff;
-    color: #fff;
-}
+    .btn-secondary {
+        background-color: #6c757d;
+        color: #fff;
+    }
 
-.btn-primary:hover {
-    background-color: #0056b3;
-}
-
-.btn-secondary {
-    background-color: #6c757d;
-    color: #fff;
-}
-
-.btn-secondary:hover {
-    background-color: #545b62;
-}
+        .btn-secondary:hover {
+            background-color: #545b62;
+        }
 </style>
-<div class="details-container">
+
+<div class="details-container animate__animated animate__fadeIn">
     <div class="details-header">
         <h2>Details</h2>
     </div>
@@ -103,7 +105,7 @@
         </div>
     </div>
     <div class="details-footer">
-        <a href="@Url.Action("Update", "Update", new { id = Model.Id})" class="btn btn-primary">Update</a>
-        <a href="@Url.Action("Index")" class="btn btn-secondary">Back to List</a>
+        
+        <a href="@Url.Action("Index")" class="btn btn-secondary animate__animated animate__rubberBand">Back to List</a>
     </div>
 </div>
