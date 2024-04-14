@@ -119,24 +119,6 @@
                             <button class="btn navbar-item  ml-auto" type="submit">
                                 <i class="bi-cart-fill me-1"></i>
                                 Cart
-
-                                @*                             @{
-                                var cartItemCount = 0;
-                                if (!string.IsNullOrEmpty(User.Identity.Name))
-                                {
-                                var user = await _userService.GetByUserName(User.Identity.Name);
-                                if (user != null)
-                                {
-                                var cart = await _cartService.GetCartByUserId(user.Id);
-                                if (cart != null && cart.CartLines != null)
-                                {
-                                cartItemCount = cart.CartLines.Sum(cl => cl.Quantity);
-                                }
-                                }
-                                }
-                                } *@
-
-                                @* <span class="badge bg-dark text-white ms-1 rounded-pill">@cartItemCount</span> *@
                                 <span class="badge bg-dark text-white ms-1 rounded-pill cart-badge"></span>
                             </button>
                         </form>
@@ -149,7 +131,7 @@
     </header>
     <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebar" aria-labelledby="sidebarLabel">
         <div class="offcanvas-header bg-primary text-white">
-            <h5 class="offcanvas-title" id="sidebarLabel">Kategoriler</h5>
+            <h5 class="offcanvas-title" id="sidebarLabel">Categories</h5>
             <button type="button" class="btn-close text-white" data-bs-dismiss="offcanvas" aria-label="Kapat"></button>
         </div>
         <div class="offcanvas-body " style="background-color: #f8f9fa;">

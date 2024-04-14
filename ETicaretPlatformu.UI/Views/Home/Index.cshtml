@@ -59,8 +59,8 @@
                 <div class="col-md-2">
                     <form asp-action="Index" method="get">
                         <div class="input-group">
-                            <input name="term" class="form-control" placeholder="Isme göre ara" />
-                            <button type="submit" class="btn btn-info">Ara</button>
+                            <input name="term" class="form-control" placeholder="Search by name" />
+                            <button type="submit" class="btn btn-info">Search</button>
                         </div>
                     </form>
                 </div>
@@ -71,8 +71,8 @@
                             <input type="number" id="minPrice" name="minPrice" class="form-control" placeholder="Min Price" />
                             <input type="number" id="maxPrice" name="maxPrice" class="form-control" placeholder="Max Price" />
                             <div class="input-group-append">
-                                <button type="submit" class="btn btn-primary">Fiyata Göre Filtrele</button>
-                                <a href="#" class="btn btn-danger" onclick="removePriceFilter()">Fiyat Filtresini Kaldır</a>
+                                <button type="submit" class="btn btn-primary">Filter by Price</button>
+                                <a href="#" class="btn btn-danger" onclick="removePriceFilter()">Remove Price Filter</a>
                             </div>
                         </div>
                     </form>

@@ -12,6 +12,7 @@ using SixLabors.ImageSharp.Processing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -268,6 +269,25 @@ namespace ETicaretPlatformu.Application.Services.ProductService
             }
 
              
+        }
+
+        public async Task DecreaseStockQuantity(int productId, int quantity)
+        {
+            var product = await _productRepo.GetDefault(x => x.Id == productId);
+
+            if (product != null)
+            {
+                if (product.StockQuantity < quantity)
+                {
+                    product.StockQuantity = 0;
+                }
+                else
+                {
+                    product.StockQuantity -= quantity;
+                }
+
+                await _productRepo.Update(product);
+            }
         }
     }
 }
