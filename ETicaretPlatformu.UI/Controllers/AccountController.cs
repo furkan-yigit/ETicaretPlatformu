@@ -24,10 +24,11 @@ namespace ETicaretPlatformu.UI.Controllers
         [AllowAnonymous]
         public IActionResult AdminRegister()
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                return RedirectToAction("Index", nameof(HomeController));
-            }
+            //if (User.Identity.IsAuthenticated)
+            //{
+            //    //return RedirectToAction("Index", "Home");
+                
+            //}
             return View();
         }
 
@@ -49,6 +50,7 @@ namespace ETicaretPlatformu.UI.Controllers
             var result = await _userService.AdminRegister(registerDto);
             if (result.Succeeded)
             {
+                await _userService.LogOut();
                 TempData["Success"] = "Admin registration successful.";
                 return RedirectToAction("Index", "Home");
             }

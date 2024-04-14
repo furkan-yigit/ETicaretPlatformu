@@ -330,30 +330,18 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreateDate", "DeleteDate", "Email", "EmailConfirmed", "FirstName", "ImagePath", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PaymentMethod", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Status", "TwoFactorEnabled", "UpdateDate", "UserName" },
-<<<<<<<< HEAD:ETicaretPlatformu.InfraStructure/Migrations/20240414165234_init.cs
-                values: new object[] { "1", 0, "336897e2-9247-4b1b-a59e-6b6ce3b7d70d", new DateTime(2024, 4, 14, 19, 52, 33, 406, DateTimeKind.Local).AddTicks(7580), null, "admin@example.com", true, "admin", "/images/01-admin.jpg", "admin", false, null, "ADMIN@EXAMPLE.COM", "ADMIN", "AQAAAAEAACcQAAAAECtZy8DBMtRbJ20VzWP7ybadyRvqR+oy4zxE/HktD4gvrSdHSuHuu4C43QqgI9O0vA==", 0, null, false, "6b2fa996-2975-47a6-8a03-a2ac507a8e34", 1, false, null, "admin" });
-========
-                values: new object[] { "1", 0, "58084294-2932-47d8-8b7c-bdc40cfb12c4", new DateTime(2024, 4, 14, 19, 47, 31, 119, DateTimeKind.Local).AddTicks(4997), null, "admin@example.com", true, "admin", "/images/01-admin.jpg", "admin", false, null, "ADMIN@EXAMPLE.COM", "ADMIN", "AQAAAAEAACcQAAAAEPUuWpVjL0JW/BicRFAevy3Nn9gbaeVxkSJDbhI7zt4aahQPuAnedn0D4NcxjSE3lg==", 0, null, false, "47d97322-df7d-40e6-9bf6-4cb0e38c5ea1", 1, false, null, "admin" });
->>>>>>>> origin/Omer:ETicaretPlatformu.InfraStructure/Migrations/20240414164731_init.cs
+                values: new object[] { "1", 0, "2784d7b6-bcec-49aa-a728-402afc53ec2f", new DateTime(2024, 4, 14, 23, 9, 48, 969, DateTimeKind.Local).AddTicks(7409), null, "admin@example.com", true, "admin", "/images/01-admin.jpg", "admin", false, null, "ADMIN@EXAMPLE.COM", "ADMIN", "AQAAAAEAACcQAAAAEBwzmXDreVsxyFu3HONxMCTiGiPQXWEZf0SuWmKz/QqOoruK0n+FTHqNaHFzrWDchQ==", 0, null, false, "a19e3ffd-a9c6-4981-b95f-e3de58f1e852", 1, false, null, "admin" });
 
             migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "Id", "CreateDate", "DeleteDate", "Description", "Name", "Status", "UpdateDate" },
                 values: new object[,]
                 {
-<<<<<<<< HEAD:ETicaretPlatformu.InfraStructure/Migrations/20240414165234_init.cs
-                    { 1, new DateTime(2024, 4, 14, 19, 52, 33, 424, DateTimeKind.Local).AddTicks(4615), null, "Electronic Products", "Electronics", 1, null },
-                    { 2, new DateTime(2024, 4, 14, 19, 52, 33, 424, DateTimeKind.Local).AddTicks(4652), null, "Clothing Products", "Clothing", 1, null },
-                    { 3, new DateTime(2024, 4, 14, 19, 52, 33, 424, DateTimeKind.Local).AddTicks(4657), null, "Home and Living Products", "Home & Living", 1, null },
-                    { 4, new DateTime(2024, 4, 14, 19, 52, 33, 424, DateTimeKind.Local).AddTicks(4659), null, "Books", "Books", 1, null },
-                    { 5, new DateTime(2024, 4, 14, 19, 52, 33, 424, DateTimeKind.Local).AddTicks(4661), null, "Sports and Outdoor Products", "Sports & Outdoor", 1, null }
-========
-                    { 1, new DateTime(2024, 4, 14, 19, 47, 31, 120, DateTimeKind.Local).AddTicks(6935), null, "Elektronik Ürünler", "Elektronik", 1, null },
-                    { 2, new DateTime(2024, 4, 14, 19, 47, 31, 120, DateTimeKind.Local).AddTicks(6943), null, "Giyim Ürünleri", "Giyim", 1, null },
-                    { 3, new DateTime(2024, 4, 14, 19, 47, 31, 120, DateTimeKind.Local).AddTicks(6945), null, "Ev ve Yaşam Ürünleri", "Ev & Yaşam", 1, null },
-                    { 4, new DateTime(2024, 4, 14, 19, 47, 31, 120, DateTimeKind.Local).AddTicks(6946), null, "Kitaplar", "Kitap", 1, null },
-                    { 5, new DateTime(2024, 4, 14, 19, 47, 31, 120, DateTimeKind.Local).AddTicks(6947), null, "Spor ve Outdoor Ürünleri", "Spor & Outdoor", 1, null }
->>>>>>>> origin/Omer:ETicaretPlatformu.InfraStructure/Migrations/20240414164731_init.cs
+                    { 1, new DateTime(2024, 4, 14, 23, 9, 48, 985, DateTimeKind.Local).AddTicks(566), null, "Electronic Products", "Electronics", 1, null },
+                    { 2, new DateTime(2024, 4, 14, 23, 9, 48, 985, DateTimeKind.Local).AddTicks(586), null, "Clothing Products", "Clothing", 1, null },
+                    { 3, new DateTime(2024, 4, 14, 23, 9, 48, 985, DateTimeKind.Local).AddTicks(589), null, "Home and Living Products", "Home & Living", 1, null },
+                    { 4, new DateTime(2024, 4, 14, 23, 9, 48, 985, DateTimeKind.Local).AddTicks(591), null, "Books", "Books", 1, null },
+                    { 5, new DateTime(2024, 4, 14, 23, 9, 48, 985, DateTimeKind.Local).AddTicks(592), null, "Sports and Outdoor Products", "Sports & Outdoor", 1, null }
                 });
 
             migrationBuilder.InsertData(
@@ -366,29 +354,16 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                 columns: new[] { "Id", "CategoryId", "CreateDate", "DeleteDate", "Description", "ImagePath", "Name", "Price", "Status", "StockQuantity", "UpdateDate" },
                 values: new object[,]
                 {
-<<<<<<<< HEAD:ETicaretPlatformu.InfraStructure/Migrations/20240414165234_init.cs
-                    { 1, 1, new DateTime(2024, 4, 14, 19, 52, 33, 424, DateTimeKind.Local).AddTicks(4745), null, "Next Generation Smart Phone", "/images/ProductImages/smartPhone.jpg", "Smart Phone", 2000m, 1, 100, null },
-                    { 2, 1, new DateTime(2024, 4, 14, 19, 52, 33, 424, DateTimeKind.Local).AddTicks(4751), null, "Wireless Headphones", "/images/ProductImages/HeadPhones.jpg", "Headphones", 100m, 1, 200, null },
-                    { 3, 2, new DateTime(2024, 4, 14, 19, 52, 33, 424, DateTimeKind.Local).AddTicks(4754), null, "New Season Women's Dress", "/images/ProductImages/Dress.jpg", "Dress", 150m, 1, 150, null },
-                    { 4, 2, new DateTime(2024, 4, 14, 19, 52, 33, 424, DateTimeKind.Local).AddTicks(4758), null, "Slim Fit Men's Shirt", "/images/ProductImages/Shirt.jpg", "Shirt", 80m, 1, 120, null },
-                    { 5, 3, new DateTime(2024, 4, 14, 19, 52, 33, 424, DateTimeKind.Local).AddTicks(4760), null, "5-Function Kitchen Robot", "/images/ProductImages/KitchenRobot.jpg", "Kitchen Robot", 300m, 1, 80, null },
-                    { 6, 3, new DateTime(2024, 4, 14, 19, 52, 33, 424, DateTimeKind.Local).AddTicks(4764), null, "Flowering Houseplant", "/images/ProductImages/HousePlant.jpg", "Houseplant", 50m, 1, 300, null },
-                    { 7, 4, new DateTime(2024, 4, 14, 19, 52, 33, 424, DateTimeKind.Local).AddTicks(4766), null, "Latest Science Fiction Novel", "/images/ProductImages/ScienceFictionNovel.jpg", "Fiction Novel", 20m, 1, 500, null },
-                    { 8, 4, new DateTime(2024, 4, 14, 19, 52, 33, 424, DateTimeKind.Local).AddTicks(4768), null, "Ottoman Empire History Book", "/images/ProductImages/HistoryBook.jpg", "History Book", 30m, 1, 400, null },
-                    { 9, 5, new DateTime(2024, 4, 14, 19, 52, 33, 424, DateTimeKind.Local).AddTicks(4771), null, "Yoga Exercise Mat", "/images/ProductImages/YogaMat.jpg", "Yoga Mat", 25m, 1, 200, null },
-                    { 10, 5, new DateTime(2024, 4, 14, 19, 52, 33, 424, DateTimeKind.Local).AddTicks(4774), null, "2-Person Camping Tent", "/images/ProductImages/CampingTent.jpg", "Camping Tent", 150m, 1, 100, null }
-========
-                    { 1, 1, new DateTime(2024, 4, 14, 19, 47, 31, 120, DateTimeKind.Local).AddTicks(6981), null, "Next Generation Smart Phone", "/images/ProductImages/smartPhone.jpg", "Smart Phone", 2000m, 1, 100, null },
-                    { 2, 1, new DateTime(2024, 4, 14, 19, 47, 31, 120, DateTimeKind.Local).AddTicks(6984), null, "Wireless Headphones", "/images/ProductImages/HeadPhones.jpg", "Headphones", 100m, 1, 200, null },
-                    { 3, 2, new DateTime(2024, 4, 14, 19, 47, 31, 120, DateTimeKind.Local).AddTicks(6985), null, "New Season Women's Dress", "/images/ProductImages/Dress.jpg", "Dress", 150m, 1, 150, null },
-                    { 4, 2, new DateTime(2024, 4, 14, 19, 47, 31, 120, DateTimeKind.Local).AddTicks(6987), null, "Slim Fit Men's Shirt", "/images/ProductImages/Shirt.jpg", "Shirt", 80m, 1, 120, null },
-                    { 5, 3, new DateTime(2024, 4, 14, 19, 47, 31, 120, DateTimeKind.Local).AddTicks(6988), null, "5-Function Kitchen Robot", "/images/ProductImages/KitchenRobot.jpg", "Kitchen Robot", 300m, 1, 80, null },
-                    { 6, 3, new DateTime(2024, 4, 14, 19, 47, 31, 120, DateTimeKind.Local).AddTicks(6991), null, "Flowering Houseplant", "/images/ProductImages/HousePlant.jpg", "Houseplant", 50m, 1, 300, null },
-                    { 7, 4, new DateTime(2024, 4, 14, 19, 47, 31, 120, DateTimeKind.Local).AddTicks(6992), null, "Latest Science Fiction Novel", "/images/ProductImages/ScienceFictionNovel.jpg", "Fiction Novel", 20m, 1, 500, null },
-                    { 8, 4, new DateTime(2024, 4, 14, 19, 47, 31, 120, DateTimeKind.Local).AddTicks(6994), null, "Ottoman Empire History Book", "/images/ProductImages/HistoryBook.jpg", "History Book", 30m, 1, 400, null },
-                    { 9, 5, new DateTime(2024, 4, 14, 19, 47, 31, 120, DateTimeKind.Local).AddTicks(6996), null, "Yoga Exercise Mat", "/images/ProductImages/YogaMat.jpg", "Yoga Mat", 25m, 1, 200, null },
-                    { 10, 5, new DateTime(2024, 4, 14, 19, 47, 31, 120, DateTimeKind.Local).AddTicks(6998), null, "2-Person Camping Tent", "/images/ProductImages/CampingTent.jpg", "Camping Tent", 150m, 1, 100, null }
->>>>>>>> origin/Omer:ETicaretPlatformu.InfraStructure/Migrations/20240414164731_init.cs
+                    { 1, 1, new DateTime(2024, 4, 14, 23, 9, 48, 985, DateTimeKind.Local).AddTicks(661), null, "Next Generation Smart Phone", "/images/ProductImages/smartPhone.jpg", "Smart Phone", 2000m, 1, 100, null },
+                    { 2, 1, new DateTime(2024, 4, 14, 23, 9, 48, 985, DateTimeKind.Local).AddTicks(669), null, "Wireless Headphones", "/images/ProductImages/HeadPhones.jpg", "Headphones", 100m, 1, 200, null },
+                    { 3, 2, new DateTime(2024, 4, 14, 23, 9, 48, 985, DateTimeKind.Local).AddTicks(672), null, "New Season Women's Dress", "/images/ProductImages/Dress.jpg", "Dress", 150m, 1, 150, null },
+                    { 4, 2, new DateTime(2024, 4, 14, 23, 9, 48, 985, DateTimeKind.Local).AddTicks(674), null, "Slim Fit Men's Shirt", "/images/ProductImages/Shirt.jpg", "Shirt", 80m, 1, 120, null },
+                    { 5, 3, new DateTime(2024, 4, 14, 23, 9, 48, 985, DateTimeKind.Local).AddTicks(677), null, "5-Function Kitchen Robot", "/images/ProductImages/KitchenRobot.jpg", "Kitchen Robot", 300m, 1, 80, null },
+                    { 6, 3, new DateTime(2024, 4, 14, 23, 9, 48, 985, DateTimeKind.Local).AddTicks(697), null, "Flowering Houseplant", "/images/ProductImages/HousePlant.jpg", "Houseplant", 50m, 1, 300, null },
+                    { 7, 4, new DateTime(2024, 4, 14, 23, 9, 48, 985, DateTimeKind.Local).AddTicks(700), null, "Latest Science Fiction Novel", "/images/ProductImages/ScienceFictionNovel.jpg", "Fiction Novel", 20m, 1, 500, null },
+                    { 8, 4, new DateTime(2024, 4, 14, 23, 9, 48, 985, DateTimeKind.Local).AddTicks(702), null, "Ottoman Empire History Book", "/images/ProductImages/HistoryBook.jpg", "History Book", 30m, 1, 400, null },
+                    { 9, 5, new DateTime(2024, 4, 14, 23, 9, 48, 985, DateTimeKind.Local).AddTicks(705), null, "Yoga Exercise Mat", "/images/ProductImages/YogaMat.jpg", "Yoga Mat", 25m, 1, 200, null },
+                    { 10, 5, new DateTime(2024, 4, 14, 23, 9, 48, 985, DateTimeKind.Local).AddTicks(710), null, "2-Person Camping Tent", "/images/ProductImages/CampingTent.jpg", "Camping Tent", 150m, 1, 100, null }
                 });
 
             migrationBuilder.CreateIndex(
