@@ -1,4 +1,16 @@
 ﻿@model IEnumerable<ETicaretPlatformu.Application.Models.VMs.ProductVMs.ProductVM>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Dashboard - SB Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="~/sb-admin-2/css/styles.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+</head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
     function removeFilter() {
@@ -10,8 +22,26 @@
         document.getElementById("maxPrice").value = "";
         document.forms[1].submit();
     }
+
+    $(document).ready(function () {
+        $(document).on('click', '.addToCartBtn', function () {
+            var userName = $('#userName').val();
+            var productId = $(this).closest('form').find('.productId').val();
+
+            $.ajax({
+                url: '@Url.Action("AddProductToCart", "Cart")',
+                method: 'POST',
+                data: { userName: userName, productId: productId },
+                success: function (response) {
+                    $(document).trigger('productAddedToCart');
+                }
+            });
+        });
+    });
 </script>
+
 <body>
+
 
     <header class="bg-dark py-5">
         <div class="container px-4 px-lg-5 my-5">
@@ -22,6 +52,7 @@
         </div>
     </header>
 
+
     <section class="py-5">
         <div class="container px-4 px-lg-5 mt-3">
             <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -30,24 +61,6 @@
                         <div class="input-group">
                             <input name="term" class="form-control" placeholder="Isme göre ara" />
                             <button type="submit" class="btn btn-info">Ara</button>
-                        </div>
-                    </form>
-                </div>
-
-                <div class="col-md-5">
-                    <form asp-controller="Home" asp-action="FilterByCategory" method="get">
-                        <div class="input-group">
-                            <select class="form-control" id="category" name="categoryId">
-                                <option value="">Kategoriler</option>
-                                @foreach (var category in ViewBag.TumKategoriler)
-                                {
-                                    <option value="@category.Id">@category.Name</option>
-                                }
-                            </select>
-                            <div class="input-group-append">
-                                <button type="submit" class="btn btn-primary">Kategoriye Göre Filtrele</button>
-                                <a href="#" class="btn btn-danger" onclick="removeFilter()">Kategori Filtresini Kaldır</a>
-                            </div>
                         </div>
                     </form>
                 </div>
@@ -68,32 +81,8 @@
 
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center mt-5">
                 @Html.Partial("_ProductList", Model)
-                @* @foreach (var product in Model)
-                {
-                    <div class="col mb-4">
-                        <div class="card h-100">
-                            <img class="card-img-top" src="@product.ImagePath" alt="Current Image" style="object-fit: cover; height: 250px;" />
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <h5 class="fw-bolder">@product.Name</h5>
-                                    <p class="card-text">$@product.Price</p>
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center">
-                                    <form asp-controller="Cart" asp-action="AddProductToCart" method="post">
-                                        <input type="hidden" name="userName" value="@User.Identity.Name" />
-                                        <input type="hidden" name="productId" value="@product.Id" />
-                                        <button type="submit" class="btn btn-outline-dark mt-auto">Add to Cart</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                } *@
-            </div> <!-- Close the row for cards -->
-        </div> <!-- Close the container -->
-    </section> <!-- Close the section -->
+            </div>
+        </div> 
+    </section> 
 </body>
 
