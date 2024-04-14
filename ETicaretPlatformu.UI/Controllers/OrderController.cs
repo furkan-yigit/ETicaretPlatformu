@@ -52,7 +52,9 @@ namespace ETicaretPlatformu.UI.Controllers
 
                 await _orderService.Create(order);
 
-                foreach (var c in cart.CartLines)
+                List<CartLine> list = cart.CartLines.ToList();
+
+                foreach (var c in list)
                 {
                     CreateOrderDetailDto detail = new CreateOrderDetailDto()
                     {
@@ -61,14 +63,18 @@ namespace ETicaretPlatformu.UI.Controllers
                         OrderId = createdOrderID
                     };
                     await _detailService.Create(detail);
+
                 }
 
-              _cartService.DeleteCart(cart);
+
+
+                await _cartService.DeleteCart(cart);
+
 
             }
             return RedirectToAction("Index", "Order", new { area = "" });
         }
-        [Route("Siparislerim")]
+        [Route("MyOrders")]
         public async Task<IActionResult> Index()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -82,8 +88,16 @@ namespace ETicaretPlatformu.UI.Controllers
 
         public async Task<IActionResult> Details(int id)
         {
-            var Order=await _orderService.GetById(id);
-            return View(Order);
+            var user = await _userManager.GetUserAsync(User);
+            var Order = await _orderService.GetVmById(id);
+
+            if (Order.User == user)
+            {
+                return View(Order);
+            }
+
+            return RedirectToAction("Index", "Home");
+            
         }
     }
 }

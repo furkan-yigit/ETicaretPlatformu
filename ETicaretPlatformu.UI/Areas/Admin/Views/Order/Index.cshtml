@@ -7,60 +7,95 @@
 @model List<OrderVm>
 
 
-<div class="container-fluid px-4">
+<div class="container-fluid px-4 mt-3">
     <div>
-        <a asp-action="Create" asp-area="Admin" asp-controller="Order" class="btn btn-success">Create New Order</a>
+        <a asp-action="Create" asp-area="Admin" asp-controller="Order" class="btn btn-success my-4">Create New Order</a>
     </div>
-    <br />
-    <div class="row"></div>
+    <div >
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
             Order Table
         </div>
         <div class="card-body">
-            <table id="datatablesSimple">
+                <table id="datatablesSimple">
                 <thead>
                     <tr>
                         <th>
-                            Sipariş No
+                            Order No
                         </th>
                         <th>
-                            Ürünler
+                            Products
                         </th>
                         <th>
-                            Siparişi veren kullanıcı
+                            Total Price
                         </th>
-                        <th></th>
+                        <th>
+                            User
+                        </th>
+                        <th>
+                            Order Status
+                        </th>
                         <th></th>
                     </tr>
                 </thead>
+
                 <tbody>
 
                     @foreach (var item in Model)
                     {
                         <tr>
-                           
                             <td>
                                 @Html.DisplayFor(model => item.Id)
                             </td>
+                            @{
+                                decimal totalPrice = 0;
+                            }
+                           
                             <td>
-                                @foreach(OrderDetailVm detail in item.OrderDetails)
+                                @foreach (OrderDetailVm detail in item.OrderDetails)
                                 {
                                     <p> <span> @detail.Product.Name</span>  x <span>@detail.Quantity</span> </p>
-
+                                    totalPrice += detail.Product.Price * detail.Quantity;
                                 }
                             </td>
+
                             <td>
-                                @Html.DisplayFor(model=>item.User.UserName)
+                                $<span>@totalPrice</span>
                             </td>
-                            <td class="text-center">
-                                <a asp-action="Create" asp-area="Admin" asp-controller="OrderDetail" asp-route-orderId=@item.Id class="btn btn-success">Add product</a>
-                            </td>
+
                             <td>
-                                @Html.ActionLink("Güncelle", "Update", new { id = item.Id }) |
-                                @Html.ActionLink("Detay", "Detail", new { id = item.Id }) |
-                                @Html.ActionLink("Sil", "Delete", new { id = item.Id })
+                                @Html.DisplayFor(model => item.User.UserName)
+                            </td>
+
+                            <td >
+                                @{
+                                    string stat = item.OrderStatus.ToString();
+                                    switch (item.OrderStatus)
+                                    {
+                                        case ETicaretPlatformu.Domain.Enums.OrderStatus.Pending:
+
+                                            <span class="bg-danger fw-bold text-white px-5 py-2 mx-0 badge fs-6  ">@stat</span>
+                                            break;
+                                        case ETicaretPlatformu.Domain.Enums.OrderStatus.Confirmed:
+                                            <span class="bg-warning fw-bold text-dark px-5 py-2 mx-0 badge fs-6">@stat</span>
+                                            break;
+                                        case ETicaretPlatformu.Domain.Enums.OrderStatus.Shipping:
+                                            <span class="bg-primary fw-bold text-white px-5 py-2 mx-0 badge fs-6">@stat</span>
+                                            break;
+                                        case ETicaretPlatformu.Domain.Enums.OrderStatus.Completed:
+                                            <span class="bg-success fw-bold text-white px-5 py-2 mx-0 badge fs-6">@stat</span>
+                                            break;
+                                    }
+                                }
+                            </td>
+
+                            <td>
+                                <a asp-action="Update" asp-area="Admin" asp-controller="Order" asp-route-id=@item.Id class="btn btn-primary">Update Order</a>
+
+                                <a asp-action="Detail" asp-area="Admin" asp-controller="Order" asp-route-id=@item.Id class="btn btn-warning"> Details </a>
+
+                                <a asp-action="Delete" asp-area="Admin" asp-controller="Order" asp-route-id=@item.Id class="btn btn-danger"> Delete</a>
                             </td>
                         </tr>
                     }
@@ -68,5 +103,6 @@
                 </tbody>
             </table>
         </div>
+    </div>
     </div>
 </div>

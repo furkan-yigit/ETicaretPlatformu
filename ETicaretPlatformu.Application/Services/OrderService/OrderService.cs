@@ -64,7 +64,19 @@ namespace ETicaretPlatformu.Application.Services.OrderService
             return order;
         }
 
-        
+        public async Task<OrderVm> GetVmById(int id)
+        {
+            var order = await _orderRepo.GetFilteredFirstOrDefault
+                 (select: x => _mapper.Map<OrderVm>(x),
+            where: x => x.Id == id && x.Status != Status.Passive,
+            include: x => x.Include(x => x.OrderDetails).ThenInclude(x => x.Product).Include(x => x.User)
+            );
+
+
+            return order;
+        }
+
+
 
         public async Task<List<OrderVm>> GetOrders()
         {
@@ -72,7 +84,9 @@ namespace ETicaretPlatformu.Application.Services.OrderService
                  (
                 select: x => _mapper.Map<OrderVm>(x),
             where: x => x.Status != Status.Passive,
-            include:x=>x.Include(x => x.User).Include(x=> x.OrderDetails).ThenInclude(x=>x.Product) );
+            include:x=>x.Include(x => x.User).Include(x=> x.OrderDetails).ThenInclude(x=>x.Product),
+            orderBy:x=>x.OrderBy(x=>x.OrderStatus)
+            );
 
             
 

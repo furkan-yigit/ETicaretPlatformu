@@ -1,7 +1,8 @@
 ﻿@using ETicaretPlatformu.Application.Models.DTOs.OrderDto
 @using ETicaretPlatformu.Domain.Entities
+@using ETicaretPlatformu.Domain.Enums
 <link href="~/css/orderDetail.css" rel="stylesheet">
-@model UpdateOrderDto
+@model OrderVm
 @{
     ViewData["Title"] = "Details";
 }
@@ -25,7 +26,24 @@
                             <div>
                                 <span class="me-3">@Model.CreateDate</span>
                                 <span class="me-3">#@Model.Id</span>
-                                <span class="badge rounded-pill bg-info">SHIPPING</span>
+
+
+                                @switch (Model.OrderStatus)
+                                {
+                                    case OrderStatus.Pending:
+                                        <span class="badge rounded-pill bg-danger bg-opacity-75">WAITING FOR CONFIRMATION</span>
+                                        break;
+                                    case OrderStatus.Confirmed:
+                                        <span class="badge rounded-pill bg-warning">CONFIRMED</span>
+                                        break;
+                                    case OrderStatus.Shipping:
+                                        <span class="badge rounded-pill bg-info">SHIPPING</span>
+                                        break;
+                                    case OrderStatus.Completed:
+                                        <span class="badge rounded-pill bg-success">COMPLETED</span>
+                                        break;
+                                }
+                                
                             </div>
 
                         </div>
@@ -34,7 +52,7 @@
                                 @{
                                     decimal sumPrice = 0;
                                 }
-                                @foreach (OrderDetail vm in Model.OrderDetails)
+                                @foreach (OrderDetailVm vm in Model.OrderDetails)
                                 {
                                     <tr>
                                         <td>

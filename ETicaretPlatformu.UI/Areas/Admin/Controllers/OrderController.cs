@@ -1,4 +1,5 @@
-﻿using ETicaretPlatformu.Application.Models.DTOs.OrderDto;
+﻿using ETicaretPlatformu.Application.Models.DTOs.Order_Details;
+using ETicaretPlatformu.Application.Models.DTOs.OrderDto;
 using ETicaretPlatformu.Application.Models.DTOs.ProductDTOs;
 using ETicaretPlatformu.Application.Models.DTOs.UserDtos;
 using ETicaretPlatformu.Application.Services.OrderDetailService;
@@ -73,6 +74,13 @@ namespace ETicaretPlatformu.UI.Areas.Admin.Controllers
             if (!ModelState.IsValid)
             {
                 await _orderService.Update(model);
+
+                List<OrderDetail> list = model.OrderDetails;
+                if(list.Count > 0)
+                foreach (OrderDetail det in list)
+                {
+                    await _orderDetailService.ChangeQuantity(det.Id,det.Quantity);
+                }
 
                 return RedirectToAction("Index", "Order", new { area = "Admin" });
             }

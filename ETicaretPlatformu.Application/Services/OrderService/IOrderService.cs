@@ -17,5 +17,6 @@ namespace ETicaretPlatformu.Application.Services.OrderService
         Task<List<OrderVm>> GetOrders();
         Task<List<OrderVm>> GetOrdersForUser(string userId);
         Task<UpdateOrderDto> GetById(int id);
+        Task<OrderVm> GetVmById(int id);
     }
 }

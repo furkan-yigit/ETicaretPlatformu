@@ -50,19 +50,19 @@ namespace ETicaretPlatformu.UI.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 bool isDetailExist =await _orderDetailService.DoesDetailExist(model.OrderId, model.ProductId);
-
+                int id=0;
                 if (isDetailExist)
                 {
                     await _orderDetailService.Create(model);
                 }
                 else
                 {
-               _orderDetailService.ChangeQuantity(await _orderDetailService.GetDetailId(model.OrderId, model.ProductId),model.Quantity);
+               _orderDetailService.ChangeQuantity(await _orderDetailService.GetDetailId(model.OrderId, model.ProductId), model.Quantity);
                   //  await _orderDetailService.Update();
                 }
 
 
-                return RedirectToAction("Index", "Order", new { area = "Admin" });
+                return RedirectToAction("Update", "Order", new { area = "Admin",id= model.OrderId });
             }
             else
             {

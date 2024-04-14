@@ -8,7 +8,7 @@
 
 @if (ViewData["user"] == null)
 {
-    <h4>Giriş yapmadığınız için siparişlerinizi gösteremiyoruz</h4>
+    <h4>You need to login to see this page.</h4>
 }
 else
 {
@@ -16,14 +16,13 @@ else
 
     if (orderlist.Count == 0)
     {
-        <h4>Henüz bir siparişiniz yok!</h4>
+        <h4>You have'nt ordered anything yet!</h4>
     }
     else
     {
         <div class="main-content">
             <div class="container mt-7">
                 <!-- Table -->
-                <h1>Siparişlerim</h1>
                 <div class="row">
 
                     <div class="col">
@@ -33,11 +32,12 @@ else
                                 <table class="table align-items-center table-flush">
                                     <thead class="thead-light">
                                         <tr>
-                                            <th scope="col"></th> <!--resimler-->
-                                            <th scope="col">Sipariş No</th>
-                                            <th scope="col">Verildiği Tarih</th>
-                                            <th scope="col">Toplam Ürün</th>
-                                            <th scope="col">Toplam Fiyat</th>
+                                            <th scope="col">Bought Items </th> <!--resimler-->
+                                            <th scope="col">Order No</th>
+                                            <th scope="col">Order Date</th>
+                                            <th scope="col">Quantity</th>
+                                            <th scope="col">Total Price</th>
+                                            <th scope="col">Order Status</th>
                                             <th scope="col"></th>
                                         </tr>
                                     </thead>
@@ -116,6 +116,10 @@ else
                                                         sumPrice += vm.Quantity * vm.Product.Price;
                                                     }
                                                     <span> $@sumPrice </span>
+                                                </td>
+
+                                                <td>
+                                                    <span> @order.OrderStatus.ToString() </span>
                                                 </td>
 
                                                 <td class="text-right">
