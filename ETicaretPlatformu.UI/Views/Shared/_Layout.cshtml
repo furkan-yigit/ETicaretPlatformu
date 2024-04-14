@@ -4,9 +4,11 @@
 @{
     var errorMessage = TempData["Error"] as string;
 }
-@{//***Kullanici adi 5 harften uzunsa ilk 5 harfini kullan***
+@{
+    //***Kullanici adi 5 harften uzunsa ilk 5 harfini kullan***
     var userName = User.Identity.Name;
-    var displayedName = userName.Length > 5 ? userName.Substring(0, 5) + ".." : userName;
+    var displayedName = string.IsNullOrEmpty(userName) ? "Guest" : (userName.Length > 5 ? userName.Substring(0, 5) + ".." : userName);
+    
 }
 
 @inject ETicaretPlatformu.Application.Services.CartService.ICartService _cartService

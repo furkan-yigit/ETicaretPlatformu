@@ -66,24 +66,6 @@
                 </div>
 
                 <div class="col-md-5">
-                    <form asp-controller="Home" asp-action="FilterByCategory" method="get">
-                        <div class="input-group">
-                            <select class="form-control" id="category" name="categoryId">
-                                <option value="">Kategoriler</option>
-                                @foreach (var category in ViewBag.TumKategoriler)
-                                {
-                                    <option value="@category.Id">@category.Name</option>
-                                }
-                            </select>
-                            <div class="input-group-append">
-                                <button type="submit" class="btn btn-primary">Kategoriye Göre Filtrele</button>
-                                <a href="#" class="btn btn-danger" onclick="removeFilter()">Kategori Filtresini Kaldır</a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-                <div class="col-md-5">
                     <form asp-controller="Home" asp-action="Index" method="get">
                         <div class="input-group">
                             <input type="number" id="minPrice" name="minPrice" class="form-control" placeholder="Min Price" />
@@ -99,32 +81,8 @@
 
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center mt-5">
                 @Html.Partial("_ProductList", Model)
-                @* @foreach (var product in Model)
-                {
-                    <div class="col mb-4">
-                        <div class="card h-100">
-                            <img class="card-img-top" src="@product.ImagePath" alt="Current Image" style="object-fit: cover; height: 250px;" />
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <h5 class="fw-bolder">@product.Name</h5>
-                                    <p class="card-text">$@product.Price</p>
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center">
-                                    <form asp-controller="Cart" asp-action="AddProductToCart" method="post" asp-route-returnURL ="@Context.Request.Query["returnURL"]">
-                                        <input type="hidden" name="userName" value="@User.Identity.Name" />
-                                        <input type="hidden" name="productId" value="@product.Id" />
-                                        <button type="submit" class="btn btn-outline-dark mt-auto">Add to Cart</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                } *@
-            </div> <!-- Close the row for cards -->
-        </div> <!-- Close the container -->
-    </section> <!-- Close the section -->
+            </div>
+        </div> 
+    </section> 
 </body>
 
