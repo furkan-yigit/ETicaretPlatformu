@@ -33,7 +33,6 @@ body {
 
 }
     .hero-btn:hover {
-        background: #127fc7;
         color: black;
         box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
         font-weight: bold;
@@ -65,7 +64,7 @@ body {
 
 .my-navbar-brand {
     border-radius: 50%;
-    padding: 10px 15px;
+    padding: 10px 8px;
     background: transparent;
     transition: background-color 0.3s initial 0.5s;
     color: #000;
