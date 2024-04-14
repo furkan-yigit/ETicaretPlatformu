@@ -9,6 +9,7 @@ using ETicaretPlatformu.Domain.Entities;
 using ETicaretPlatformu.InfraStructure.Context;
 using Microsoft.AspNetCore.Identity;
 using ETicaretPlatformu.Application.Services.UserService;
+using Microsoft.Extensions.Options;
 
 namespace ETicaretPlatformu.UI
 {
@@ -32,9 +33,10 @@ namespace ETicaretPlatformu.UI
                 o.SignIn.RequireConfirmedAccount = false;
 
                 o.User.RequireUniqueEmail = true;
-                
 
-                o.Password.RequireUppercase = false;
+                o.Password.RequireDigit = true;
+                o.Password.RequireLowercase = true;
+                o.Password.RequireUppercase = true;
                 o.Password.RequiredLength = 3;
                 o.Password.RequireLowercase = false;
                 o.Password.RequireNonAlphanumeric = false;

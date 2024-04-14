@@ -95,40 +95,40 @@ namespace ETicaretPlatformu.InfraStructure.Context
                 new Category
                 {
                     Id = 1,
-                    Name = "Elektronik",
-                    Description = "Elektronik Ürünler",
+                    Name = "Electronics",
+                    Description = "Electronic Products",
                     CreateDate = DateTime.Now,
                     Status = Domain.Enums.Status.Active
                 },
                 new Category
                 {
                     Id = 2,
-                    Name = "Giyim",
-                    Description = "Giyim Ürünleri",
+                    Name = "Clothing",
+                    Description = "Clothing Products",
                     CreateDate = DateTime.Now,
                     Status = Domain.Enums.Status.Active
                 },
                 new Category
                 {
                     Id = 3,
-                    Name = "Ev & Yaşam",
-                    Description = "Ev ve Yaşam Ürünleri",
+                    Name = "Home & Living",
+                    Description = "Home and Living Products",
                     CreateDate = DateTime.Now,
                     Status = Domain.Enums.Status.Active
                 },
                 new Category
                 {
                     Id = 4,
-                    Name = "Kitap",
-                    Description = "Kitaplar",
+                    Name = "Books",
+                    Description = "Books",
                     CreateDate = DateTime.Now,
                     Status = Domain.Enums.Status.Active
                 },
                 new Category
                 {
                     Id = 5,
-                    Name = "Spor & Outdoor",
-                    Description = "Spor ve Outdoor Ürünleri",
+                    Name = "Sports & Outdoor",
+                    Description = "Sports and Outdoor Products",
                     CreateDate = DateTime.Now,
                     Status = Domain.Enums.Status.Active
                 }

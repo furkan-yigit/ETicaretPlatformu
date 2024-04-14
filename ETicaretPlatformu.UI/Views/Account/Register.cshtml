@@ -56,8 +56,10 @@
                     <label for="confirmPassword"><i class="fas fa-lock" style="color: #74C0FC;"></i> Confirm Password</label>
                     <span class="text-danger" asp-validation-for="ConfirmPassword"></span>
                 </div>
+                <span style="color:blue;"> Password must include: Upper, Lower, and Digit.</span>
                 <button type="submit" class="login-btn">Create Account</button>
             </form>
+
             <div class="card-footer text-center py-3">
                 <div class="small">Already have an account? <a asp-controller="Account" asp-action="Login" class="register-link">Log in!</a></div>
             </div>

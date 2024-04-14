@@ -101,7 +101,6 @@ namespace ETicaretPlatformu.UI.Controllers
                 {
                     ModelState.AddModelError("", error.Description);
                 }
-                TempData["Error"] = "Member registration failed.";
                 return View(registerDto);
             }
             
