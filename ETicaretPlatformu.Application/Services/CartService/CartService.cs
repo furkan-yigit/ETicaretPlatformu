@@ -39,7 +39,6 @@ namespace ETicaretPlatformu.Application.Services.CartService
             }
         }
 
-
         public async Task AddProductToCart(string userId, int productId)
         {
             var cart = await GetCartByUserId(userId);
@@ -73,7 +72,6 @@ namespace ETicaretPlatformu.Application.Services.CartService
             }
         }
 
-
         public async Task<Cart> GetCartByUserId(string userId)
         {
 
@@ -83,12 +81,6 @@ namespace ETicaretPlatformu.Application.Services.CartService
                 include: x => x.Include(c => c.CartLines).ThenInclude(p => p.Product).ThenInclude(ct => ct.Category)
                 );
 
-            //var cart = await _cartRepo.GetDefaultIncluding(
-            //                x => x.UserId == userId,
-            //                c => c.CartLines
-            //            );
-
-
             if (cart == null)
             {
                 await Create(userId);
@@ -97,17 +89,6 @@ namespace ETicaretPlatformu.Application.Services.CartService
             }
             else
                 return cart;
-            //else
-            //{
-            //    foreach (var cartLine in cart.CartLines)
-            //    {
-            //        cartLine.Product = await _productRepo.GetDefaultIncluding(
-            //                p => p.Id == cartLine.ProductId,
-            //                p => p.Category
-            //            );
-            //    }
-            //    return cart;
-            //}
         }
 
         public async Task DeleteCart(Cart cart)
@@ -149,4 +130,3 @@ namespace ETicaretPlatformu.Application.Services.CartService
         }
     }
 }
-

@@ -34,31 +34,24 @@ namespace ETicaretPlatformu.UI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddProductToCart(string userName, int productId)
+        public async Task<IActionResult> AddProductToCart(string userName, int productId, string returnUrl)
         {
             var user = await _userService.GetByUserName(userName);
             try
             {
                 await _cartService.AddProductToCart(user.Id, productId);
-                //TempData["Success"] = "Add to cart successful.";
+                TempData["Success"] = "Add to cart successful.";
             }
             catch (Exception)
             {
                 TempData["Error"] = "An error occurred while adding the product to the cart.";
             }
 
-            return RedirectToAction("GetCart", new { userId = user.Id });
-            //return RedirectToAction("Index", "Home");
+            return Redirect($"{returnUrl}?userId={user.Id}");
+
         }
 
-        [HttpPost]
-        public async Task<IActionResult> IncreaseProduct(string userName, int productId)
-        {
-            var user = await _userService.GetByUserName(userName);
-            await _cartService.AddProductToCart(user.Id, productId);
-            return RedirectToAction("GetCart", new { userId = user.Id });
-        }
-
+        [HttpGet]
         public async Task<IActionResult> RemoveProductFromCart(string userName, int productId)
         {
             var user = await _userService.GetByUserName(userName);
@@ -90,15 +83,11 @@ namespace ETicaretPlatformu.UI.Controllers
         {
             var user = await _userService.GetByUserName(userName);
             if (user == null)
-            {
                 return NotFound();
-            }
 
             var cart = await _cartService.GetCartByUserId(user.Id);
             if (cart == null || cart.CartLines == null)
-            {
                 return Ok(0);
-            }
 
             var cartItemCount = cart.CartLines.Sum(cl => cl.Quantity);
             return Ok(cartItemCount);

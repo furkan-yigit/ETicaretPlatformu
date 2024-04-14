@@ -38,19 +38,22 @@
                                             <div class="d-flex flex-row justify-content-evenly align-items-center">
                                                 <div class="d-flex">
                                                     <div class="quantity">
-                                                        <input class="text-center" value="@item.Quantity" style="width: 40px; height: 40px;">
+                                                        <input class="text-center" value="@item.Quantity" style="width: 40px; height: 40px;" readonly>
                                                     </div>
                                                 </div>
 
                                                 <div class="">
+
                                                     <form asp-controller="Cart" asp-action="AddProductToCart" asp-route-userName="@User.Identity.Name" method="post">
                                                         <input type="hidden" name="productId" value="@item.ProductId" />
+                                                        <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.Path" />
                                                         <button type="submit" class="btn" style="display: flex; justify-content: center; align-items: center;">
                                                             <i class="fa-solid fa-caret-up"></i>
                                                         </button>
                                                     </form>
 
-                                                    <form asp-controller="Cart" asp-action="RemoveProductFromCart" method="post">
+
+                                                    <form asp-controller="Cart" asp-action="RemoveProductFromCart" asp-route-userName="@User.Identity.Name">
                                                         <input type="hidden" name="productId" value="@item.ProductId" />
                                                         <button type="submit" class="btn" style="display: flex; justify-content: center; align-items: center;">
                                                             <i class="fa-solid fa-caret-down"></i>
