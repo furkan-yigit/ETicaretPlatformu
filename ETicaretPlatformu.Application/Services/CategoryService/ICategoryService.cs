@@ -18,10 +18,6 @@ namespace ETicaretPlatformu.Application.Services.CategoryService
         Task<UpdateCatagoryDto> GetById(int id);
         Task<bool> IsCatagoryExist(string name);
 
-        
-        
-
-
-
+     
     }
 }
