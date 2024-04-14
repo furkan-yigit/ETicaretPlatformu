@@ -127,7 +127,11 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         new
                         {
                             Id = 1,
+<<<<<<< HEAD
                             CreateDate = new DateTime(2024, 4, 14, 17, 37, 41, 100, DateTimeKind.Local).AddTicks(5045),
+=======
+                            CreateDate = new DateTime(2024, 4, 14, 0, 16, 55, 9, DateTimeKind.Local).AddTicks(2139),
+>>>>>>> origin/Sila
                             Description = "Elektronik Ürünler",
                             Name = "Elektronik",
                             Status = 1
@@ -291,7 +295,11 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         {
                             Id = 1,
                             CategoryId = 1,
+<<<<<<< HEAD
                             CreateDate = new DateTime(2024, 4, 14, 17, 37, 41, 100, DateTimeKind.Local).AddTicks(5307),
+=======
+                            CreateDate = new DateTime(2024, 4, 14, 0, 16, 55, 9, DateTimeKind.Local).AddTicks(2164),
+>>>>>>> origin/Sila
                             Description = "Next Generation Smart Phone",
                             ImagePath = "/images/ProductImages/smartPhone.jpg",
                             Name = "Smart Phone",
@@ -504,8 +512,13 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
+<<<<<<< HEAD
                             ConcurrencyStamp = "cc272d98-8264-4cff-817c-4d38f8115ab5",
                             CreateDate = new DateTime(2024, 4, 14, 17, 37, 41, 73, DateTimeKind.Local).AddTicks(8348),
+=======
+                            ConcurrencyStamp = "220b47e3-741b-4fc9-8f16-c4f2d0b67375",
+                            CreateDate = new DateTime(2024, 4, 14, 0, 16, 55, 2, DateTimeKind.Local).AddTicks(3517),
+>>>>>>> origin/Sila
                             Email = "admin@example.com",
                             EmailConfirmed = true,
                             FirstName = "admin",
@@ -514,10 +527,17 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@EXAMPLE.COM",
                             NormalizedUserName = "ADMIN",
+<<<<<<< HEAD
                             PasswordHash = "AQAAAAEAACcQAAAAENo4kBsqBf8yibutEX9phjbncprvuMn0WD0dg18UNRViKasbXEBp5OpFsVBrS4jnxw==",
                             PaymentMethod = 0,
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "d8517f9f-1ed3-4361-a8d3-2d37b04480c3",
+=======
+                            PasswordHash = "AQAAAAEAACcQAAAAEM8mTg7iQtP1vny7mrAv7Vp1WnKdgAV2mnorq6ElQWJ/bY7py2c3i/OhYt3UnDFQbg==",
+                            PaymentMethod = 0,
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "8536b795-1996-4ec4-9a5e-565a26c2e33e",
+>>>>>>> origin/Sila
                             Status = 1,
                             TwoFactorEnabled = false,
                             UserName = "admin"

@@ -1,4 +1,3 @@
-﻿using AutoMapper;
 using ETicaretPlatformu.Application.AutoMapper;
 using ETicaretPlatformu.Application.Models.DTOs.Cart;
 using ETicaretPlatformu.Application.Services.CartService;
@@ -35,7 +34,7 @@ namespace ETicaretPlatformu.UI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddProductToCart(string userName, int productId, string returnURL)
+        public async Task<IActionResult> AddProductToCart(string userName, int productId)
         {
             var user = await _userService.GetByUserName(userName);
             try
@@ -48,8 +47,8 @@ namespace ETicaretPlatformu.UI.Controllers
                 TempData["Error"] = "An error occurred while adding the product to the cart.";
             }
 
-            //return RedirectToAction("GetCart", new { userId = user.Id });
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("GetCart", new { userId = user.Id });
+            //return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
@@ -58,8 +57,6 @@ namespace ETicaretPlatformu.UI.Controllers
             var user = await _userService.GetByUserName(userName);
             await _cartService.AddProductToCart(user.Id, productId);
             return RedirectToAction("GetCart", new { userId = user.Id });
-            //return Redirect(returnURL);
-            //return Ok("kayıt başarılı");
         }
 
         public async Task<IActionResult> RemoveProductFromCart(string userName, int productId)
@@ -69,7 +66,6 @@ namespace ETicaretPlatformu.UI.Controllers
             try
             {
                 await _cartService.RemoveProductFromCart(user.Id, productId);
-                //TempData["Success"] = "Delete from cart successful.";
             }
             catch (Exception)
             {

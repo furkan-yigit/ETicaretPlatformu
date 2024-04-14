@@ -4,6 +4,7 @@ using ETicaretPlatformu.Application.Models.VMs.CartVMs;
 using ETicaretPlatformu.Domain.Entities;
 using ETicaretPlatformu.Domain.Enums;
 using ETicaretPlatformu.Domain.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,12 +18,14 @@ namespace ETicaretPlatformu.Application.Services.CartService
         private readonly ICartRepo _cartRepo;
         private readonly ICartLineRepo _cartLineRepo;
         private readonly IProductRepo _productRepo;
+        private readonly IMapper _mapper;
 
-        public CartService(ICartRepo cartRepo, IProductRepo productRepo, ICartLineRepo cartLineRepo)
+        public CartService(ICartRepo cartRepo, IProductRepo productRepo, ICartLineRepo cartLineRepo, IMapper mapper)
         {
             _cartRepo = cartRepo;
             _productRepo = productRepo;
             _cartLineRepo = cartLineRepo;
+            _mapper = mapper;
         }
 
         public async Task Create(string userId)
@@ -73,28 +76,38 @@ namespace ETicaretPlatformu.Application.Services.CartService
 
         public async Task<Cart> GetCartByUserId(string userId)
         {
-            var cart = await _cartRepo.GetDefaultIncluding(
-                            x => x.UserId == userId,
-                            c => c.CartLines
-                        );
+
+            var cart = await _cartRepo.GetFilteredFirstOrDefault(
+                select: x => _mapper.Map<Cart>(x),
+                where: x => x.UserId == userId,
+                include: x => x.Include(c => c.CartLines).ThenInclude(p => p.Product).ThenInclude(ct => ct.Category)
+                );
+
+            //var cart = await _cartRepo.GetDefaultIncluding(
+            //                x => x.UserId == userId,
+            //                c => c.CartLines
+            //            );
+
 
             if (cart == null)
             {
                 await Create(userId);
-                cart =  await GetCartByUserId(userId);
+                cart = await GetCartByUserId(userId);
                 return cart;
             }
             else
-            {
-                foreach (var cartLine in cart.CartLines)
-                {
-                    cartLine.Product = await _productRepo.GetDefaultIncluding(
-                            p => p.Id == cartLine.ProductId,
-                            p => p.Category
-                        );
-                }
                 return cart;
-            }
+            //else
+            //{
+            //    foreach (var cartLine in cart.CartLines)
+            //    {
+            //        cartLine.Product = await _productRepo.GetDefaultIncluding(
+            //                p => p.Id == cartLine.ProductId,
+            //                p => p.Category
+            //            );
+            //    }
+            //    return cart;
+            //}
         }
 
         public async Task DeleteCart(Cart cart)
@@ -105,7 +118,7 @@ namespace ETicaretPlatformu.Application.Services.CartService
             {
               await  _cartLineRepo.Delete(cartLine);
             }
-            await _cartRepo.Delete(cart);
+             await _cartRepo.Update(cart);
         }
 
         public async Task RemoveProductFromCart(string userId, int productId)
