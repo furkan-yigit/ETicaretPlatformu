@@ -18,8 +18,11 @@
                     <form asp-controller="Cart" asp-action="AddProductToCart" method="post">
                         <input type="hidden" name="userName" value="@User.Identity.Name" />
                         <input type="hidden" name="productId" value="@product.Id" />
+                        <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.Path" />
                         <button type="submit" class="btn btn-outline-dark mt-auto">Add to Cart</button>
                     </form>
+
+
                 </div>
             </div>
         </div>

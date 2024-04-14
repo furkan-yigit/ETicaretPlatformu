@@ -91,6 +91,7 @@ namespace ETicaretPlatformu.InfraStructure.Repositories
             {
                 return await query.Select(select).FirstOrDefaultAsync();
             }
+        
         }
 
         public async Task<List<TResult>> GetFilteredList<TResult>(Expression<Func<T, TResult>> select, Expression<Func<T, bool>> where, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null)
