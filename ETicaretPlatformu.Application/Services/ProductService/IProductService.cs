@@ -35,5 +35,7 @@ namespace ETicaretPlatformu.Application.Services.ProductService
 
         Task<List<ProductVM>> FilterByPrice(decimal maxPrice, decimal minPrice = 0);
 
+        Task DecreaseStockQuantity(int productId, int quantity);
+
     }
 }

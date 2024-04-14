@@ -4,6 +4,7 @@ using ETicaretPlatformu.Application.Models.VMs.Order;
 using ETicaretPlatformu.Application.Services.CartService;
 using ETicaretPlatformu.Application.Services.OrderDetailService;
 using ETicaretPlatformu.Application.Services.OrderService;
+using ETicaretPlatformu.Application.Services.ProductService;
 using ETicaretPlatformu.Application.Services.UserService;
 using ETicaretPlatformu.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
@@ -19,10 +20,11 @@ namespace ETicaretPlatformu.UI.Controllers
         private readonly IUserService _userService;
         private readonly IOrderDetailService _detailService;
         private readonly IOrderService _orderService;
+        private readonly IProductService _productService;
         UserManager<User> _userManager;
         private readonly ICartService _cartService;
 
-        public OrderController(IUserService userService, IOrderDetailService detailService, IOrderService orderService, UserManager<User> userManager, ICartService cartService)
+        public OrderController(IUserService userService, IOrderDetailService detailService, IOrderService orderService, UserManager<User> userManager, ICartService cartService, IProductService productService)
 
         {
             _userService = userService;
@@ -30,15 +32,28 @@ namespace ETicaretPlatformu.UI.Controllers
             _orderService = orderService;
             _userManager = userManager;
             _cartService = cartService;
+            _productService = productService;
         }
 
         public async Task<IActionResult> Checkout(string userId)
         {
             Cart cart = await _cartService.GetCartByUserId(userId);
             var ord = await _orderService.GetOrders();
-
             if (cart != null)
             {
+                List<CartLine> list = cart.CartLines.ToList();
+                foreach (var cartLine in list)
+                {
+                    var product = await _productService.GetById(cartLine.ProductId);
+                    if (product.StockQuantity < cartLine.Quantity)
+                    {
+                        await _cartService.DeleteCart(cart);
+                        TempData["Error"] = $"insufficient stock quantity for the product {product.Name}";
+                        return RedirectToAction("Index", "Home");
+
+                    }
+                }
+
                 int createdOrderID = 1;
                 if (ord.Count >= 1)
                     createdOrderID = ord.Max(x => x.Id) + 1;
@@ -49,13 +64,13 @@ namespace ETicaretPlatformu.UI.Controllers
                 {
                     UserId = userId,
                 };
-
                 await _orderService.Create(order);
 
-                List<CartLine> list = cart.CartLines.ToList();
+
 
                 foreach (var c in list)
                 {
+                    await _productService.DecreaseStockQuantity(c.ProductId, c.Quantity);
                     CreateOrderDetailDto detail = new CreateOrderDetailDto()
                     {
                         ProductId = c.ProductId,
@@ -63,13 +78,8 @@ namespace ETicaretPlatformu.UI.Controllers
                         OrderId = createdOrderID
                     };
                     await _detailService.Create(detail);
-
                 }
-
-
-
                 await _cartService.DeleteCart(cart);
-
 
             }
             return RedirectToAction("Index", "Order", new { area = "" });
@@ -97,7 +107,7 @@ namespace ETicaretPlatformu.UI.Controllers
             }
 
             return RedirectToAction("Index", "Home");
-            
+
         }
     }
 }

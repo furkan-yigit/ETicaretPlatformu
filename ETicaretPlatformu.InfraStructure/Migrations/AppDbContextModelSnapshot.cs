@@ -127,11 +127,7 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         new
                         {
                             Id = 1,
-<<<<<<< HEAD
-                            CreateDate = new DateTime(2024, 4, 14, 17, 37, 41, 100, DateTimeKind.Local).AddTicks(5045),
-=======
-                            CreateDate = new DateTime(2024, 4, 14, 0, 16, 55, 9, DateTimeKind.Local).AddTicks(2139),
->>>>>>> origin/Sila
+                            CreateDate = new DateTime(2024, 4, 14, 18, 15, 15, 471, DateTimeKind.Local).AddTicks(7832),
                             Description = "Elektronik Ürünler",
                             Name = "Elektronik",
                             Status = 1
@@ -139,7 +135,7 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2024, 4, 14, 17, 37, 41, 100, DateTimeKind.Local).AddTicks(5075),
+                            CreateDate = new DateTime(2024, 4, 14, 18, 15, 15, 471, DateTimeKind.Local).AddTicks(7857),
                             Description = "Giyim Ürünleri",
                             Name = "Giyim",
                             Status = 1
@@ -147,7 +143,7 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         new
                         {
                             Id = 3,
-                            CreateDate = new DateTime(2024, 4, 14, 17, 37, 41, 100, DateTimeKind.Local).AddTicks(5079),
+                            CreateDate = new DateTime(2024, 4, 14, 18, 15, 15, 471, DateTimeKind.Local).AddTicks(7859),
                             Description = "Ev ve Yaşam Ürünleri",
                             Name = "Ev & Yaşam",
                             Status = 1
@@ -155,7 +151,7 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         new
                         {
                             Id = 4,
-                            CreateDate = new DateTime(2024, 4, 14, 17, 37, 41, 100, DateTimeKind.Local).AddTicks(5081),
+                            CreateDate = new DateTime(2024, 4, 14, 18, 15, 15, 471, DateTimeKind.Local).AddTicks(7861),
                             Description = "Kitaplar",
                             Name = "Kitap",
                             Status = 1
@@ -163,7 +159,7 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         new
                         {
                             Id = 5,
-                            CreateDate = new DateTime(2024, 4, 14, 17, 37, 41, 100, DateTimeKind.Local).AddTicks(5083),
+                            CreateDate = new DateTime(2024, 4, 14, 18, 15, 15, 471, DateTimeKind.Local).AddTicks(7863),
                             Description = "Spor ve Outdoor Ürünleri",
                             Name = "Spor & Outdoor",
                             Status = 1
@@ -295,11 +291,7 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         {
                             Id = 1,
                             CategoryId = 1,
-<<<<<<< HEAD
-                            CreateDate = new DateTime(2024, 4, 14, 17, 37, 41, 100, DateTimeKind.Local).AddTicks(5307),
-=======
-                            CreateDate = new DateTime(2024, 4, 14, 0, 16, 55, 9, DateTimeKind.Local).AddTicks(2164),
->>>>>>> origin/Sila
+                            CreateDate = new DateTime(2024, 4, 14, 18, 15, 15, 471, DateTimeKind.Local).AddTicks(8010),
                             Description = "Next Generation Smart Phone",
                             ImagePath = "/images/ProductImages/smartPhone.jpg",
                             Name = "Smart Phone",
@@ -311,7 +303,7 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         {
                             Id = 2,
                             CategoryId = 1,
-                            CreateDate = new DateTime(2024, 4, 14, 17, 37, 41, 100, DateTimeKind.Local).AddTicks(5321),
+                            CreateDate = new DateTime(2024, 4, 14, 18, 15, 15, 471, DateTimeKind.Local).AddTicks(8018),
                             Description = "Wireless Headphones",
                             ImagePath = "/images/ProductImages/HeadPhones.jpg",
                             Name = "Headphones",
@@ -323,7 +315,7 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         {
                             Id = 3,
                             CategoryId = 2,
-                            CreateDate = new DateTime(2024, 4, 14, 17, 37, 41, 100, DateTimeKind.Local).AddTicks(5324),
+                            CreateDate = new DateTime(2024, 4, 14, 18, 15, 15, 471, DateTimeKind.Local).AddTicks(8027),
                             Description = "New Season Women's Dress",
                             ImagePath = "/images/ProductImages/Dress.jpg",
                             Name = "Dress",
@@ -335,7 +327,7 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         {
                             Id = 4,
                             CategoryId = 2,
-                            CreateDate = new DateTime(2024, 4, 14, 17, 37, 41, 100, DateTimeKind.Local).AddTicks(5326),
+                            CreateDate = new DateTime(2024, 4, 14, 18, 15, 15, 471, DateTimeKind.Local).AddTicks(8029),
                             Description = "Slim Fit Men's Shirt",
                             ImagePath = "/images/ProductImages/Shirt.jpg",
                             Name = "Shirt",
@@ -347,7 +339,7 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         {
                             Id = 5,
                             CategoryId = 3,
-                            CreateDate = new DateTime(2024, 4, 14, 17, 37, 41, 100, DateTimeKind.Local).AddTicks(5329),
+                            CreateDate = new DateTime(2024, 4, 14, 18, 15, 15, 471, DateTimeKind.Local).AddTicks(8032),
                             Description = "5-Function Kitchen Robot",
                             ImagePath = "/images/ProductImages/KitchenRobot.jpg",
                             Name = "Kitchen Robot",
@@ -359,7 +351,7 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         {
                             Id = 6,
                             CategoryId = 3,
-                            CreateDate = new DateTime(2024, 4, 14, 17, 37, 41, 100, DateTimeKind.Local).AddTicks(5334),
+                            CreateDate = new DateTime(2024, 4, 14, 18, 15, 15, 471, DateTimeKind.Local).AddTicks(8037),
                             Description = "Flowering Houseplant",
                             ImagePath = "/images/ProductImages/HousePlant.jpg",
                             Name = "Houseplant",
@@ -371,7 +363,7 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         {
                             Id = 7,
                             CategoryId = 4,
-                            CreateDate = new DateTime(2024, 4, 14, 17, 37, 41, 100, DateTimeKind.Local).AddTicks(5336),
+                            CreateDate = new DateTime(2024, 4, 14, 18, 15, 15, 471, DateTimeKind.Local).AddTicks(8040),
                             Description = "Latest Science Fiction Novel",
                             ImagePath = "/images/ProductImages/ScienceFictionNovel.jpg",
                             Name = "Fiction Novel",
@@ -383,7 +375,7 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         {
                             Id = 8,
                             CategoryId = 4,
-                            CreateDate = new DateTime(2024, 4, 14, 17, 37, 41, 100, DateTimeKind.Local).AddTicks(5339),
+                            CreateDate = new DateTime(2024, 4, 14, 18, 15, 15, 471, DateTimeKind.Local).AddTicks(8044),
                             Description = "Ottoman Empire History Book",
                             ImagePath = "/images/ProductImages/HistoryBook.jpg",
                             Name = "History Book",
@@ -395,7 +387,7 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         {
                             Id = 9,
                             CategoryId = 5,
-                            CreateDate = new DateTime(2024, 4, 14, 17, 37, 41, 100, DateTimeKind.Local).AddTicks(5341),
+                            CreateDate = new DateTime(2024, 4, 14, 18, 15, 15, 471, DateTimeKind.Local).AddTicks(8046),
                             Description = "Yoga Exercise Mat",
                             ImagePath = "/images/ProductImages/YogaMat.jpg",
                             Name = "Yoga Mat",
@@ -407,7 +399,7 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         {
                             Id = 10,
                             CategoryId = 5,
-                            CreateDate = new DateTime(2024, 4, 14, 17, 37, 41, 100, DateTimeKind.Local).AddTicks(5345),
+                            CreateDate = new DateTime(2024, 4, 14, 18, 15, 15, 471, DateTimeKind.Local).AddTicks(8052),
                             Description = "2-Person Camping Tent",
                             ImagePath = "/images/ProductImages/CampingTent.jpg",
                             Name = "Camping Tent",
@@ -512,13 +504,8 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-<<<<<<< HEAD
-                            ConcurrencyStamp = "cc272d98-8264-4cff-817c-4d38f8115ab5",
-                            CreateDate = new DateTime(2024, 4, 14, 17, 37, 41, 73, DateTimeKind.Local).AddTicks(8348),
-=======
-                            ConcurrencyStamp = "220b47e3-741b-4fc9-8f16-c4f2d0b67375",
-                            CreateDate = new DateTime(2024, 4, 14, 0, 16, 55, 2, DateTimeKind.Local).AddTicks(3517),
->>>>>>> origin/Sila
+                            ConcurrencyStamp = "0d17f58c-710b-46e6-a3ad-5a324f1f12d1",
+                            CreateDate = new DateTime(2024, 4, 14, 18, 15, 15, 459, DateTimeKind.Local).AddTicks(6312),
                             Email = "admin@example.com",
                             EmailConfirmed = true,
                             FirstName = "admin",
@@ -527,17 +514,10 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@EXAMPLE.COM",
                             NormalizedUserName = "ADMIN",
-<<<<<<< HEAD
-                            PasswordHash = "AQAAAAEAACcQAAAAENo4kBsqBf8yibutEX9phjbncprvuMn0WD0dg18UNRViKasbXEBp5OpFsVBrS4jnxw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENtE1Hbcxh4zBqSuVch/YEP15OKaCtDyRYIxCik6fH9Rqr+c54jEBB8CDdN0NRTQNA==",
                             PaymentMethod = 0,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d8517f9f-1ed3-4361-a8d3-2d37b04480c3",
-=======
-                            PasswordHash = "AQAAAAEAACcQAAAAEM8mTg7iQtP1vny7mrAv7Vp1WnKdgAV2mnorq6ElQWJ/bY7py2c3i/OhYt3UnDFQbg==",
-                            PaymentMethod = 0,
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "8536b795-1996-4ec4-9a5e-565a26c2e33e",
->>>>>>> origin/Sila
+                            SecurityStamp = "571833be-739c-4908-ab6e-061fd14fedde",
                             Status = 1,
                             TwoFactorEnabled = false,
                             UserName = "admin"
