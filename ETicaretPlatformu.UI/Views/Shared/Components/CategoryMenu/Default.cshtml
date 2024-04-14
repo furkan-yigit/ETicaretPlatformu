@@ -4,7 +4,7 @@
     @foreach (var category in Model)
     {
         <li style="margin-bottom: 10px;">
-            <a href="#" class="text-decoration-none text-dark">@category.Name</a>
+            <a href="@Url.Action("FilterByCategory", "Home", new { categoryId = category.Id })" class="text-decoration-none  categories-css">@category.Name</a>
         </li>
     }
 </ul>

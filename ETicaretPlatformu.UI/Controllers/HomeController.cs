@@ -47,9 +47,7 @@ namespace ETicaretPlatformu.UI.Controllers
                 var productList = await _productService.GetByCategory(categoryId);
                 return View("Index", productList);
             }                        
-        }
-
-       
+        }       
 
         public IActionResult Privacy()
         {

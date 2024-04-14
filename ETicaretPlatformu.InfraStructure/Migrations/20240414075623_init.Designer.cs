@@ -4,6 +4,7 @@ using ETicaretPlatformu.InfraStructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ETicaretPlatformu.InfraStructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240414075623_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -127,12 +129,6 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         new
                         {
                             Id = 1,
-<<<<<<< HEAD
-                            CreateDate = new DateTime(2024, 4, 11, 18, 9, 26, 97, DateTimeKind.Local).AddTicks(5595),
-                            Description = "Elektronik Ürünler",
-                            Name = "Elektronik",
-                            Status = 1
-=======
                             CreateDate = new DateTime(2024, 4, 14, 10, 56, 22, 993, DateTimeKind.Local).AddTicks(3665),
                             Description = "Elektronik Ürünler",
                             Name = "Elektronik",
@@ -169,7 +165,6 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                             Description = "Spor ve Outdoor Ürünleri",
                             Name = "Spor & Outdoor",
                             Status = 1
->>>>>>> origin/master
                         });
                 });
 
@@ -295,19 +290,13 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         {
                             Id = 1,
                             CategoryId = 1,
-<<<<<<< HEAD
-                            CreateDate = new DateTime(2024, 4, 11, 18, 9, 26, 97, DateTimeKind.Local).AddTicks(5613),
-=======
                             CreateDate = new DateTime(2024, 4, 14, 10, 56, 22, 993, DateTimeKind.Local).AddTicks(3726),
->>>>>>> origin/master
                             Description = "Next Generation Smart Phone",
                             ImagePath = "/images/ProductImages/smartPhone.jpg",
                             Name = "Smart Phone",
                             Price = 2000m,
                             Status = 1,
                             StockQuantity = 100
-<<<<<<< HEAD
-=======
                         },
                         new
                         {
@@ -416,7 +405,6 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                             Price = 150m,
                             Status = 1,
                             StockQuantity = 100
->>>>>>> origin/master
                         });
                 });
 
@@ -515,13 +503,8 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-<<<<<<< HEAD
-                            ConcurrencyStamp = "9c8d9966-472c-4be4-ad61-124d589f8040",
-                            CreateDate = new DateTime(2024, 4, 11, 18, 9, 26, 96, DateTimeKind.Local).AddTicks(3036),
-=======
                             ConcurrencyStamp = "9a65583c-a4f5-4b4c-8306-a23b6eaf7a28",
                             CreateDate = new DateTime(2024, 4, 14, 10, 56, 22, 983, DateTimeKind.Local).AddTicks(6681),
->>>>>>> origin/master
                             Email = "admin@example.com",
                             EmailConfirmed = true,
                             FirstName = "admin",
@@ -530,17 +513,10 @@ namespace ETicaretPlatformu.InfraStructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@EXAMPLE.COM",
                             NormalizedUserName = "ADMIN",
-<<<<<<< HEAD
-                            PasswordHash = "AQAAAAEAACcQAAAAEHqK1JjnWyIRCGOU6SRWqns+NALNRS0PiNJAMh1iZ2VQy5DRvUqPDRhNBcvtNXrXMw==",
-                            PaymentMethod = 0,
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "4f0046c6-202f-4a7a-ab34-36c828af5fe9",
-=======
                             PasswordHash = "AQAAAAEAACcQAAAAEEyiFTNrXDaNTZf9BaBzfJKhPUkQtRDdCXapxwi/qpU70yrB2W3i7THdqEazv/hk2g==",
                             PaymentMethod = 0,
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "d3c49727-abf8-464b-b828-068ccb48d3a3",
->>>>>>> origin/master
                             Status = 1,
                             TwoFactorEnabled = false,
                             UserName = "admin"
