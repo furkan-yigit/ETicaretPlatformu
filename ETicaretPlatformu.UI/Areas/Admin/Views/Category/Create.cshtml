@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Category</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
         /* Custom Styles */
         body {
@@ -52,6 +53,7 @@
             background-color: #007bff;
             border: none;
             border-radius: 5px;
+            transition: background-color 0.3s;
         }
 
             .btn-primary:hover {
@@ -69,7 +71,7 @@
 </head>
 <body>
     <h1>Create</h1>
-    <div class="container form-container">
+    <div class="container form-container animate__animated animate__fadeIn">
         <h4>Create Category</h4>
         <hr />
         <form asp-action="Create">
@@ -84,20 +86,14 @@
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-            
-            
+
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary btn-block" />
+                <button type="submit" class="btn btn-primary btn-block">Create</button>
             </div>
             <div class="form-group">
-                <a asp-action="Index" class="btn btn-danger">Back to List</a>
+                <a asp-action="Index" class="btn btn-danger btn-block">Back to List</a>
             </div>
         </form>
-        
-       
     </div>
 </body>
 </html>
-
-
-
